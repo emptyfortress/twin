@@ -1,10 +1,11 @@
-@import '@/assets/styles/myvariables.scss';
+// @import '@/assets/styles/myvariables.scss';
 @import '@/assets/styles/animation.scss';
+@import '@/assets/styles/theme.scss';
 
 body {
-	font-size: $font-size;
-	color: $text-color;
-	background-color: $bgMain;
+	font-size: var(--font-size);
+	color: var(--text-color);
+	background-color: var(--bg-main);
 }
 
 .container {
@@ -25,7 +26,7 @@ body {
 }
 
 .q-drawer {
-	background: $bgMain;
+	background: var(--bg-main);
 	// .noti {
 	// 	background: #f8f8f6;
 	// }
@@ -39,23 +40,23 @@ body {
 }
 
 .q-item--active {
-	background: $bgSelection;
+	background: var(--bg-selection);
 }
 
 .q-card {
-	border-radius: $radius-md;
-	box-shadow: $card-shadow;
+	border-radius: var(--radius-md);
+	box-shadow: var(--card-shadow);
 	cursor: pointer;
 }
 .q-card--flat {
-	border: 1px solid $bgHead;
+	border: 1px solid var(--bg-head);
 }
 .notifications {
 	transition: all 0.3s ease;
 }
 .q-chip {
 	// background: $accent2;
-	background: $bgHead;
+	background: var(--bg-head);
 	.inf {
 		display: none;
 	}
@@ -72,13 +73,13 @@ body {
 }
 
 .table {
-	box-shadow: $card-shadow;
-	border-radius: $radius-md;
+	box-shadow: var(--card-shadow);
+	border-radius: var(--radius-md);
 	tr.selected td::after {
 		background: transparent;
 	}
 	tr.selected {
-		background: $bgSelection;
+		background: var(--bg-selection);
 	}
 	td {
 		white-space: normal;

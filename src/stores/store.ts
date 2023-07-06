@@ -5,15 +5,20 @@ export const useStore = defineStore({
 	id: 'store',
 	state: () => ({
 		mini: false,
-		columns: columns,
+		allcolumns: [...columns],
 	}),
-	getters: {},
+	getters: {
+		columns() {
+			return this.allcolumns.filter(item => item.use)
+		},
+
+	},
 	actions: {
 		toggleMini() {
 			this.mini = !this.mini
 		},
 		resetColumns() {
-			this.columns = [...columns]
+			this.allcolumns.map(item => item.use = true)
 		}
 	},
 })

@@ -7,7 +7,8 @@ const columns: QTableProps['columns'] = [
 		label: 'Производитель',
 		field: 'manufacturer',
 		sortable: true,
-		align: 'left'
+		align: 'left',
+		use: true,
 	},
 	{
 		name: 'model',
@@ -15,7 +16,8 @@ const columns: QTableProps['columns'] = [
 		label: 'Модель',
 		field: 'model',
 		sortable: true,
-		align: 'left'
+		align: 'left',
+		use: true,
 	},
 	{
 		name: 'voltage',
@@ -23,7 +25,8 @@ const columns: QTableProps['columns'] = [
 		label: 'Класс напряжения',
 		field: 'voltage',
 		sortable: true,
-		align: 'center'
+		align: 'center',
+		use: true,
 	},
 	{
 		name: 'phase',
@@ -31,7 +34,8 @@ const columns: QTableProps['columns'] = [
 		label: 'Фазы',
 		field: 'phase',
 		sortable: true,
-		align: 'center'
+		align: 'center',
+		use: true,
 	},
 	{
 		name: 'polus',
@@ -39,7 +43,8 @@ const columns: QTableProps['columns'] = [
 		label: 'Полюса',
 		field: 'polus',
 		sortable: true,
-		align: 'center'
+		align: 'center',
+		use: true,
 	},
 	{
 		name: 'break',
@@ -47,7 +52,8 @@ const columns: QTableProps['columns'] = [
 		label: 'Разрывы на полюс',
 		field: 'break',
 		sortable: true,
-		align: 'center'
+		align: 'center',
+		use: true,
 	},
 	{
 		name: 'typP',
@@ -55,7 +61,8 @@ const columns: QTableProps['columns'] = [
 		label: 'Тип привода',
 		field: 'typP',
 		sortable: true,
-		align: 'left'
+		align: 'left',
+		use: true,
 	},
 	{
 		name: 'typB',
@@ -63,7 +70,8 @@ const columns: QTableProps['columns'] = [
 		label: 'Тип ВВ',
 		field: 'typB',
 		sortable: true,
-		align: 'left'
+		align: 'left',
+		use: true,
 	},
 ]
 

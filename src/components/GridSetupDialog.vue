@@ -31,10 +31,10 @@ q-dialog(v-model="modelValue")
 				@start="drag = true"
 				@end="drag = false")
 				template(#item="{ element }")
-					q-item(tag="label" @click="element.use = !element.use")
-						q-item-section(side)
-							q-checkbox(:model-value="store.columns" dense :val="element")
-						q-item-section
+					.item(@click="element.use = !element.use")
+						div
+							q-checkbox(:model-value="store.columns" dense :val="element" @click="element.use = !element.use")
+						div
 							q-item-label {{ element.label }}
 
 		q-card-actions(align="right")
@@ -45,5 +45,22 @@ q-dialog(v-model="modelValue")
 <style scoped lang="scss">
 .q-card {
 	min-width: 500px;
+}
+
+.item {
+	padding: .7rem 1rem;
+	display: flex;
+	align-items: center;
+	background: white;
+	gap: 1rem;
+	cursor: pointer;
+
+	&:hover {
+		outline: 1px solid #dedede;
+	}
+}
+
+.ghost {
+	background: var(--bg-selection);
 }
 </style>

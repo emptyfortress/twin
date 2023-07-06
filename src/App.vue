@@ -20,7 +20,8 @@ q-layout(view='hHh LpR fFf')
 	q-header.head
 		q-toolbar
 			q-btn(dense flat round icon='mdi-menu' @click='toggleLeftDrawer')
-			q-toolbar-title
+			img(src="@/assets/img/twin.svg")
+			q-toolbar-title Цифровой двойник
 			q-btn(dense flat round icon='mdi-menu' @click='toggleRightDrawer')
 
 	Drawer(v-model="leftDrawer")
@@ -28,18 +29,21 @@ q-layout(view='hHh LpR fFf')
 
 	q-page-container
 		router-view(v-slot="{ Component, route }")
-			transition(name="fade")
+			transition(name="fade" mode="out-in")
 				component(:is="Component")
 
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/styles/myvariables.scss';
-
 .head {
-	color: $text-bright;
+	color: var(--text-bright);
 	background: rgba(0, 0, 0, 0.07);
 	backdrop-filter: blur(10px);
 	-webkit-backdrop-filter: blur(10px);
+
+	img {
+		margin-left: 2rem;
+		width: 32px;
+	}
 }
 </style>

@@ -1,14 +1,9 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import Home from '@/components/Home.vue'
+import Home from '@/pages/Home.vue'
 
 declare module 'vue-router' {
-	interface Bread {
-		label: string
-		to: string
-	}
 	interface RouteMeta {
 		title: string
-		bread?: Bread[]
 	}
 }
 
@@ -22,10 +17,16 @@ export const router = createRouter({
 			component: Home,
 			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
 		},
+		{
+			path: '/switches',
+			name: 'switches',
+			component: () => import('@/pages/Switches.vue')
+			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
+		},
 	],
 })
 
-const DEFAULT_TITLE = 'DV prototype'
+const DEFAULT_TITLE = 'Цифровой двойник'
 router.beforeEach((to) => {
 	document.title = to.meta.title || DEFAULT_TITLE
 })

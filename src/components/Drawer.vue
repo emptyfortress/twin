@@ -18,12 +18,12 @@ const pages = [
 		icon: 'mdi-home-roof',
 		url: '/',
 	},
-	// {
-	// 	id: 1,
-	// 	title: 'Отчеты',
-	// 	icon: 'mdi-finance',
-	// 	url: '/report',
-	// },
+	{
+		id: 1,
+		title: 'Выключатели',
+		icon: 'mdi-electric-switch',
+		url: '/switches',
+	},
 ]
 </script>
 
@@ -43,14 +43,13 @@ q-drawer(:model-value="props.modelValue" side="left" :mini="mystore.mini" :width
 </template>
 
 <style scoped lang="scss">
-@import '@/assets/styles/myvariables.scss';
-
 .mini {
 	position: absolute;
 	bottom: 1rem;
 	left: 0.5rem;
 	overflow-x: hidden;
 }
+
 .q-item--active,
 .q-item.q-router-link--active {
 	background: $accent1;

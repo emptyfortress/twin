@@ -8,6 +8,9 @@ export default defineConfig({
 	plugins: [
 		vue({
 			template: { transformAssetUrls },
+			script: {
+				defineModel: true
+			}
 		}),
 
 		quasar({

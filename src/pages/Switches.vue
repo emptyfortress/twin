@@ -1,10 +1,12 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useStore } from '@/stores/store'
 import { rows } from '@/stores/data'
 import GridSetupDialog from '@/components/GridSetupDialog.vue'
 import AddDialog from '@/components/AddDialog.vue'
+import { useQuasar } from 'quasar'
 
+const $q = useQuasar()
 const store = useStore()
 const fullscreen = ref(false)
 const pagination = {
@@ -22,16 +24,39 @@ const addDialog = ref(false)
 const add = (() => {
 	addDialog.value = true
 })
+const filteredRows = computed(() => {
+	return rows
+})
+const tabkey = ref(0)
 const addItem = ((e: any) => {
-
+	filteredRows.value.push(e)
+	tabkey.value += 1
+	let message = 'Добавлено!'
+	$q.notify({
+		message: message,
+		position: 'top',
+		timeout: 3000,
+		icon: 'mdi-check-bold',
+		color: 'primary',
+		classes: 'notifications',
+		// actions: [
+		// 	{
+		// 		label: 'Вернуть',
+		// 		color: 'white',
+		// 		handler: () => undo(e),
+		// 	},
+		// ],
+	})
 })
 </script>
 
 <template lang="pug">
 q-page(padding)
 	.container
+
 		q-table(bordered flat
-			:rows='rows'
+			:key="tabkey"
+			:rows='filteredRows'
 			:columns='store.columns'
 			row-key='id'
 			rows-per-page-label="Записей на стр."

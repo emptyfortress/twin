@@ -1,6 +1,6 @@
-// import type { QTableColumn } from 'quasar'
+import type { QTableColumn } from 'quasar'
 
-const columns = [
+const columns: QTableColumn[] = [
 	{
 		name: 'manufacturer',
 		required: true,

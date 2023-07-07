@@ -1,7 +1,28 @@
 // page transitions
+.page-enter-active,
+.page-leave-active {
+	transition: all 0.3s;
+}
+.page-enter-from,
+.page-leave-to {
+	opacity: 0;
+	transform: translateX(-10px);
+	// filter: blur(1rem);
+}
+
+.layout-enter-active,
+.layout-leave-active {
+	transition: all 0.4s;
+}
+.layout-enter-from,
+.layout-leave-to {
+	opacity: 0;
+	filter: blur(2rem);
+}
+
 .fade-enter-active,
 .fade-leave-active {
-	transition: opacity 0.3s ease;
+	transition: opacity 0.2s ease;
 }
 .fade-leave-to,
 .fade-enter-from {
@@ -10,11 +31,9 @@
 
 .slide-right-enter-active,
 .slide-right-leave-active {
-	transition: all 0.5s ease;
-	// position: absolute;
+	transition: all 0.2s ease;
 }
-.slide-right-enter-from,
-.slide-right-leave-to {
+.slide-right-enter-from, .slide-right-leave-to {
 	transform: translateX(30px);
 	opacity: 0;
 }
@@ -22,6 +41,7 @@
 .slide-left-enter-active,
 .slide-left-leave-active {
 	transition: all 0.3s ease;
+	position: absolute;
 }
 .slide-left-enter-from,
 .slide-left-leave-to {
@@ -32,7 +52,7 @@
 
 .slide-top-enter-active,
 .slide-top-leave-active {
-	transition: all 0.3s ease;
+	transition: all 0.2s ease;
 }
 .slide-top-enter-from,
 .slide-top-leave-to {
@@ -42,8 +62,7 @@
 }
 .slide-bottom-enter-active,
 .slide-bottom-leave-active {
-	transition: all 0.5s ease;
-	position: absolute;
+	transition: all 0.2s ease;
 }
 .slide-bottom-enter-from,
 .slide-bottom-leave-to {

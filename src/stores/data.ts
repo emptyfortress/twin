@@ -141,6 +141,7 @@ const rows = [
 		break: 2,
 		typP: 'Электромагнитный',
 		typB: 'Масляный',
+		class: 'warn',
 	},
 	{
 		id: 6,
@@ -163,6 +164,7 @@ const rows = [
 		break: 2,
 		typP: 'Электромагнитный',
 		typB: 'Масляный',
+		class: 'pink',
 	},
 	{
 		id: 8,

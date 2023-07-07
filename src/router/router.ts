@@ -4,6 +4,8 @@ import Home from '@/pages/Home.vue'
 declare module 'vue-router' {
 	interface RouteMeta {
 		title: string
+		transition: any
+		mode: string
 	}
 }
 
@@ -21,6 +23,16 @@ export const router = createRouter({
 			path: '/switches',
 			name: 'switches',
 			component: () => import('@/pages/Switches.vue')
+			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
+		},
+		{
+			path: '/item/:id',
+			name: 'item',
+			component: () => import('@/pages/Item.vue'),
+			meta: {
+				title: 'laksjd',
+				transition: 'page'
+			},
 			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
 		},
 	],

@@ -5,6 +5,7 @@ import { rows } from '@/stores/data'
 import GridSetupDialog from '@/components/GridSetupDialog.vue'
 import AddDialog from '@/components/AddDialog.vue'
 import { useQuasar } from 'quasar'
+import { router } from '@/router/router'
 
 const $q = useQuasar()
 const store = useStore()
@@ -39,21 +40,17 @@ const addItem = ((e: any) => {
 		icon: 'mdi-check-bold',
 		color: 'primary',
 		classes: 'notifications',
-		// actions: [
-		// 	{
-		// 		label: 'Вернуть',
-		// 		color: 'white',
-		// 		handler: () => undo(e),
-		// 	},
-		// ],
 	})
+})
+const goto = ((e: any) => {
+	router.push('/item/1')
+	console.log(e)
 })
 </script>
 
 <template lang="pug">
 q-page(padding)
 	.container
-
 		q-table(bordered flat
 			:key="tabkey"
 			:rows='filteredRows'
@@ -69,6 +66,16 @@ q-page(padding)
 				q-btn(flat round dense @click="toggleFullscreen")
 					q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
 					q-icon(v-else name="mdi-fullscreen")
+			template(v-slot:body="props")
+				q-tr(:props="props" @click="goto(props.row)" :class="props.row.class")
+					q-td(key="manufacturer" :props="props") {{ props.row.manufacturer }}
+					q-td(key="model" :props="props") {{ props.row.model }}
+					q-td(key="voltage" :props="props") {{ props.row.voltage }}
+					q-td(key="phase" :props="props") {{ props.row.phase }}
+					q-td(key="polus" :props="props") {{ props.row.polus }}
+					q-td(key="break" :props="props") {{ props.row.break }}
+					q-td(key="typP" :props="props") {{ props.row.typP }}
+					q-td(key="typB" :props="props") {{ props.row.typB }}
 
 	q-btn.fab(fab color="primary" icon="mdi-plus" @click="addDialog = !addDialog" :class="{ close: addDialog }") 
 
@@ -86,6 +93,10 @@ q-page(padding)
 	z-index: 2010;
 }
 
+.q-tr {
+	cursor: pointer;
+}
+
 .fab {
 	position: absolute;
 	bottom: 2rem;
@@ -96,4 +107,12 @@ q-page(padding)
 		transform: rotate(-45deg);
 	}
 }
+
+.warn {
+	background: var(--warn);
+}
+
+// .pink {
+// 	background: var(--pink);
+// }
 </style>

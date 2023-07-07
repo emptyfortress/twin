@@ -8,7 +8,9 @@ export const useStore = defineStore({
 		allcolumns: columns,
 	}),
 	getters: {
-		columns: (state) => state.allcolumns.filter(item => item.use)
+		columns(state) {
+			return state.allcolumns.filter(item => item.use)
+		},
 	},
 	actions: {
 		toggleMini() {

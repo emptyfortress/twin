@@ -23,17 +23,16 @@ export const router = createRouter({
 			path: '/switches',
 			name: 'switches',
 			component: () => import('@/pages/Switches.vue')
-			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
 		},
 		{
 			path: '/item/:id',
 			name: 'item',
 			component: () => import('@/pages/Item.vue'),
+			props: true,
 			meta: {
-				title: 'laksjd',
+				title: 'Выключатель',
 				transition: 'page'
 			},
-			// meta: { title: 'Admin console', bread: [{ label: 'Dashboard', to: '/' }] },
 		},
 	],
 })

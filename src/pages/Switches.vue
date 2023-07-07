@@ -43,8 +43,7 @@ const addItem = ((e: any) => {
 	})
 })
 const goto = ((e: any) => {
-	router.push('/item/1')
-	console.log(e)
+	router.push('/item/' + e.id)
 })
 </script>
 

@@ -1,16 +1,13 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-import { useStore } from '@/stores/store'
-import { req, reqnum } from '@/utils/utils'
+import { req } from '@/utils/utils'
 
 const modelValue = defineModel()
-const store = useStore()
 
 const form = ref()
-const test = ref('')
 
 const item = reactive({
-	id: Date(),
+	id: Date.now(),
 	manufacturer: '',
 	model: '',
 	voltage: 110,
@@ -21,12 +18,15 @@ const item = reactive({
 	typB: 'Масляный',
 })
 
-// const voltOptions = ref(110)
-// const phaseOptions = ref(3)
-const polusOptions = ['1', '2', '3', '4']
-const breakOptions = ['1', '2', '3', '4']
+const emit = defineEmits(['add'])
+
 const pOptions = ['Электромагнитный', 'Механический', 'Магнитный']
 const bOptions = ['Масляный', 'Мясной', 'Молочный']
+const err = ref(false)
+const add = (() => {
+	emit('add', item)
+	modelValue.value = false
+})
 </script>
 
 <template lang="pug">
@@ -37,8 +37,8 @@ q-dialog(v-model="modelValue" transition-show="slide-up" transition-hide="slide-
 			q-space
 			q-btn(icon="mdi-close" flat round dense v-close-popup)
 
-		q-card-section
-			q-form(ref="form")
+		q-form(ref="form" @submit="add" @validation-error="err = true" @validation-success="err = false")
+			q-card-section
 				.blo
 					.label Производитель:
 					q-input(dense filled autofocus v-model="item.manufacturer" :rules="req" @blur="form.validate()")
@@ -68,10 +68,9 @@ q-dialog(v-model="modelValue" transition-show="slide-up" transition-hide="slide-
 					q-select(dense filled  v-model="item.typP" :options="pOptions")
 					.label Тип ВВ:
 					q-select(dense filled v-model="item.typB" :options="bOptions")
-
-		q-card-actions.q-mx-md.q-mb-md(align="right")
-			q-btn(flat color="primary" label="Отмена" v-close-popup)
-			q-btn(unelevated color="primary" label="Добавить" v-close-popup)
+			q-card-actions.q-mx-md.q-mb-md(align="right")
+				q-btn(flat color="primary" label="Отмена" v-close-popup)
+				q-btn(unelevated color="primary" label="Добавить" type="submit" :disable="err" )
 </template>
 
 <style scoped lang="scss">

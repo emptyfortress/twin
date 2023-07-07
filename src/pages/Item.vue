@@ -38,9 +38,7 @@ q-page(padding :key="kkey")
 				q-tab-panel(name="one")
 					Measure
 				q-tab-panel(name="two")
-					Measure
 				q-tab-panel(name="three")
-					Measure
 
 </template>
 

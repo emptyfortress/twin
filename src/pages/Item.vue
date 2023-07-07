@@ -2,83 +2,65 @@
 import { onBeforeMount, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { rows } from '@/stores/data'
+import InfoPanel from '@/components/InfoPanel.vue'
+import Measure from '@/components/Measure.vue'
 
 const route = useRoute()
 const item = ref()
+const kkey = ref(0)
 
 watchEffect(() => {
 	item.value = rows.find(e => e.id === +route.params.id)
+	kkey.value += 1
 })
 onBeforeMount(() => {
 	item.value = rows.find(e => e.id === +route.params.id)
 })
 
-const panel = ref(true)
+const infopanel = ref(false)
+const measurepanel = ref(true)
+const tab = ref('one')
 </script>
 
 <template lang="pug">
-q-page(padding)
+q-page(padding :key="kkey")
 	.container
 		h4.q-mt-none.q-mb-sm {{ item.model }}
-		q-expansion-item(v-model="panel" label="Информация" icon="mdi-information-outline" header-class="head")
-			.mygrid
-				.inf
-					.label Производитель:
-					.val {{ item.manufacturer }}
-					.label Модель:
-					.val {{ item.model }}
-					.label Класс напряжения:
-					.val {{ item.voltage }}
-					.label Фазы:
-					.val {{ item.phase }}
-					.label Полюса:
-					.val {{ item.polus }}
-					.label Разрывы на полюс:
-					.val {{ item.break }}
-					.label Тип привода:
-					.val {{ item.typP }}
-					.label Тип ВВ:
-					.val {{ item.typB }}
-				.pic.text-right
-					img(src="@/assets/img/image.svg")
+		q-expansion-item(v-model="infopanel" label="Информация" icon="mdi-information-outline" header-class="head")
+			InfoPanel(:item="item" )
+		q-expansion-item(v-model="measurepanel" label="Измерения" icon="mdi-speedometer" header-class="head")
+			q-tabs.q-mt-md(v-model="tab" align="left" inline-label)
+				q-tab(name="one" icon="mdi-lightning-bolt" label="Фаза 1")
+				q-tab(name="two" icon="mdi-lightning-bolt" label="Фаза 2")
+				q-tab(name="three" icon="mdi-lightning-bolt" label="Фаза 3")
 
-		.tab ljklj
+			q-tab-panels(v-model="tab" animated)
+				q-tab-panel(name="one")
+					Measure
+				q-tab-panel(name="two")
+					Measure
+				q-tab-panel(name="three")
+					Measure
+
 </template>
 
 <style scoped lang="scss">
-.mygrid {
-	display: grid;
-	grid-template-columns: 1fr 1fr;
-	gap: 1rem;
-	background: white;
-	align-items: center;
-	padding: 1rem 3rem;
-	border-top: 1px solid #dedede;
-}
-
-.inf {
-	display: grid;
-	grid-template-columns: auto 1fr;
-	column-gap: 1rem;
-	row-gap: .3rem;
-}
-
 :deep(.q-expansion-item--expanded) {
+	transition: all .2s;
 	background: white;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	box-shadow: var(--card-shadow);
+	border-radius: var(--radius-md);
 }
 
 :deep(.head) {
-	color: var(--primary);
-
 	.q-item__label {
 		text-transform: uppercase;
 	}
 }
-
-.pic {
-	img {
-		opacity: .2;
-		height: 230px;
-	}
+.q-tab-panels {
+	background: transparent;
 }
+
 </style>

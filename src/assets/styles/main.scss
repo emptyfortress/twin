@@ -89,3 +89,13 @@ body {
 	background: pink;
 	color: darkred;
 }
+.fab {
+	position: fixed;
+	bottom: 2rem;
+	right: 2rem;
+	transition: transform .3s ease;
+
+	&.close {
+		transform: rotate(-45deg);
+	}
+}

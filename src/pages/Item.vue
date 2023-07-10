@@ -38,8 +38,11 @@ q-page(padding :key="kkey")
 				q-tab-panel(name="one")
 					Measure
 				q-tab-panel(name="two")
+					Measure
 				q-tab-panel(name="three")
+					Measure
 
+	// q-btn.fab(fab color="primary" icon="mdi-plus" @click="addDialog = !addDialog" :class="{ close: addDialog }") 
 </template>
 
 <style scoped lang="scss">

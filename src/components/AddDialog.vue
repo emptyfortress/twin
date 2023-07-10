@@ -1,10 +1,13 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
 import { req } from '@/utils/utils'
+import { useStore } from '@/stores/store'
 
-const modelValue = defineModel()
+
+// const modelValue = defineModel()
 
 const form = ref()
+const store = useStore()
 
 const item = reactive({
 	id: Date.now(),
@@ -25,12 +28,12 @@ const bOptions = ['Масляный', 'Мясной', 'Молочный']
 const err = ref(false)
 const add = (() => {
 	emit('add', item)
-	modelValue.value = false
+	// modelValue.value = false
 })
 </script>
 
 <template lang="pug">
-q-dialog(v-model="modelValue" transition-show="slide-up" transition-hide="slide-down")
+q-dialog(v-model="store.addSwitchDialog" transition-show="slide-up" transition-hide="slide-down")
 	q-card( style="width: 700px; max-width: 80vw;")
 		q-card-section.row.items-center.q-pb-none
 			.text-h6 Добавить устройство

@@ -2,7 +2,11 @@
 import { ref } from 'vue'
 import Drawer from '@/components/Drawer.vue'
 import RDrawer from '@/components/RDrawer.vue'
+import { useStore } from '@/stores/store'
+import { useRoute } from 'vue-router'
 
+const route = useRoute()
+const store = useStore()
 const leftDrawer = ref(true)
 const rightDrawer = ref(false)
 
@@ -13,6 +17,10 @@ const toggleLeftDrawer = () => {
 const toggleRightDrawer = () => {
 	rightDrawer.value = !rightDrawer.value
 }
+
+const showDialog = (() => {
+
+})
 </script>
 
 <template lang="pug">
@@ -32,6 +40,7 @@ q-layout(view='hHh LpR fFf')
 			transition(:name="route.meta.transition || 'fade'" mode="out-in")
 				component(:is="Component")
 
+	q-btn.fab(v-if="route.path !== '/'" fab color="primary" icon="mdi-plus" @click="showDialog") 
 </template>
 
 <style scoped lang="scss">

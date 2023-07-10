@@ -61,7 +61,7 @@ q-page(padding)
 			template(v-slot:top)
 				.zag Выключатели
 				q-space
-				q-btn(flat round dense icon="mdi-tune-variant" @click="dialog = !dialog")
+				q-btn(flat round dense icon="mdi-tune-variant" @click="store.AddSwitchDialog = !store.AddSwitchDialog")
 				q-btn(flat round dense @click="toggleFullscreen")
 					q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
 					q-icon(v-else name="mdi-fullscreen")
@@ -76,10 +76,8 @@ q-page(padding)
 					q-td(key="typP" :props="props") {{ props.row.typP }}
 					q-td(key="typB" :props="props") {{ props.row.typB }}
 
-	q-btn.fab(fab color="primary" icon="mdi-plus" @click="addDialog = !addDialog" :class="{ close: addDialog }") 
-
-	GridSetupDialog(v-model="dialog")
-	AddDialog(v-model="addDialog" @add="addItem")
+	// q-btn.fab(fab color="primary" icon="mdi-plus" @click="addDialog = !addDialog" :class="{ close: addDialog }") GridSetupDialog(v-model="dialog")
+	AddDialog(@add="addItem")
 </template>
 
 <style scoped lang="scss">
@@ -96,22 +94,7 @@ q-page(padding)
 	cursor: pointer;
 }
 
-.fab {
-	position: absolute;
-	bottom: 2rem;
-	right: 2rem;
-	transition: transform .3s ease;
-
-	&.close {
-		transform: rotate(-45deg);
-	}
-}
-
 .warn {
 	background: var(--warn);
 }
-
-// .pink {
-// 	background: var(--pink);
-// }
 </style>

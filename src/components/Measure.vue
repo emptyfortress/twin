@@ -1,21 +1,27 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { date } from 'quasar'
+import type { QTableColumn } from 'quasar'
+
+interface MyCol extends QTableColumn {
+	id?: number
+	use?: boolean
+}
 
 const fullscreen = ref(false)
 const pagination = {
 	sortBy: '',
 	descending: true,
 	page: 1,
-	rowsPerPage: 13
+	rowsPerPage: 9
 }
 
-var arr = [
+var arr: MyCol[] = [
 	{
 		id: 0,
 		name: 'time',
 		required: true,
-		label: 'Время измерения',
+		label: 'Дата измерения',
 		field: 'time',
 		sortable: true,
 		align: 'left',
@@ -30,40 +36,27 @@ for (var i = 1; i < 20; i++) {
 		label: 'Параметр ' + i,
 		field: 'par' + i,
 		sortable: true,
-		align: 'left',
+		align: 'right',
 		use: true
 	});
 }
 
 let newDate = new Date(2023, 2, 7)
-const rows = [
-	{
-		id: 0,
-		time: date.formatDate(newDate, 'YYYY-MM-DD'),
-		par1: 434,
-		par2: 434,
-		par3: 434,
-		par4: 434,
-		par5: 434,
-		par6: 434,
-		par7: 434,
-	}
-]
-for (var i = 1; i < 50; i++) {
+let rows: any = []
+for (var i = 0; i < 50; i++) {
 	let temp = date.subtractFromDate(newDate, { days: i })
 	rows.push({
 		id: i,
 		time: date.formatDate(temp, 'YYYY-MM-DD'),
-		par1: 344,
-		par2: 344,
-		par3: 344,
-		par4: 344,
-		par5: 344,
-		par6: 344,
-		par7: 344,
-		par8: 344,
-	});
+	})
 }
+for (let i = 0; i < 20; i++) {
+	let key = 'par' + i
+	rows.map((e: any) => {
+		e[key] = Math.round(Math.random() * 20)
+	})
+}
+const tabkey = ref(0)
 
 </script>
 

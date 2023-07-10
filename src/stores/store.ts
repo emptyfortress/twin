@@ -6,6 +6,7 @@ export const useStore = defineStore({
 	state: () => ({
 		mini: false,
 		allcolumns: columns,
+		addSwitchDialog: false,
 	}),
 	getters: {
 		columns(state) {

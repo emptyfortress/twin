@@ -7,6 +7,7 @@ export const useStore = defineStore({
 		mini: false,
 		allcolumns: columns,
 		addSwitchDialog: false,
+		addMeasureDialog: false,
 	}),
 	getters: {
 		columns(state) {
@@ -19,6 +20,12 @@ export const useStore = defineStore({
 		},
 		resetColumns() {
 			this.allcolumns.map(item => item.use = true)
+		},
+		toggleSwitchDialog() {
+			this.addSwitchDialog = !this.addSwitchDialog
+		},
+		toggleMeasureDialog() {
+			this.addMeasureDialog = !this.addMeasureDialog
 		},
 	},
 })

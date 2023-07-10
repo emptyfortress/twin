@@ -5,7 +5,6 @@ declare module 'vue-router' {
 	interface RouteMeta {
 		title: string
 		transition: any
-		mode: string
 	}
 }
 

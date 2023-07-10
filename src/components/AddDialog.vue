@@ -3,9 +3,6 @@ import { ref, reactive } from 'vue'
 import { req } from '@/utils/utils'
 import { useStore } from '@/stores/store'
 
-
-// const modelValue = defineModel()
-
 const form = ref()
 const store = useStore()
 
@@ -73,7 +70,7 @@ q-dialog(v-model="store.addSwitchDialog" transition-show="slide-up" transition-h
 					q-select(dense filled v-model="item.typB" :options="bOptions")
 			q-card-actions.q-mx-md.q-mb-md(align="right")
 				q-btn(flat color="primary" label="Отмена" v-close-popup)
-				q-btn(unelevated color="primary" label="Добавить" type="submit" :disable="err" )
+				q-btn(unelevated color="primary" label="Добавить" type="submit" :disable="err" v-close-popup)
 </template>
 
 <style scoped lang="scss">

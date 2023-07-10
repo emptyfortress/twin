@@ -4,6 +4,7 @@ import { useRoute } from 'vue-router'
 import { rows } from '@/stores/data'
 import InfoPanel from '@/components/InfoPanel.vue'
 import Measure from '@/components/Measure.vue'
+import AddMeasure from '@/components/AddMeasure.vue'
 
 const route = useRoute()
 const item = ref()
@@ -28,11 +29,17 @@ q-page(padding :key="kkey")
 		h4.q-mt-none.q-mb-sm {{ item.model }}
 		q-expansion-item(v-model="infopanel" label="Информация" icon="mdi-information-outline" header-class="head")
 			InfoPanel(:item="item" )
+
 		q-expansion-item(v-model="measurepanel" label="Измерения" icon="mdi-speedometer" header-class="head")
-			q-tabs.q-mt-md(v-model="tab" align="left" inline-label)
-				q-tab(name="one" icon="mdi-lightning-bolt" label="Фаза 1")
-				q-tab(name="two" icon="mdi-lightning-bolt" label="Фаза 2")
-				q-tab(name="three" icon="mdi-lightning-bolt" label="Фаза 3")
+			template(v-slot:header)
+				q-item-section(avatar)
+					q-icon(name="mdi-speedometer")
+				q-item-section.tit Измерения
+				q-item-section(v-if="measurepanel")
+					q-tabs(v-model="tab" dense align="left" inline-label @click.stop)
+						q-tab(name="one" icon="mdi-lightning-bolt" label="Фаза 1")
+						q-tab(name="two" icon="mdi-lightning-bolt" label="Фаза 2")
+						q-tab(name="three" icon="mdi-lightning-bolt" label="Фаза 3")
 
 			q-tab-panels(v-model="tab" animated)
 				q-tab-panel(name="one")
@@ -42,7 +49,7 @@ q-page(padding :key="kkey")
 				q-tab-panel(name="three")
 					Measure
 
-	// q-btn.fab(fab color="primary" icon="mdi-plus" @click="addDialog = !addDialog" :class="{ close: addDialog }") 
+	AddMeasure
 </template>
 
 <style scoped lang="scss">
@@ -54,6 +61,9 @@ q-page(padding :key="kkey")
 	box-shadow: var(--card-shadow);
 	border-radius: var(--radius-md);
 }
+.tit {
+	text-transform: uppercase;
+}
 
 :deep(.head) {
 	.q-item__label {
@@ -63,5 +73,9 @@ q-page(padding :key="kkey")
 .q-tab-panels {
 	background: transparent;
 }
+:deep(.q-table__top) {
+	padding: 0;
+}
+
 
 </style>

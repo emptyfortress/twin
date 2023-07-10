@@ -19,7 +19,11 @@ const toggleRightDrawer = () => {
 }
 
 const showDialog = (() => {
-
+	if (route.name === 'switches') {
+		store.toggleSwitchDialog()
+	} else if (route.name === 'item') {
+		store.toggleMeasureDialog()
+	}
 })
 </script>
 

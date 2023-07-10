@@ -69,6 +69,12 @@ q-table(flat
 	rows-per-page-label="Записей на стр."
 	:class="{ full: fullscreen }"
 	:pagination="pagination")
+	template(v-slot:top)
+		q-space
+		q-btn(flat round dense icon="mdi-tune-variant" @click="store.AddSwitchDialog = !store.AddSwitchDialog")
+		q-btn(flat round dense @click="toggleFullscreen")
+			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
+			q-icon(v-else name="mdi-fullscreen")
 </template>
 
 <style scoped lang="scss"></style>

@@ -45,9 +45,10 @@ q-page(padding :key="kkey")
 				q-tab-panel(name="one")
 					Measure
 				q-tab-panel(name="two")
-					Measure
+					.text-h6 Здесь будет "развернутая" на 90 град. таблица с измерениями
+
 				q-tab-panel(name="three")
-					Measure
+					.text-h6 Еще что-то
 
 	AddMeasure
 </template>
@@ -61,6 +62,7 @@ q-page(padding :key="kkey")
 	box-shadow: var(--card-shadow);
 	border-radius: var(--radius-md);
 }
+
 .tit {
 	text-transform: uppercase;
 }
@@ -70,12 +72,13 @@ q-page(padding :key="kkey")
 		text-transform: uppercase;
 	}
 }
+
 .q-tab-panels {
 	background: transparent;
+	min-height: 200px;
 }
+
 :deep(.q-table__top) {
 	padding: 0;
 }
-
-
 </style>

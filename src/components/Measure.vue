@@ -77,7 +77,7 @@ q-table(flat
 
 	template(v-slot:top)
 		q-space
-		q-btn(flat round dense icon="mdi-tune-variant" @click="store.toggleMeasureDialog")
+		q-btn(flat round dense icon="mdi-tune-variant" @click="")
 		q-btn(flat round dense @click="toggleFullscreen")
 			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
 			q-icon(v-else name="mdi-fullscreen")

@@ -5,7 +5,7 @@ export const useStore = defineStore({
 	id: 'store',
 	state: () => ({
 		mini: false,
-		allcolumns: columns,
+		allcolumns: [...columns],
 		addSwitchDialog: false,
 		addMeasureDialog: false,
 	}),
@@ -15,6 +15,9 @@ export const useStore = defineStore({
 		},
 	},
 	actions: {
+		setColumns() {
+			this.allcolumns = [...columns]
+		},
 		toggleMini() {
 			this.mini = !this.mini
 		},

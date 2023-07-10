@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { date } from 'quasar'
+import { useStore } from '@/stores/store'
+
 import type { QTableColumn } from 'quasar'
 
 interface MyCol extends QTableColumn {
@@ -8,6 +10,7 @@ interface MyCol extends QTableColumn {
 	use?: boolean
 }
 
+const store = useStore()
 const fullscreen = ref(false)
 const pagination = {
 	sortBy: '',
@@ -40,6 +43,9 @@ for (var i = 1; i < 20; i++) {
 		use: true
 	});
 }
+const toggleFullscreen = (() => {
+	fullscreen.value = !fullscreen.value
+})
 
 let newDate = new Date(2023, 2, 7)
 let rows: any = []
@@ -50,14 +56,13 @@ for (var i = 0; i < 50; i++) {
 		time: date.formatDate(temp, 'YYYY-MM-DD'),
 	})
 }
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 21; i++) {
 	let key = 'par' + i
 	rows.map((e: any) => {
 		e[key] = Math.round(Math.random() * 20)
 	})
 }
 const tabkey = ref(0)
-
 </script>
 
 <template lang="pug">
@@ -69,9 +74,10 @@ q-table(flat
 	rows-per-page-label="Записей на стр."
 	:class="{ full: fullscreen }"
 	:pagination="pagination")
+
 	template(v-slot:top)
 		q-space
-		q-btn(flat round dense icon="mdi-tune-variant" @click="store.AddSwitchDialog = !store.AddSwitchDialog")
+		q-btn(flat round dense icon="mdi-tune-variant" @click="store.toggleMeasureDialog")
 		q-btn(flat round dense @click="toggleFullscreen")
 			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
 			q-icon(v-else name="mdi-fullscreen")

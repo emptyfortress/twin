@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, reactive } from 'vue'
-// import { req } from '@/utils/utils'
+import { req } from '@/utils/utils'
 import { useStore } from '@/stores/store'
 
 const form = ref()
@@ -12,6 +12,12 @@ const item = reactive({
 })
 
 const emit = defineEmits(['add'])
+const err = ref(false)
+
+const add = (() => {
+	emit('add')
+	// modelValue.value = false
+})
 
 </script>
 
@@ -27,9 +33,8 @@ q-dialog(v-model="store.addMeasureDialog" transition-show="slide-up" transition-
 			q-card-section
 				.blo
 					template(v-for="n in 5")
-						.label Параметр {{n}}:
+						.label Параметр {{ n }}:
 						q-input(dense filled autofocus v-model="item.par" :rules="req" @blur="form.validate()")
-
 			q-card-actions.q-mx-md.q-mb-md(align="right")
 				q-btn(flat color="primary" label="Отмена" v-close-popup)
 				q-btn(unelevated color="primary" label="Добавить" type="submit" :disable="err" v-close-popup)

@@ -1,4 +1,11 @@
-const columns: Column[] = [
+import type { QTableColumn } from 'quasar'
+
+interface MyCol extends QTableColumn {
+	id?: number
+	use?: boolean
+}
+
+const columns: MyCol[] = [
 	{
 		name: 'manufacturer',
 		required: true,

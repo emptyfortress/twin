@@ -45,6 +45,7 @@ const addItem = ((e: any) => {
 const goto = ((e: any) => {
 	router.push('/item/' + e.id)
 })
+// store.setColumns()
 </script>
 
 <template lang="pug">
@@ -61,7 +62,7 @@ q-page(padding)
 			template(v-slot:top)
 				.zag Выключатели
 				q-space
-				q-btn(flat round dense icon="mdi-tune-variant" @click="store.AddSwitchDialog = !store.AddSwitchDialog")
+				q-btn(flat round dense icon="mdi-tune-variant" @click="dialog = true")
 				q-btn(flat round dense @click="toggleFullscreen")
 					q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
 					q-icon(v-else name="mdi-fullscreen")
@@ -76,7 +77,7 @@ q-page(padding)
 					q-td(key="typP" :props="props") {{ props.row.typP }}
 					q-td(key="typB" :props="props") {{ props.row.typB }}
 
-	// q-btn.fab(fab color="primary" icon="mdi-plus" @click="addDialog = !addDialog" :class="{ close: addDialog }") GridSetupDialog(v-model="dialog")
+	GridSetupDialog(v-model="dialog")
 	AddDialog(@add="addItem")
 </template>
 

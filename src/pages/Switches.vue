@@ -45,7 +45,6 @@ const addItem = ((e: any) => {
 const goto = ((e: any) => {
 	router.push('/item/' + e.id)
 })
-// store.setColumns()
 </script>
 
 <template lang="pug">
@@ -82,15 +81,6 @@ q-page(padding)
 </template>
 
 <style scoped lang="scss">
-.full {
-	position: fixed;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: 2010;
-}
-
 .q-tr {
 	cursor: pointer;
 }

@@ -32,7 +32,7 @@ var arr: MyCol[] = [
 		use: true,
 	},
 ];
-for (var i = 1; i < 20; i++) {
+for (var i = 1; i < 31; i++) {
 	arr.push({
 		id: i,
 		name: 'par' + i,
@@ -57,7 +57,7 @@ for (var i = 0; i < 50; i++) {
 		time: date.formatDate(temp, 'YYYY-MM-DD'),
 	})
 }
-for (let i = 0; i < 21; i++) {
+for (let i = 0; i < 31; i++) {
 	let key = 'par' + i
 	rows.map((e: any) => {
 		e[key] = Math.round(Math.random() * 20)
@@ -68,7 +68,7 @@ const dialog = ref(false)
 </script>
 
 <template lang="pug">
-q-table(flat
+q-table.sticky(flat
 	:key="tabkey"
 	:rows="rows"
 	:columns="arr"
@@ -84,7 +84,40 @@ q-table(flat
 			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
 			q-icon(v-else name="mdi-fullscreen")
 
+	template(v-slot:header="props")
+		q-tr(:props="props")
+			q-th(v-for="(col, index) in props.cols" :key="col.name" :props="props")
+				span(:class="{ rot: index > 0 }") {{ col.label }}
+
 MeasureSetupDialog(v-model="dialog")
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+th {
+	vertical-align: bottom;
+	text-align: center;
+}
+
+th span.rot {
+	-ms-writing-mode: tb-rl;
+	-webkit-writing-mode: vertical-rl;
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
+	white-space: nowrap;
+}
+
+.q-table thead .q-tr:first-child th:first-child {
+	background-color: #fff;
+}
+
+:deep(.q-table tbody td:first-child) {
+	background-color: #f5f5dc;
+}
+
+:deep(th:first-child),
+:deep(td:first-child) {
+	position: sticky;
+	left: 0;
+	z-index: 1;
+}
+</style>

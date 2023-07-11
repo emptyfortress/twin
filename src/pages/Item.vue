@@ -4,6 +4,8 @@ import { useRoute } from 'vue-router'
 import { rows } from '@/stores/data'
 import InfoPanel from '@/components/InfoPanel.vue'
 import Measure from '@/components/Measure.vue'
+import Measure90 from '@/components/Measure90.vue'
+import Measure2 from '@/components/Measure2.vue'
 import AddMeasure from '@/components/AddMeasure.vue'
 
 const route = useRoute()
@@ -20,7 +22,7 @@ onBeforeMount(() => {
 
 const infopanel = ref(false)
 const measurepanel = ref(true)
-const tab = ref('one')
+const tab = ref('three')
 </script>
 
 <template lang="pug">
@@ -45,10 +47,9 @@ q-page(padding :key="kkey")
 				q-tab-panel(name="one")
 					Measure
 				q-tab-panel(name="two")
-					.text-h6 Здесь будет "развернутая" на 90 град. таблица с измерениями
-
+					Measure90
 				q-tab-panel(name="three")
-					.text-h6 Еще что-то
+					Measure2
 
 	AddMeasure
 </template>

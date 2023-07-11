@@ -17,7 +17,7 @@ const pagination = {
 	sortBy: '',
 	descending: true,
 	page: 1,
-	rowsPerPage: 9
+	rowsPerPage: 0
 }
 
 var arr: MyCol[] = [
@@ -32,7 +32,7 @@ var arr: MyCol[] = [
 		use: true,
 	},
 ];
-for (var i = 1; i < 20; i++) {
+for (var i = 1; i < 31; i++) {
 	arr.push({
 		id: i,
 		name: 'par' + i,
@@ -57,7 +57,7 @@ for (var i = 0; i < 50; i++) {
 		time: date.formatDate(temp, 'YYYY-MM-DD'),
 	})
 }
-for (let i = 0; i < 21; i++) {
+for (let i = 0; i < 31; i++) {
 	let key = 'par' + i
 	rows.map((e: any) => {
 		e[key] = Math.round(Math.random() * 20)
@@ -68,15 +68,14 @@ const dialog = ref(false)
 </script>
 
 <template lang="pug">
-q-table(flat
+q-table.sticky(flat
 	:key="tabkey"
 	:rows="rows"
 	:columns="arr"
 	row-key='id'
-	rows-per-page-label="Записей на стр."
+	hide-bottom
 	:class="{ full: fullscreen }"
 	:pagination="pagination")
-
 	template(v-slot:top)
 		q-space
 		q-btn(flat round dense icon="mdi-tune-variant" @click="dialog = true")
@@ -84,7 +83,49 @@ q-table(flat
 			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
 			q-icon(v-else name="mdi-fullscreen")
 
+	template(v-slot:header="props")
+		q-tr(:props="props")
+			q-th(v-for="(col, index) in props.cols" :key="col.name" :props="props")
+				span(:class="{ rot: index > 0 }") {{ col.label }}
+
 MeasureSetupDialog(v-model="dialog")
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+.sticky {
+	height: calc(100vh - 300px);
+}
+
+:deep(tr th) {
+	vertical-align: bottom;
+	text-align: center;
+	position: sticky;
+	z-index: 2;
+	top: 0;
+	background-color: #f9f9eb;
+}
+
+:deep() th span.rot {
+	-ms-writing-mode: tb-rl;
+	-webkit-writing-mode: vertical-rl;
+	writing-mode: vertical-rl;
+	transform: rotate(180deg);
+	white-space: nowrap;
+}
+
+.q-table thead .q-tr:first-child th:first-child {
+	background-color: #fff;
+	z-index: 3;
+}
+
+:deep(.q-table tbody td:first-child) {
+	background-color: #f9f9eb;
+}
+
+:deep(th:first-child),
+:deep(td:first-child) {
+	position: sticky;
+	left: 0;
+	z-index: 1;
+}
+</style>

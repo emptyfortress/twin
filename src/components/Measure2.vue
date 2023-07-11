@@ -3,6 +3,7 @@ import { ref, computed } from 'vue'
 import { date } from 'quasar'
 import { useStore } from '@/stores/store'
 import MeasureSetupDialog from '@/components/MeasureSetupDialog.vue'
+import TrendDialog from '@/components/TrendDialog.vue'
 
 import type { QTableColumn } from 'quasar'
 
@@ -85,6 +86,13 @@ const calcRow = ((e: any) => {
 	}
 
 })
+const showTrend = ref(false)
+const current = ref(0)
+
+const trend = ((e: number) => {
+	showTrend.value = true
+	current.value = e
+})
 </script>
 
 <template lang="pug">
@@ -112,8 +120,25 @@ q-table.sticky(flat
 		q-tr(:props="props" :class="calcRow(props.row)")
 			q-td(:props="props" key="time") {{ props.row.time }}
 			q-td(:props="props" v-for="(_, index) in data" :key="'par' + (index + 1)" :class="{ nice: props.row[mykey(index)] < 2 }") {{ props.row[mykey(index)] }}
+				q-menu(touch-position context-menu)
+
+					q-list(style="min-width: 100px")
+						q-item(clickable v-close-popup @click="trend(index)")
+							q-item-section(side)
+								q-icon(name="mdi-chart-line")
+							q-item-section Тренд
+						q-item(clickable v-close-popup @click="")
+							q-item-section(side)
+								q-icon(name="mdi-eye-off-outline")
+							q-item-section Спрятать колонку
+						q-item(clickable v-close-popup @click="")
+							q-item-section(side)
+								q-icon(name="mdi-eye-outline")
+							q-item-section Показать все колонки
 
 MeasureSetupDialog(v-model="dialog")
+TrendDialog(v-model="showTrend" :index="current")
+
 </template>
 
 <style scoped lang="scss">

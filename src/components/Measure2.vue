@@ -96,6 +96,10 @@ MeasureSetupDialog(v-model="dialog")
 	height: calc(100vh - 300px);
 }
 
+.sticky.full {
+	height: 100vh;
+}
+
 :deep(tr th) {
 	vertical-align: bottom;
 	text-align: center;

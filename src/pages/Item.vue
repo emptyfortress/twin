@@ -22,7 +22,7 @@ onBeforeMount(() => {
 
 const infopanel = ref(false)
 const measurepanel = ref(true)
-const tab = ref('three')
+const tab = ref('one')
 </script>
 
 <template lang="pug">

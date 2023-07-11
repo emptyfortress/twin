@@ -44,6 +44,8 @@ for (var i = 1; i < 31; i++) {
 		use: true
 	});
 }
+
+
 const toggleFullscreen = (() => {
 	fullscreen.value = !fullscreen.value
 })
@@ -63,8 +65,16 @@ for (let i = 0; i < 31; i++) {
 		e[key] = Math.round(Math.random() * 20)
 	})
 }
+
 const tabkey = ref(0)
 const dialog = ref(false)
+
+const data = computed(() => {
+	return arr.filter(item => item.name.toLowerCase().includes('par'))
+})
+const mykey = ((e: number) => {
+	return 'par' + e
+})
 </script>
 
 <template lang="pug">
@@ -82,11 +92,15 @@ q-table.sticky(flat
 		q-btn(flat round dense @click="toggleFullscreen")
 			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
 			q-icon(v-else name="mdi-fullscreen")
-
 	template(v-slot:header="props")
 		q-tr(:props="props")
 			q-th(v-for="(col, index) in props.cols" :key="col.name" :props="props")
 				span(:class="{ rot: index > 0 }") {{ col.label }}
+
+	template(v-slot:body="props")
+		q-tr(:props="props")
+			q-td(:props="props" key="time") {{ props.row.time }}
+			q-td(:props="props" v-for="(_, index) in data" :key="'par' + (index + 1)" :class="{ nice: props.row[mykey(index)] < 2 }") {{ props.row[mykey(index)] }}
 
 MeasureSetupDialog(v-model="dialog")
 </template>
@@ -131,5 +145,11 @@ MeasureSetupDialog(v-model="dialog")
 	position: sticky;
 	left: 0;
 	z-index: 1;
+}
+
+:deep(.q-table tbody td.nice) {
+	background: pink;
+	color: darkred;
+	font-weight: 600;
 }
 </style>

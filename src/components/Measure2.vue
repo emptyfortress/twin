@@ -62,7 +62,7 @@ for (var i = 0; i < 50; i++) {
 for (let i = 0; i < 31; i++) {
 	let key = 'par' + i
 	rows.map((e: any) => {
-		e[key] = Math.round(Math.random() * 20)
+		e[key] = Math.round(Math.random() * 100)
 	})
 }
 
@@ -74,6 +74,16 @@ const data = computed(() => {
 })
 const mykey = ((e: number) => {
 	return 'par' + e
+})
+const calcRow = ((e: any) => {
+	let temp = Object.values(e)
+	temp.shift()
+	temp.shift()
+	let cond = temp.some((item: any) => { return (item < 2) === true })
+	if (cond === true) {
+		return 'some'
+	}
+
 })
 </script>
 
@@ -92,13 +102,14 @@ q-table.sticky(flat
 		q-btn(flat round dense @click="toggleFullscreen")
 			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
 			q-icon(v-else name="mdi-fullscreen")
+
 	template(v-slot:header="props")
 		q-tr(:props="props")
 			q-th(v-for="(col, index) in props.cols" :key="col.name" :props="props")
 				span(:class="{ rot: index > 0 }") {{ col.label }}
 
 	template(v-slot:body="props")
-		q-tr(:props="props")
+		q-tr(:props="props" :class="calcRow(props.row)")
 			q-td(:props="props" key="time") {{ props.row.time }}
 			q-td(:props="props" v-for="(_, index) in data" :key="'par' + (index + 1)" :class="{ nice: props.row[mykey(index)] < 2 }") {{ props.row[mykey(index)] }}
 
@@ -151,5 +162,9 @@ MeasureSetupDialog(v-model="dialog")
 	background: pink;
 	color: darkred;
 	font-weight: 600;
+}
+
+:deep(.q-table tbody tr.some) {
+	background: #f7bac526;
 }
 </style>

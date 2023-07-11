@@ -3,8 +3,8 @@ import { onBeforeMount, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { rows } from '@/stores/data'
 import InfoPanel from '@/components/InfoPanel.vue'
-import Measure from '@/components/Measure.vue'
-import Measure90 from '@/components/Measure90.vue'
+// import Measure from '@/components/Measure.vue'
+// import Measure90 from '@/components/Measure90.vue'
 import Measure2 from '@/components/Measure2.vue'
 import AddMeasure from '@/components/AddMeasure.vue'
 
@@ -37,19 +37,8 @@ q-page(padding :key="kkey")
 				q-item-section(avatar)
 					q-icon(name="mdi-speedometer")
 				q-item-section.tit Измерения
-				q-item-section(v-if="measurepanel")
-					q-tabs(v-model="tab" dense align="left" inline-label @click.stop)
-						q-tab(name="one" icon="mdi-lightning-bolt" label="Фаза 1")
-						q-tab(name="two" icon="mdi-lightning-bolt" label="Фаза 2")
-						q-tab(name="three" icon="mdi-lightning-bolt" label="Фаза 3")
 
-			q-tab-panels(v-model="tab" animated)
-				q-tab-panel(name="one")
-					Measure
-				q-tab-panel(name="two")
-					Measure90
-				q-tab-panel(name="three")
-					Measure2
+			Measure2
 
 	AddMeasure
 </template>
@@ -79,7 +68,4 @@ q-page(padding :key="kkey")
 	min-height: 200px;
 }
 
-:deep(.q-table__top) {
-	padding: 0;
-}
 </style>

@@ -59,10 +59,16 @@ for (var i = 0; i < 50; i++) {
 		time: date.formatDate(temp, 'YYYY-MM-DD'),
 	})
 }
+const faza1 = ref(true)
+const faza2 = ref(true)
+const faza3 = ref(true)
+
 for (let i = 0; i < 31; i++) {
 	let key = 'par' + i
 	rows.map((e: any) => {
-		e[key] = Math.round(Math.random() * 100)
+		if (faza1 && faza2 && faza3) {
+			e[key] = Math.round(Math.random() * 100) + '-' + Math.round(Math.random() * 100) + '-' + Math.round(Math.random() * 100)
+		}
 	})
 }
 
@@ -96,8 +102,13 @@ q-table.sticky(flat
 	hide-bottom
 	:class="{ full: fullscreen }"
 	:pagination="pagination")
+
 	template(v-slot:top)
 		q-space
+		.q-mr-xl.q-gutter-lg
+			q-checkbox(dense v-model="faza1" label="Фаза 1" )
+			q-checkbox(dense v-model="faza2" label="Фаза 2" )
+			q-checkbox(dense v-model="faza3" label="Фаза 3" )
 		q-btn(flat round dense icon="mdi-tune-variant" @click="dialog = true")
 		q-btn(flat round dense @click="toggleFullscreen")
 			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")

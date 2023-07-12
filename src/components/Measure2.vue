@@ -2,7 +2,9 @@
 import { ref, computed } from 'vue'
 import { date } from 'quasar'
 import { useStore } from '@/stores/store'
+import { randomArray, randomNumber } from '@/utils/utils'
 import MeasureSetupDialog from '@/components/MeasureSetupDialog.vue'
+import VueApexCharts from 'vue3-apexcharts'
 
 import type { QTableColumn } from 'quasar'
 
@@ -31,6 +33,16 @@ var arr: MyCol[] = [
 		align: 'left',
 		use: true,
 	},
+	{
+		id: 100,
+		name: 'graph',
+		required: true,
+		label: 'Dynamic',
+		field: 'graph',
+		sortable: false,
+		align: 'left',
+		use: true,
+	}
 ];
 for (var i = 1; i < 31; i++) {
 	arr.push({
@@ -91,6 +103,38 @@ const calcRow = ((e: any) => {
 	}
 
 })
+const sparkLine = {
+	chart: {
+		type: 'line',
+		height: 35,
+		sparkline: {
+			enabled: true,
+		},
+	},
+	stroke: {
+		width: 3,
+		curve: 'smooth',
+	},
+	tooltip: {
+		enabled: false,
+		x: {
+			show: false,
+		},
+		y: {
+			title: {
+				formatter: function () {
+					return ''
+				},
+			},
+		},
+		marker: {
+			show: false,
+		},
+	},
+}
+const seriesTable1 = ((e: number) => {
+	return [{ data: randomArray(9, e, 70) }]
+})
 </script>
 
 <template lang="pug">
@@ -113,7 +157,6 @@ q-table.sticky(flat
 		q-btn(flat round dense @click="toggleFullscreen")
 			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
 			q-icon(v-else name="mdi-fullscreen")
-
 	template(v-slot:header="props")
 		q-tr(:props="props")
 			q-th(v-for="(col, index) in props.cols" :key="col.name" :props="props")
@@ -122,6 +165,9 @@ q-table.sticky(flat
 	template(v-slot:body="props")
 		q-tr(:props="props" :class="calcRow(props.row)")
 			q-td(:props="props" key="time") {{ props.row.time }}
+
+			q-td(@click.stop="")
+				VueApexCharts(type="line" height="35" width="110" :options="sparkLine" :series="seriesTable1(props.row.id)")
 			q-td(:props="props" v-for="(_, index) in data" :key="'par' + (index + 1)" :class="{ nice: props.row[mykey(index)] < 2 }") {{ props.row[mykey(index)] }}
 
 MeasureSetupDialog(v-model="dialog")

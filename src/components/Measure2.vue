@@ -2,7 +2,7 @@
 import { ref, computed } from 'vue'
 import { date } from 'quasar'
 import { useStore } from '@/stores/store'
-import { randomArray, randomNumber } from '@/utils/utils'
+import { randomArray } from '@/utils/utils'
 import MeasureSetupDialog from '@/components/MeasureSetupDialog.vue'
 import VueApexCharts from 'vue3-apexcharts'
 

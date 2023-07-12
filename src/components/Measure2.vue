@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, reactive } from 'vue'
 import { date } from 'quasar'
 import { useStore } from '@/stores/store'
-import { randomArray } from '@/utils/utils'
+import { randomArray, randomNumber } from '@/utils/utils'
 import MeasureSetupDialog from '@/components/MeasureSetupDialog.vue'
-import VueApexCharts from 'vue3-apexcharts'
+
+// import VueApexCharts from 'vue3-apexcharts'
 
 import type { QTableColumn } from 'quasar'
 
@@ -33,16 +34,6 @@ var arr: MyCol[] = [
 		align: 'left',
 		use: true,
 	},
-	{
-		id: 100,
-		name: 'graph',
-		required: true,
-		label: 'Dynamic',
-		field: 'graph',
-		sortable: false,
-		align: 'left',
-		use: true,
-	}
 ];
 for (var i = 1; i < 31; i++) {
 	arr.push({
@@ -54,7 +45,7 @@ for (var i = 1; i < 31; i++) {
 		sortable: true,
 		align: 'right',
 		use: true
-	});
+	})
 }
 
 
@@ -63,7 +54,12 @@ const toggleFullscreen = (() => {
 })
 
 let newDate = new Date(2023, 2, 7)
-let rows: any = []
+
+const faza1 = ref(true)
+const faza2 = ref(true)
+const faza3 = ref(true)
+
+let rows: any = reactive([])
 for (var i = 0; i < 50; i++) {
 	let temp = date.subtractFromDate(newDate, { days: i })
 	rows.push({
@@ -71,18 +67,15 @@ for (var i = 0; i < 50; i++) {
 		time: date.formatDate(temp, 'YYYY-MM-DD'),
 	})
 }
-const faza1 = ref(true)
-const faza2 = ref(true)
-const faza3 = ref(true)
 
-for (let i = 0; i < 31; i++) {
-	let key = 'par' + i
-	rows.map((e: any) => {
-		if (faza1 && faza2 && faza3) {
-			e[key] = Math.round(Math.random() * 100) + '-' + Math.round(Math.random() * 100) + '-' + Math.round(Math.random() * 100)
-		}
-	})
-}
+// for (let i = 0; i < 31; i++) {
+// 	let key = 'par' + i
+// 	rows.map((e: any) => {
+// 		if (faza1 && faza2 && faza3) {
+// 			e[key] = Math.round(Math.random() * 100) + '-' + Math.round(Math.random() * 100) + '-' + Math.round(Math.random() * 100)
+// 		}
+// 	})
+// }
 
 const tabkey = ref(0)
 const dialog = ref(false)
@@ -132,9 +125,7 @@ const sparkLine = {
 		},
 	},
 }
-const seriesTable1 = ((e: number) => {
-	return [{ data: randomArray(9, e, 70) }]
-})
+
 </script>
 
 <template lang="pug">
@@ -161,14 +152,17 @@ q-table.sticky(flat
 		q-tr(:props="props")
 			q-th(v-for="(col, index) in props.cols" :key="col.name" :props="props")
 				span(:class="{ rot: index > 0 }") {{ col.label }}
-
 	template(v-slot:body="props")
 		q-tr(:props="props" :class="calcRow(props.row)")
 			q-td(:props="props" key="time") {{ props.row.time }}
-
-			q-td(@click.stop="")
-				VueApexCharts(type="line" height="35" width="110" :options="sparkLine" :series="seriesTable1(props.row.id)")
-			q-td(:props="props" v-for="(_, index) in data" :key="'par' + (index + 1)" :class="{ nice: props.row[mykey(index)] < 2 }") {{ props.row[mykey(index)] }}
+			q-td(:props="props" v-for="(_, index) in data" :key="'par' + (index + 1)" :class="{ nice: props.row[mykey(index)] < 2 }")
+				span(v-if="faza1") 1
+				span(v-if="faza1 && faza2") &mdash;
+				span(v-if="faza2") 2
+				span(v-if="faza2 && faza3") &mdash;
+				span(v-if="faza1 && faza3 && !faza2") &mdash;
+				span(v-if="faza3") 3
+			// q-td(:props="props" v-for="(_, index) in data" :key="'par' + (index + 1)" :class="{ nice: props.row[mykey(index)] < 2 }") {{ props.row[mykey(index)] }}
 
 MeasureSetupDialog(v-model="dialog")
 </template>

@@ -65,7 +65,7 @@ for (var i = 0; i < 50; i++) {
 	let temp = date.subtractFromDate(newDate, { days: i })
 	rows.push({
 		id: i,
-		time: date.formatDate(temp, 'YYYY-MM-DD'),
+		time: date.formatDate(temp, 'YYYY-MM-DD, HH:mm'),
 	})
 }
 

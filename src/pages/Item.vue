@@ -7,6 +7,8 @@ import Measure from '@/components/Measure.vue'
 import Measure90 from '@/components/Measure90.vue'
 import Measure2 from '@/components/Measure2.vue'
 import AddMeasure from '@/components/AddMeasure.vue'
+import { list } from '@/stores/list'
+import { randomNumber } from '@/utils/utils'
 
 const route = useRoute()
 const item = ref()
@@ -23,14 +25,18 @@ onBeforeMount(() => {
 const infopanel = ref(false)
 const measurepanel = ref(true)
 const tab = ref('three')
+const rand = ref(+randomNumber(0, 13, 0))
 </script>
 
 <template lang="pug">
 q-page(padding :key="kkey")
 	.container
-		h4.q-mt-none.q-mb-sm {{ item.model }}
+		.hd {{ item.model }}
+		.diag
+			q-icon.q-mr-sm(name="mdi-alert" size="sm")
+			span {{ list[rand].text }}
 		q-expansion-item(v-model="infopanel" label="Информация" icon="mdi-information-outline" header-class="head")
-			InfoPanel(:item="item" )
+			InfoPanel(:item="item")
 
 		q-expansion-item(v-model="measurepanel" label="Измерения" icon="mdi-speedometer" header-class="head")
 			template(v-slot:header)
@@ -81,5 +87,21 @@ q-page(padding :key="kkey")
 
 :deep(.q-table__top) {
 	padding: 0;
+}
+
+.diag {
+	color: darkred;
+
+	span {
+		background: pink;
+		padding: 3px 8px;
+		border-radius: 4px;
+		font-size: .8rem;
+		border: 1px solid darkred;
+	}
+}
+
+.hd {
+	font-size: 2.125rem;
 }
 </style>

@@ -1,9 +1,11 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
 import { date } from 'quasar'
-import { useStore } from '@/stores/store'
+// import { useStore } from '@/stores/store'
 import MeasureSetupDialog from '@/components/MeasureSetupDialog.vue'
 import TrendDialog from '@/components/TrendDialog.vue'
+import { list } from '@/stores/list'
+import { randomNumber } from '@/utils/utils'
 
 import type { QTableColumn } from 'quasar'
 
@@ -12,7 +14,7 @@ interface MyCol extends QTableColumn {
 	use?: boolean
 }
 
-const store = useStore()
+// const store = useStore()
 const fullscreen = ref(false)
 const pagination = {
 	sortBy: '',
@@ -93,6 +95,11 @@ const trend = ((e: number) => {
 	showTrend.value = true
 	current.value = e
 })
+const tooltip = ((e: number) => {
+	console.log(e)
+	let num: number = +randomNumber(0, 13, 0)
+	return list[num].text
+})
 </script>
 
 <template lang="pug">
@@ -120,8 +127,8 @@ q-table.sticky(flat
 		q-tr(:props="props" :class="calcRow(props.row)")
 			q-td(:props="props" key="time") {{ props.row.time }}
 			q-td(:props="props" v-for="(_, index) in data" :key="'par' + (index + 1)" :class="{ nice: props.row[mykey(index)] < 2 }") {{ props.row[mykey(index)] }}
+				q-tooltip.bg-red(v-if="props.row[mykey(index)] < 2" anchor="top middle" self="bottom middle") {{ tooltip(index) }}
 				q-menu(touch-position context-menu)
-
 					q-list(style="min-width: 100px")
 						q-item(clickable v-close-popup @click="trend(index)")
 							q-item-section(side)

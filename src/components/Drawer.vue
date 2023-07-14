@@ -32,7 +32,7 @@ const pages = [
 	},
 	{
 		id: 3,
-		title: 'График',
+		title: 'Графики',
 		icon: 'mdi-chart-line',
 		url: '/chart',
 	},
@@ -40,7 +40,7 @@ const pages = [
 </script>
 
 <template lang="pug">
-q-drawer(:model-value="props.modelValue" side="left" :mini="mystore.mini" :width="200").rel
+q-drawer.rel(:model-value="props.modelValue" side="left" :mini="mystore.mini" :width="200")
 	q-list.q-mt-lg
 		q-item(clickable v-ripple v-for="page in pages" :to="page.url")
 			q-item-section(avatar)

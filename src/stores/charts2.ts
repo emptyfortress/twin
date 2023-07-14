@@ -259,8 +259,6 @@ const series = [
 
 const options = {
 	chart: {
-		// height: 250,
-		// width: 250,
 		type: 'rangeArea',
 		animations: {
 			speed: 500
@@ -279,11 +277,6 @@ const options = {
 	stroke: {
 		curve: 'straight',
 		width: [0, 0, 0, 2, 2, 2]
-	},
-	legend: {
-		show: true,
-		customLegendItems: ['Phase 1', 'Phase 2', 'Phase 3'],
-		inverseOrder: true
 	},
 	title: {
 		text: 'Range Area with Forecast Line (Combo)'

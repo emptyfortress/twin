@@ -24,6 +24,18 @@ const pages = [
 		icon: 'mdi-electric-switch',
 		url: '/switches',
 	},
+	{
+		id: 2,
+		title: 'Тест',
+		icon: 'mdi-flask-empty-outline',
+		url: '/reverse',
+	},
+	{
+		id: 3,
+		title: 'График',
+		icon: 'mdi-chart-line',
+		url: '/chart',
+	},
 ]
 </script>
 

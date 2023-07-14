@@ -24,6 +24,24 @@ export const router = createRouter({
 			component: () => import('@/pages/Switches.vue')
 		},
 		{
+			path: '/reverse',
+			name: 'reverse',
+			component: () => import('@/pages/Item1.vue'),
+			meta: {
+				title: 'Тест',
+				transition: 'page'
+			},
+		},
+		{
+			path: '/chart',
+			name: 'chart',
+			component: () => import('@/pages/Chart.vue'),
+			meta: {
+				title: 'Chart',
+				transition: 'page'
+			},
+		},
+		{
 			path: '/item/:id',
 			name: 'item',
 			component: () => import('@/pages/Item.vue'),

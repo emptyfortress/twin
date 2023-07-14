@@ -294,6 +294,31 @@ const options1 = {
 		animations: {
 			speed: 500
 		},
+		zoom: {
+			enabled: true
+		},
+		selection: {
+			enabled: true,
+			type: 'x',
+			fill: {
+				color: '#24292e',
+				opacity: 0.1
+			},
+			stroke: {
+				width: 1,
+				dashArray: 3,
+				color: '#24292e',
+				opacity: 0.4
+			},
+			xaxis: {
+				min: undefined,
+				max: undefined
+			},
+			yaxis: {
+				min: undefined,
+				max: undefined
+			}
+		}
 	},
 	colors: ['#33b2df', '#4b8353', '#4b8353','#d4526e', '#d4526e'],
 	dataLabels: {

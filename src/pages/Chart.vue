@@ -21,4 +21,8 @@ q-page(padding)
 .hd {
 	font-size: 2.125rem;
 }
+
+.q-card {
+	width: 800px;
+}
 </style>

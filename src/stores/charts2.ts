@@ -295,32 +295,16 @@ const options1 = {
 			speed: 500
 		},
 		zoom: {
-			enabled: true
+			enabled: false
 		},
 		selection: {
 			enabled: true,
-			type: 'x',
-			fill: {
-				color: '#24292e',
-				opacity: 0.1
-			},
-			stroke: {
-				width: 1,
-				dashArray: 3,
-				color: '#24292e',
-				opacity: 0.4
-			},
-			xaxis: {
-				min: undefined,
-				max: undefined
-			},
-			yaxis: {
-				min: undefined,
-				max: undefined
-			}
-		}
+		},
 	},
-	colors: ['#33b2df', '#4b8353', '#4b8353','#d4526e', '#d4526e'],
+	tooltip: {
+		enabled: false
+	},
+	colors: ['#33b2df', '#4b8353', '#4b8353', '#d4526e', '#d4526e'],
 	dataLabels: {
 		enabled: false
 	},
@@ -339,69 +323,69 @@ const options1 = {
 	xaxis: {
 		categories: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
 	},
-	annotations: {
-		xaxis: [
-			{
-				x: 10,
-				x2: 40,
-				fillColor: '#B3F7CA',
-        opacity: 0.4,
-				label: {
-					borderColor: '#B3F7CA',
-					style: {
-						fontSize: '10px',
-						color: '#fff',
-						background: '#000000',
-					},
-					offsetY: -10,
-					text: 'X-axis range',
-				}
-			},
-			{
-				x: 60,
-				strokeDashArray: 0,
-				borderColor: '#775DD0',
-					label: {
-					borderColor: '#775DD0',
-					style: {
-						color: '#fff',
-						background: '#775DD0',
-					},
-					text: 'Anno Test',
-				}
-	}
-		]
-	}
+	// annotations: {
+	// 	xaxis: [
+	// 		{
+	// 			x: 10,
+	// 			x2: 40,
+	// 			fillColor: '#B3F7CA',
+	//        opacity: 0.4,
+	// 			label: {
+	// 				borderColor: '#B3F7CA',
+	// 				style: {
+	// 					fontSize: '10px',
+	// 					color: '#fff',
+	// 					background: '#000000',
+	// 				},
+	// 				offsetY: -10,
+	// 				text: 'X-axis range',
+	// 			}
+	// 		},
+	// 		{
+	// 			x: 60,
+	// 			strokeDashArray: 0,
+	// 			borderColor: '#775DD0',
+	// 				label: {
+	// 				borderColor: '#775DD0',
+	// 				style: {
+	// 					color: '#fff',
+	// 					background: '#775DD0',
+	// 				},
+	// 				text: 'Anno Test',
+	// 			}
+	// 		}
+	// 	]
+	// }
 }
 
 const series1 = [
 	{
 		type: 'line',
-		name: 'Parameter 1', 
-		data: [ 103, 105, 100, 20, 0, 0, 5, 0, 0, 0,0,0 ]
+		name: 'Parameter 1',
+		data: [103, 105, 100, 20, 0, 0, 5, 0, 0, 0, 0, 0]
 	},
 	{
 		type: 'line',
-		name: 'Parameter 2', 
-		data: [ 90, 90, 90, 90, 90, 98, 98, 98, 98, 98, 98,98 ]
+		name: 'Parameter 2',
+		data: [90, 90, 90, 90, 90, 98, 98, 98, 98, 98, 98, 98]
 	},
 	{
 		type: 'line',
-		name: 'Parameter 3', 
-		data: [ 100, 100, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85 ]
+		name: 'Parameter 3',
+		data: [100, 100, 85, 85, 85, 85, 85, 85, 85, 85, 85, 85]
 	},
 	{
 		type: 'line',
-		name: 'Parameter 4', 
-		data: [ 112, 112, 112, 108, 108, 108, 108, 108, 108, 108, 108, 108 ]
+		name: 'Parameter 4',
+		data: [112, 112, 112, 108, 108, 108, 108, 108, 108, 108, 108, 108]
 	},
 	{
 		type: 'line',
-		name: 'Parameter 5', 
-		data: [ 114, 114, 114, 114, 110, 110, 110, 110, 110, 110, 110, 110 ]
+		name: 'Parameter 5',
+		data: [114, 114, 114, 114, 110, 110, 110, 110, 110, 110, 110, 110]
 	}
 
 
 ]
 
-export { options,  options1, series, series1 }
+export { options, options1, series, series1 }

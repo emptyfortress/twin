@@ -14,7 +14,7 @@ const test = ((_: any, e: any) => {
 
 	let sel = document.getElementsByClassName('apexcharts-selection-rect')
 	let bound = sel[0].getBoundingClientRect()
-	top.value = bound.height / 2 + 50 + 'px'
+	top.value = bound.height / 2 + 80 + 'px'
 	left.value = bound.right - 285 + 'px'
 	calc.value = max - min
 
@@ -24,7 +24,6 @@ const test = ((_: any, e: any) => {
 
 })
 const deselect = (() => {
-	console.log('laksdjlajks')
 	chart.value.updateOptions({
 		chart: {
 			selection: {

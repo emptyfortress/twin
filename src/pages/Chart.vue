@@ -5,12 +5,22 @@ import { options, options1, series, series1 } from '@/stores/charts2'
 
 const sss = ref(false)
 
-const test = ((_, e) => {
-	console.log('min ' + (e.xaxis.min - 1) * 10)
-	console.log('max ' + (e.xaxis.max - 1) * 10)
+const left = ref('')
+const top = ref('')
+const calc = ref(0)
+const test = ((_: any, e: any) => {
+	let min = (e.xaxis.min - 1) * 10
+	let max = (e.xaxis.max - 1) * 10
+
+	let sel = document.getElementsByClassName('apexcharts-selection-rect')
+	let bound = sel[0].getBoundingClientRect()
+	top.value = bound.height / 2 + 50 + 'px'
+	left.value = bound.right - 230 + 20 + 'px'
+	calc.value = max - min
+
 	setTimeout(() => {
 		sss.value = true
-	}, 200)
+	}, 100)
 
 })
 const deselect = (() => {
@@ -38,7 +48,7 @@ q-page(padding)
 		q-card.q-mb-md.rel
 			q-card-section
 				VueApexCharts(ref="chart" :options="options1" :series="series1" @selection="test" )
-			.count(v-if="sss" @click="deselect")
+			.count(v-if="sss" @click="deselect") {{ calc }}
 
 		q-card
 			q-card-section
@@ -61,25 +71,8 @@ q-page(padding)
 
 .count {
 	position: absolute;
-	bottom: 1rem;
-	top: 50%;
-	left: 50%;
-	width: 20px;
-	height: 20px;
-	background: red;
-}
-
-:deep(rect.apexcharts-selection-rect) {
-
-	&::after {
-		content: '';
-		display: block;
-		position: absolute;
-		top: 1rem;
-		left: 1rem;
-		width: 20px;
-		height: 20px;
-		background: red;
-	}
+	top: v-bind(top);
+	left: v-bind(left);
+	font-size: 1.3rem;
 }
 </style>

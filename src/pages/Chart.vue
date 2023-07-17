@@ -7,7 +7,7 @@ const sss = ref(false)
 
 const left = ref('')
 const top = ref('')
-const calc = ref(0)
+const calc = ref('')
 const test = ((_: any, e: any) => {
 	let min = (e.xaxis.min - 1) * 10
 	let max = (e.xaxis.max - 1) * 10
@@ -15,8 +15,8 @@ const test = ((_: any, e: any) => {
 	let sel = document.getElementsByClassName('apexcharts-selection-rect')
 	let bound = sel[0].getBoundingClientRect()
 	top.value = bound.height / 2 + 80 + 'px'
-	left.value = bound.right - 285 + 'px'
-	calc.value = max - min
+	left.value = bound.right - 255 + 'px'
+	calc.value = (max - min).toFixed(2)
 
 	setTimeout(() => {
 		sss.value = true

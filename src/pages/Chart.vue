@@ -15,7 +15,7 @@ const test = ((_: any, e: any) => {
 	let sel = document.getElementsByClassName('apexcharts-selection-rect')
 	let bound = sel[0].getBoundingClientRect()
 	top.value = bound.height / 2 + 50 + 'px'
-	left.value = bound.right - 230 + 20 + 'px'
+	left.value = bound.right - 285 + 'px'
 	calc.value = max - min
 
 	setTimeout(() => {

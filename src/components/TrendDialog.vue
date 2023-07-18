@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import VueApexCharts from 'vue3-apexcharts'
 import { chartOptions1 } from '@/stores/charts1'
+import { randomArray } from '@/utils/utils'
 
 const props = defineProps({
 	index: {
@@ -11,7 +12,7 @@ const props = defineProps({
 
 const modelValue = defineModel<boolean>()
 
-const series1 = [{ name: 'Тренд', data: [55, 57, 65, 70, 77, 80, 67] }]
+const series1 = [{ name: 'Тренд', data: randomArray(7, 30, 40) }]
 </script>
 
 <template lang="pug">

@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import { randomNumber, randomArray } from '@/utils/utils'
+import TrendDialog from './TrendDialog.vue';
 
 const props = defineProps({
 	name: {
@@ -37,14 +38,17 @@ const series = ref([
 	}
 ])
 const val = ref(randomNumber(40, 80, 0))
+const big = ref(false)
 </script>
 
 <template lang="pug">
-.card
+.card(@click="big = true")
 	.data {{ val }}
 	VueApexCharts(ref="chart" height="50px" :options="options" :series="series")
 
 	.label {{ props.name }}
+
+TrendDialog(v-model="big")
 </template>
 
 <style scoped lang="scss">
@@ -54,6 +58,11 @@ const val = ref(randomNumber(40, 80, 0))
 	background: #fff;
 	position: relative;
 	padding: 0;
+	cursor: pointer;
+
+	&:hover {
+		box-shadow: var(--card-shadow);
+	}
 }
 
 .data {

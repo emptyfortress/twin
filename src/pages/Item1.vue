@@ -6,7 +6,7 @@ import { list } from '@/stores/list'
 import { randomNumber } from '@/utils/utils'
 import InfoPanel from '@/components/InfoPanel.vue'
 import AddMeasure from '@/components/AddMeasure.vue'
-import ReverseTab from '@/components/ReverseTab.vue'
+import Masonry from '@/components/Masonry.vue'
 
 const item = ref({
 	id: 1,
@@ -34,20 +34,21 @@ q-page(padding)
 		.diag
 			q-icon.q-mr-sm(name="mdi-alert" size="sm")
 			span {{ list[rand].text }}
-		q-expansion-item(v-model="infopanel" label="Информация" icon="mdi-information-outline" header-class="head")
+		q-expansion-item.wh(v-model="infopanel" label="Информация" icon="mdi-information-outline" header-class="head")
 			InfoPanel(:item="item")
+
 		q-expansion-item(v-model="measurepanel" label="Измерения" icon="mdi-speedometer" header-class="head")
 			template(v-slot:header)
 				q-item-section(avatar)
 					q-icon(name="mdi-speedometer")
 				q-item-section.tit Измерения
-			ReverseTab
+			Masonry
 
 	AddMeasure
 </template>
 
 <style scoped lang="scss">
-:deep(.q-expansion-item--expanded) {
+:deep(.wh.q-expansion-item--expanded) {
 	transition: all .2s;
 	background: white;
 	margin-top: 1rem;

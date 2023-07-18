@@ -23,90 +23,102 @@ import {
 </script>
 
 <template lang="pug">
-.grid
-	.mas Circuit breaker pole
-	.mas Ввод
-	.mas Insulation
+div
+	.row.items-center
+		q-space
+		q-btn(flat round dense icon="mdi-tune-variant" @click="dialog = true")
+		q-btn(flat round dense @click="toggleFullscreen")
+			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
+			q-icon(v-else name="mdi-fullscreen")
+
+	q-separator
+	.grid
+		.mas Circuit breaker pole
+		.mas Ввод
+		.mas Insulation
 	.mason
 		MasonCard(v-for="item in insulation" :name="item")
 	q-separator
-	.mas Circuit breaker pole
-	.mas Arc extinguishing medium
-	.mas Transformer oil
+	.grid
+		.mas Circuit breaker pole
+		.mas Arc extinguishing medium
+		.mas Transformer oil
 	.mason
 		MasonCard(v-for="item in Transformeroil" :name="item")
 	q-separator
-	.mas(style="grid-row: 5/8") Circuit breaker pole
-	.mas(style="grid-row: 5/8") Resistors
-	.mas PIR
-	.mason
-		MasonCard(v-for="item in PIR" :name="item")
-	div
-	div
-	.mas Current limiting
-	.mason
-		MasonCard(v-for="item in Current_limiting" :name="item")
-	q-separator
-	.mas Circuit breaker pole
-	.mas
-	.mas Built-in current transformers
-	.mason
-		MasonCard(v-for="item in Builtincurrenttransformers" :name="item")
-	.mas Circuit breaker pole
-	.mas Tractions
-	.mas
-	.mason
-		MasonCard(v-for="item in Tractions" :name="item")
-	q-separator
-	.mas Circuit breaker pole
-	.mas Main contact
-	.mas
-	.mason
-		MasonCard(v-for="item in Maincontact" :name="item")
-	q-separator
-	.mas Circuit breaker pole
-	.mas Pole (phase) heating
-	.mas
-	.mason
-		MasonCard(v-for="item in Bounce" :name="item")
-	q-separator
-	.mas Circuit breaker pole
-	.mas Arc extinguishing device
-	.mas Arc-extinguishing contact
-	.mason
-		MasonCard(v-for="item in Bounceintravel" :name="item")
-	q-separator
-	.mas Circuit breaker drive
-	.mas Spring
-	.mas Closing
-	.mason
-		MasonCard(v-for="item in Turnonspringwindingtime" :name="item")
-	q-separator
+		// .mas(style="grid-row: 5/8") Circuit breaker pole
+		// .mas(style="grid-row: 5/8") Resistors
+		// .mas PIR
+		// .mason
+		// 	MasonCard(v-for="item in PIR" :name="item")
+		// div
+		// div
+		// .mas Current limiting
+		// .mason
+		// 	MasonCard(v-for="item in Current_limiting" :name="item")
+		// q-separator
+		// .mas Circuit breaker pole
+		// .mas
+		// .mas Built-in current transformers
+		// .mason
+		// 	MasonCard(v-for="item in Builtincurrenttransformers" :name="item")
+		// .mas Circuit breaker pole
+		// .mas Tractions
+		// .mas
+		// .mason
+		// 	MasonCard(v-for="item in Tractions" :name="item")
+		// q-separator
+		// .mas Circuit breaker pole
+		// .mas Main contact
+		// .mas
+		// .mason
+		// 	MasonCard(v-for="item in Maincontact" :name="item")
+		// q-separator
+		// .mas Circuit breaker pole
+		// .mas Pole (phase) heating
+		// .mas
+		// .mason
+		// 	MasonCard(v-for="item in Bounce" :name="item")
+		// q-separator
+		// .mas Circuit breaker pole
+		// .mas Arc extinguishing device
+		// .mas Arc-extinguishing contact
+		// .mason
+		// 	MasonCard(v-for="item in Bounceintravel" :name="item")
+		// q-separator
+		// .mas Circuit breaker drive
+		// .mas Spring
+		// .mas Closing
+		// .mason
+		// 	MasonCard(v-for="item in Turnonspringwindingtime" :name="item")
+		// q-separator
 
 </template>
 
 <style scoped lang="scss">
 .grid {
-	display: grid;
-	grid-template-columns: 130px 130px 130px 1fr;
-	gap: .5rem;
-	font-size: .9rem;
-	margin-top: 1rem;
-	// align-items: center;
+	display: flex;
 }
 
 .q-separator {
-	grid-column: 1/-1;
-	margin-top: .5rem;
-	margin-bottom: .5rem;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
 }
 
 .mas {
-	background: var(--bg-head);
-	padding: .5rem;
+	font-size: .9rem;
+	font-weight: 600;
+	&::after {
+		content: '>';
+		font-size: 1rem;
+		padding: 0 1rem;
+	}
+	// background: var(--bg-head);
+	// padding: .5rem;
 }
 
 .mason {
+	margin-top: .5rem;
 	display: flex;
 	flex-wrap: wrap;
 	gap: .5rem;

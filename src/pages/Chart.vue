@@ -74,4 +74,7 @@ q-page(padding)
 	left: v-bind(left);
 	font-size: 1.3rem;
 }
+:deep(.apexcharts-selection-rect) {
+	background: #dedede;
+}
 </style>

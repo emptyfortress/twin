@@ -31,6 +31,12 @@ const pages = [
 		url: '/reverse',
 	},
 	{
+		id: 4,
+		title: 'Тест 1',
+		icon: 'mdi-flask-empty-outline',
+		url: '/reverse1',
+	},
+	{
 		id: 3,
 		title: 'Графики',
 		icon: 'mdi-chart-line',

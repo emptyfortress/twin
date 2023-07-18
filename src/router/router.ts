@@ -33,6 +33,15 @@ export const router = createRouter({
 			},
 		},
 		{
+			path: '/reverse1',
+			name: 'reverse1',
+			component: () => import('@/pages/Item2.vue'),
+			meta: {
+				title: 'Тест',
+				transition: 'page'
+			},
+		},
+		{
 			path: '/chart',
 			name: 'chart',
 			component: () => import('@/pages/Chart.vue'),

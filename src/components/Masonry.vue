@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MasonCard from '@/components/MasonCard.vue'
+import MasonCard1 from '@/components/MasonCard1.vue'
 import {
 	insulation,
 	Transformeroil,
@@ -30,68 +30,77 @@ div
 		q-btn(flat round dense @click="toggleFullscreen")
 			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")
 			q-icon(v-else name="mdi-fullscreen")
-
 	q-separator
 	.grid
 		.mas Circuit breaker pole
 		.mas Ввод
 		.mas Insulation
 	.mason
-		MasonCard(v-for="item in insulation" :name="item")
+		MasonCard1(v-for="item in insulation" :name="item")
 	q-separator
 	.grid
 		.mas Circuit breaker pole
 		.mas Arc extinguishing medium
 		.mas Transformer oil
 	.mason
-		MasonCard(v-for="item in Transformeroil" :name="item")
+		MasonCard1(v-for="item in Transformeroil" :name="item")
+		MasonCard1(name="Параметр" red)
 	q-separator
-		// .mas(style="grid-row: 5/8") Circuit breaker pole
-		// .mas(style="grid-row: 5/8") Resistors
-		// .mas PIR
-		// .mason
-		// 	MasonCard(v-for="item in PIR" :name="item")
-		// div
-		// div
-		// .mas Current limiting
-		// .mason
-		// 	MasonCard(v-for="item in Current_limiting" :name="item")
-		// q-separator
-		// .mas Circuit breaker pole
-		// .mas
-		// .mas Built-in current transformers
-		// .mason
-		// 	MasonCard(v-for="item in Builtincurrenttransformers" :name="item")
-		// .mas Circuit breaker pole
-		// .mas Tractions
-		// .mas
-		// .mason
-		// 	MasonCard(v-for="item in Tractions" :name="item")
-		// q-separator
-		// .mas Circuit breaker pole
-		// .mas Main contact
-		// .mas
-		// .mason
-		// 	MasonCard(v-for="item in Maincontact" :name="item")
-		// q-separator
-		// .mas Circuit breaker pole
-		// .mas Pole (phase) heating
-		// .mas
-		// .mason
-		// 	MasonCard(v-for="item in Bounce" :name="item")
-		// q-separator
-		// .mas Circuit breaker pole
-		// .mas Arc extinguishing device
-		// .mas Arc-extinguishing contact
-		// .mason
-		// 	MasonCard(v-for="item in Bounceintravel" :name="item")
-		// q-separator
-		// .mas Circuit breaker drive
-		// .mas Spring
-		// .mas Closing
-		// .mason
-		// 	MasonCard(v-for="item in Turnonspringwindingtime" :name="item")
-		// q-separator
+	.grid
+		.mas Circuit breaker pole
+		.mas Resistors
+		.mas PIR
+	.mason
+		MasonCard1(v-for="item in PIR" :name="item")
+		MasonCard1(name="Параметр" red)
+	q-separator
+
+	.grid
+		.mas Circuit breaker pole
+		.mas Current limiting
+	.mason
+		MasonCard1(v-for="item in Current_limiting" :name="item")
+	q-separator
+
+	.grid
+		.mas Circuit breaker pole
+		.mas Built-in current transformers
+	.mason
+		MasonCard1(v-for="item in Builtincurrenttransformers" :name="item")
+		MasonCard1(name="Параметр" red)
+	q-separator
+	.grid
+		.mas Circuit breaker pole
+		.mas Tractions
+	.mason
+		MasonCard1(v-for="item in Tractions" :name="item")
+	q-separator
+	.grid
+		.mas Circuit breaker pole
+		.mas Main contact
+	.mason
+		MasonCard1(v-for="item in Maincontact" :name="item")
+	q-separator
+	.grid
+		.mas Circuit breaker pole
+		.mas Pole (phase) heating
+	.mason
+		MasonCard1(v-for="item in Bounce" :name="item")
+	q-separator
+	.grid
+		.mas Circuit breaker pole
+		.mas Arc extinguishing device
+		.mas Arc-extinguishing contact
+	.mason
+		MasonCard1(v-for="item in Bounceintravel" :name="item")
+	q-separator
+	.grid
+		.mas Circuit breaker drive
+		.mas Spring
+		.mas Closing
+	.mason
+		MasonCard1(v-for="item in Turnonspringwindingtime" :name="item")
+	q-separator
 
 </template>
 

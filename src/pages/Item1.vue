@@ -6,7 +6,7 @@ import { list } from '@/stores/list'
 import { randomNumber } from '@/utils/utils'
 import InfoPanel from '@/components/InfoPanel.vue'
 import AddMeasure from '@/components/AddMeasure.vue'
-import Masonry from '@/components/Masonry.vue'
+import Masonry1 from '@/components/Masonry1.vue'
 
 const item = ref({
 	id: 1,
@@ -36,13 +36,12 @@ q-page(padding)
 			span {{ list[rand].text }}
 		q-expansion-item.wh(v-model="infopanel" label="Информация" icon="mdi-information-outline" header-class="head")
 			InfoPanel(:item="item")
-
 		q-expansion-item(v-model="measurepanel" label="Измерения" icon="mdi-speedometer" header-class="head")
 			template(v-slot:header)
 				q-item-section(avatar)
 					q-icon(name="mdi-speedometer")
 				q-item-section.tit Измерения
-			Masonry
+			Masonry1
 
 	AddMeasure
 </template>

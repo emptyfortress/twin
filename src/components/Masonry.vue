@@ -27,12 +27,16 @@ const toggleFullscreen = (() => {
 	fullscreen.value = !fullscreen.value
 })
 const dialog = ref(false)
+const sel = ref('Последняя неделя')
+const selOptions = ['Последняя неделя', 'Последний месяц', 'Последний квартал', 'За все время']
 </script>
 
 <template lang="pug">
 div
 	.row.items-center
 		q-space
+		q-select(dense outlined v-model="sel" bg-color="white" :options="selOptions")
+		q-btn.q-mr-lg(flat round icon="mdi-calendar" ) 
 		q-btn(flat round dense icon="mdi-tune-variant" @click="dialog = true")
 		q-btn(flat round dense @click="toggleFullscreen")
 			q-icon(v-if="fullscreen" name="mdi-fullscreen-exit")

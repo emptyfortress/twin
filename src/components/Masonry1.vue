@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import MasonCard from '@/components/MasonCard.vue'
 import {
 	insulation,

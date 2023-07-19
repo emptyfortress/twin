@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import MasonCard1 from '@/components/MasonCard1.vue'
 import {
 	insulation,
@@ -25,6 +26,7 @@ const fullscreen = ref(false)
 const toggleFullscreen = (() => {
 	fullscreen.value = !fullscreen.value
 })
+const dialog = ref(false)
 </script>
 
 <template lang="pug">

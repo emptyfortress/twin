@@ -20,6 +20,10 @@ import {
 	Undervoltage1,
 	Opening1,
 } from '@/stores/table'
+const fullscreen = ref(false)
+const toggleFullscreen = (() => {
+	fullscreen.value = !fullscreen.value
+})
 </script>
 
 <template lang="pug">

@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import { randomArray } from '@/utils/utils'
 
@@ -25,12 +26,34 @@ const chartOptions1 = {
 
 	chart: {
 		type: 'area',
+		animations: {
+			enabled: false
+		},
 		zoom: {
 			enabled: false,
 		},
 		selection: {
 			enabled: true,
 		},
+		toolbar: {
+			show: true,
+			tools: {
+				download: true,
+				customIcons: [
+					{
+						icon: '<img src="/select-off.svg" >',
+						title: 'None',
+						index: 1,
+						class: "customicon",
+						click: function () {
+							chart.value.clearAnnotations()
+							deselect()
+						}
+					}
+				]
+			},
+			autoSelected: 'selection'
+		}
 	},
 	dataLabels: {
 		enabled: true,
@@ -45,6 +68,30 @@ const chartOptions1 = {
 const modelValue = defineModel<boolean>()
 
 const series1 = [{ name: 'Тренд', data: randomArray(7, 30, 40) }]
+const chart = ref()
+const min = ref()
+const max = ref()
+const select = ((_: any, e: any) => {
+	min.value = e.xaxis.min
+	max.value = e.xaxis.max
+})
+
+const deselect = (() => {
+	chart.value.addXaxisAnnotation({
+		x: min.value,
+		x2: max.value
+	})
+	chart.value.updateOptions({
+		chart: {
+			selection: {
+				xaxis: {
+					min: undefined,
+					max: undefined
+				}
+			},
+		},
+	})
+})
 </script>
 
 <template lang="pug">
@@ -54,9 +101,18 @@ q-dialog(v-model="modelValue")
 			.text-h6 Параметр {{ props.index + 1 }}
 			q-space
 			q-btn(icon="mdi-close" flat round dense v-close-popup)
-
 		q-card-section
-			VueApexCharts(type="area" :options="chartOptions1" :series="series1")
+			VueApexCharts(ref="chart" type="area" :options="chartOptions1" :series="series1" @selection="select")
 </template>
 
-<style scoped lang="scss"></style>
+<style scoped lang="scss">
+:deep(.customicon) {
+	cursor: pointer;
+	width: 18px;
+	height: 18px;
+	color: #6e8192;
+	text-align: center;
+	margin-top: 4px;
+	margin-left: 4px;
+}
+</style>

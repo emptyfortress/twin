@@ -352,7 +352,6 @@ const series1 = [
 		data: [114, 114, 114, 114, 110, 110, 110, 110, 110, 110, 110, 110]
 	}
 
-
 ]
 
 export { options, options1, series, series1 }

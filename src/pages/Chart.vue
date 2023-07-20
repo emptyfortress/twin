@@ -12,10 +12,10 @@ const minSel = ref(0)
 const maxSel = ref(0)
 
 const test = ((_: any, e: any) => {
-	console.log(_)
-	console.log(e)
-	let min = (e.xaxis.min - 1) * 10
-	let max = (e.xaxis.max - 1) * 10
+	let min = e.xaxis.min
+	let max = e.xaxis.max
+	console.log(min)
+	console.log(max)
 	minSel.value = Number(min.toFixed())
 	maxSel.value = Number(max.toFixed())
 
@@ -49,8 +49,8 @@ const izm = ref()
 
 const setSelection = (() => {
 	let options = {
-		x: 20,
-		x2: 40,
+		x: minSel.value,
+		x2: maxSel.value,
 		borderColor: 'blue',
 		label: {
 			borderColor: 'blue',
@@ -64,6 +64,7 @@ const setSelection = (() => {
 	}
 	chart.value.clearAnnotations()
 	chart.value.addXaxisAnnotation(options)
+	deselect()
 })
 
 const options1 = reactive({
@@ -86,6 +87,7 @@ const options1 = reactive({
 				customIcons: [
 					{
 						icon: '<img src="/select-off.svg" >',
+						title: 'None',
 						index: 1,
 						class: "customicon",
 						click: function () {
@@ -118,6 +120,7 @@ const options1 = reactive({
 		}
 	},
 	xaxis: {
+		type: 'numeric',
 		categories: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
 	},
 })
@@ -130,7 +133,7 @@ q-page(padding)
 		q-card.q-mb-md.rel
 			q-card-section
 				VueApexCharts(ref="chart" :options="options1" :series="series1" @selection="test" )
-			.count(v-if="sss" @click="deselect")
+			.count(v-if="sss")
 				span {{ calc }}
 				q-btn(dense flat round icon="mdi-check-bold" @click="setSelection") 
 		q-card

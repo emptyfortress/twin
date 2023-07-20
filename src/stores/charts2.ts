@@ -323,39 +323,6 @@ const options1 = {
 	xaxis: {
 		categories: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
 	},
-	// annotations: {
-	// 	xaxis: [
-	// 		{
-	// 			x: 10,
-	// 			x2: 40,
-	// 			fillColor: '#B3F7CA',
-	//        opacity: 0.4,
-	// 			label: {
-	// 				borderColor: '#B3F7CA',
-	// 				style: {
-	// 					fontSize: '10px',
-	// 					color: '#fff',
-	// 					background: '#000000',
-	// 				},
-	// 				offsetY: -10,
-	// 				text: 'X-axis range',
-	// 			}
-	// 		},
-	// 		{
-	// 			x: 60,
-	// 			strokeDashArray: 0,
-	// 			borderColor: '#775DD0',
-	// 				label: {
-	// 				borderColor: '#775DD0',
-	// 				style: {
-	// 					color: '#fff',
-	// 					background: '#775DD0',
-	// 				},
-	// 				text: 'Anno Test',
-	// 			}
-	// 		}
-	// 	]
-	// }
 }
 
 const series1 = [

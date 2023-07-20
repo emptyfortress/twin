@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import VueApexCharts from 'vue3-apexcharts'
-import { chartOptions1 } from '@/stores/charts1'
 import { randomArray } from '@/utils/utils'
 
 const props = defineProps({
@@ -10,6 +9,39 @@ const props = defineProps({
 	}
 })
 
+const chartOptions1 = {
+	xaxis: {
+		type: 'datetime',
+		categories: [
+			'2022-03-04',
+			'2022-03-11',
+			'2022-03-18',
+			'2022-03-24',
+			'2022-04-01',
+			'2022-04-08',
+			'2022-04-14',
+		],
+	},
+
+	chart: {
+		type: 'area',
+		zoom: {
+			enabled: false,
+		},
+		selection: {
+			enabled: true,
+		},
+	},
+	dataLabels: {
+		enabled: true,
+	},
+	stroke: {
+		curve: 'smooth',
+	},
+	yaxis: {
+		opposite: true,
+	},
+}
 const modelValue = defineModel<boolean>()
 
 const series1 = [{ name: 'Тренд', data: randomArray(7, 30, 40) }]

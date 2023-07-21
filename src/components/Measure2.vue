@@ -96,7 +96,6 @@ const trend = ((e: number) => {
 	current.value = e
 })
 const tooltip = ((e: number) => {
-	console.log(e)
 	let num: number = +randomNumber(0, 13, 0)
 	return list[num].text
 })

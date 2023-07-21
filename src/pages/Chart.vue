@@ -14,8 +14,6 @@ const maxSel = ref(0)
 const test = ((_: any, e: any) => {
 	let min = e.xaxis.min
 	let max = e.xaxis.max
-	console.log(min)
-	console.log(max)
 	minSel.value = Number(min.toFixed())
 	maxSel.value = Number(max.toFixed())
 
@@ -56,7 +54,8 @@ const setSelection = (() => {
 			borderColor: 'blue',
 			style: {
 				color: '#fff',
-				background: 'blue'
+				background: 'blue',
+				fontSize: '20px',
 			},
 			orientation: 'horizontal',
 			text: izm.value

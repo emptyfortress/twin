@@ -34,8 +34,8 @@ const props = defineProps<{
 	grid-template-columns: 1fr 1fr;
 	gap: 1rem;
 	align-items: center;
-	padding: 1rem 3rem;
-	border-top: 1px solid #dedede;
+	padding: 1rem 2rem;
+	// border-top: 1px solid #dedede;
 }
 
 .inf {

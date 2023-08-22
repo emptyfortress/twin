@@ -1,7 +1,10 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import { useGrid } from '@/stores/grid'
 
 const grid = useGrid()
+const phase = ref('Фаза 1')
+const phaseOptions = ['Фаза 1', 'Фаза 2', 'Фаза 3']
 </script>
 
 <template lang="pug">
@@ -16,11 +19,13 @@ const grid = useGrid()
 		q-btn(unelevated dense icon="mdi-view-grid" size="11px" @click="grid.showTile" :class="{ grey: !grid.table }")
 			q-tooltip(:delay="600") Лента
 	.right
+		q-select.q-mr-lg(dense filled v-model="phase" :options="phaseOptions")
 		q-btn(flat round dense icon="mdi-tune-variant" @click="") 
 		q-btn(flat round dense @click="grid.switchFullscreen")
 			q-icon(v-if="!grid.fullscreen" name="mdi-fullscreen")
 			q-icon(v-if="grid.fullscreen" name="mdi-fullscreen-exit")
 			q-tooltip(:delay="600") Полный экран
+
 </template>
 
 <style scoped lang="scss">
@@ -38,5 +43,10 @@ const grid = useGrid()
 .grey {
 	background: #666;
 	color: #fff;
+}
+
+.right {
+	display: flex;
+	align-items: center;
 }
 </style>

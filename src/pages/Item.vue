@@ -4,11 +4,13 @@ import { useRoute } from 'vue-router'
 import { rows } from '@/stores/data'
 import InfoPanel from '@/components/InfoPanel.vue'
 import Toolbar1 from '@/components/Toolbar1.vue'
+import GridMeasure from '@/components/GridMeasure.vue'
+import TileMeasure from '@/components/TileMeasure.vue'
 import AddMeasure from '@/components/AddMeasure.vue'
 import { list } from '@/stores/list'
 import { randomNumber } from '@/utils/utils'
 import { useGrid } from '@/stores/grid'
-
+import BaseTree from '@/components/BaseTree.vue'
 
 const route = useRoute()
 const item = ref()
@@ -30,32 +32,50 @@ const rand = ref(+randomNumber(0, 13, 0))
 
 <template lang="pug">
 q-page(padding :key="kkey")
-	.container
-		.hd {{ item.model }}
-		.diag
-			q-icon.q-mr-sm(name="mdi-alert" size="sm")
-			span {{ list[rand].text }}
-		br
-		q-expansion-item(v-model="infopanel" label="Информация" header-class="head")
-			InfoPanel(:item="item")
-
-		q-expansion-item.izm(v-model="measurepanel" label="Измерения" header-class="head")
-			div(:class="{ full : grid.fullscreen}")
-				Toolbar1
-
-
-			// q-tab-panels(v-model="tab" animated)
-			// 	q-tab-panel(name="one")
-			// 		Measure
-			// 	q-tab-panel(name="two")
-			// 		Measure90
-			// 	q-tab-panel(name="three")
-			// 		Measure2
-
+	.hd {{ item.model }}
+	.diag
+		q-icon.q-mr-sm(name="mdi-alert" size="sm")
+		span {{ list[rand].text }}
+	br
+	q-expansion-item(v-model="infopanel" label="Информация" header-class="head")
+		InfoPanel(:item="item" )
+	q-expansion-item.izm(v-model="measurepanel" label="Измерения" header-class="head")
+		div(:class="{ full: grid.fullscreen }")
+			.grid(:class="{ side: !grid.sidebar }")
+				.left
+					q-scroll-area.list
+						BaseTree
+				.main
+					Toolbar1
+					GridMeasure(v-if="grid.table")
+					TileMeasure(v-else)
 	// AddMeasure
 </template>
 
 <style scoped lang="scss">
+.grid {
+	display: grid;
+	grid-template-columns: 300px 1fr;
+
+	&.side {
+		grid-template-columns: 1fr;
+
+		.left {
+			display: none;
+		}
+
+	}
+}
+
+.left {
+	background: var(--bg-panel);
+	border: 1px solid #ccc;
+	height: 600px;
+}
+.list {
+	height: 100%;
+}
+
 :deep(.q-expansion-item--expanded) {
 	transition: all .2s;
 	background: white;
@@ -64,6 +84,7 @@ q-page(padding :key="kkey")
 	box-shadow: var(--card-shadow);
 	border-radius: var(--radius-md);
 }
+
 :deep(.izm.q-expansion-item--expanded) {
 	background: transparent;
 	box-shadow: none;

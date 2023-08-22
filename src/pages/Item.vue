@@ -7,10 +7,13 @@ import Toolbar1 from '@/components/Toolbar1.vue'
 import AddMeasure from '@/components/AddMeasure.vue'
 import { list } from '@/stores/list'
 import { randomNumber } from '@/utils/utils'
+import { useGrid } from '@/stores/grid'
+
 
 const route = useRoute()
 const item = ref()
 const kkey = ref(0)
+const grid = useGrid()
 
 watchEffect(() => {
 	item.value = rows.find(e => e.id === +route.params.id)
@@ -37,7 +40,8 @@ q-page(padding :key="kkey")
 			InfoPanel(:item="item")
 
 		q-expansion-item.izm(v-model="measurepanel" label="Измерения" header-class="head")
-			Toolbar1
+			div(:class="{ full : grid.fullscreen}")
+				Toolbar1
 
 
 			// q-tab-panels(v-model="tab" animated)

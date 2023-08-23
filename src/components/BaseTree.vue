@@ -6,10 +6,14 @@ import "@he-tree/vue/style/default.css";
 import { treeData } from '@/stores/tree'
 
 const query = ref('')
+
 const tree = ref()
 const toggle = (stat: any) => {
 	stat.open = !stat.open
 }
+const select = ((n: Stat) => {
+	n.data.selected = !n.data.selected
+})
 
 const clearFilter = (() => {
 	query.value = ''
@@ -76,6 +80,20 @@ div
 .node {
 	font-size: .85rem;
 	cursor: pointer;
+	padding: 4px 8px;
+
+	&.selected {
+		background: #b1ddfc;
+		color: #1565c0;
+
+		&:hover {
+			background: #b1ddfc;
+		}
+	}
+
+	&:hover {
+		background: hsla(0, 0%, 91%);
+	}
 }
 </style>
 

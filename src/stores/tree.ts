@@ -136,7 +136,7 @@ const treeData = [
 				]
 			},
 			{
-				text: 'Встроенные трансформаторы тока',
+				text: 'Встр. трансформаторы тока',
 				children: [
 					{
 						text: 'Сопротивление',
@@ -166,7 +166,7 @@ const treeData = [
 				text: 'Пружина',
 				children: [
 					{
-						text: 'Отключиения',
+						text: 'Отключения',
 						children: [
 							{
 								text: 'Время',

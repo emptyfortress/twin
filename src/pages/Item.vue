@@ -43,12 +43,12 @@ q-page(padding :key="kkey")
 		div(:class="{ full: grid.fullscreen }")
 			.grid(:class="{ side: !grid.sidebar }")
 				.left
-					q-scroll-area.list
-						BaseTree
+					BaseTree()
+					// q-scroll-area.list
 				.main
 					Toolbar1
-					GridMeasure(v-if="grid.table")
-					TileMeasure(v-else)
+					// GridMeasure(v-if="grid.table")
+					// TileMeasure(v-else)
 	// AddMeasure
 </template>
 
@@ -56,6 +56,7 @@ q-page(padding :key="kkey")
 .grid {
 	display: grid;
 	grid-template-columns: 300px 1fr;
+	gap: .5rem;
 
 	&.side {
 		grid-template-columns: 1fr;
@@ -70,10 +71,11 @@ q-page(padding :key="kkey")
 .left {
 	background: var(--bg-panel);
 	border: 1px solid #ccc;
-	height: 600px;
+	// height: 100%;
+	// height: 600px;
 }
 .list {
-	height: 100%;
+	// height: 100%;
 }
 
 :deep(.q-expansion-item--expanded) {

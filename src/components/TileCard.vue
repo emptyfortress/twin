@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import { randomNumber, randomArray } from '@/utils/utils'
 import TrendDialog from '@/components/TrendDialog.vue';
@@ -89,7 +89,9 @@ const big = ref(false)
 
 const showTrendDialog = (() => {
 	mytree.setCurrentNode(props.item)
-	big.value = true
+	nextTick(() => {
+		big.value = true
+	})
 })
 
 const calcOption = computed(() => {

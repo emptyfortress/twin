@@ -39,6 +39,10 @@ watch(query, (newValue) => {
 			stat.hidden = true
 			if (stat.data.text.toLowerCase().includes(query.value.toLowerCase())) {
 				stat.hidden = false
+				for (const parentStat of tree.value.iterateParent(stat, { withSelf: false })) {
+					parentStat.hidden = false
+					parentStat.open = true
+				}
 			}
 		})
 	} else clearFilter()
@@ -64,7 +68,8 @@ div
 	q-form.quick
 		q-card-section.q-pt-xs
 			q-input(dense
-				v-model="query"
+				v-model.trim="query"
+				:debounce="300"
 				autofocus
 				clearable
 				@clear="clearFilter"

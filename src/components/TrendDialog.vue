@@ -144,7 +144,7 @@ const options1 = {
 }
 const modelValue = defineModel<boolean>()
 
-const series1 = [{ name: 'Тренд', data: randomArray(7, 30, 40) }]
+const series1 = ref([{ name: 'Тренд', data: randomArray(7, 30, 40) }])
 const chart = ref()
 const min = ref()
 const max = ref()

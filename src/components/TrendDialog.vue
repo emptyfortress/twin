@@ -186,7 +186,7 @@ q-dialog(v-model="modelValue")
 				span.q-mr-sm {{item.data.text}}
 				span.q-mr-sm &rarr;
 			q-space
-			q-btn(icon="mdi-close" flat round dense v-close-popup)
+			q-btn(icon="mdi-close" flat round dense @click="modelValue = false")
 		q-card-section.row.items-center.q-pt-none
 			.text-h6
 				span(v-if="props.item.data.text1") {{ props.item.data.text1 }}

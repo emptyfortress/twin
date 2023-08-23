@@ -17,7 +17,7 @@ const phaseOptions = ['Последняя неделя', 'Последний м�
 		q-btn(unelevated dense icon="mdi-table" size="11px" @click="grid.showGrid" :class="{ grey: grid.table }")
 			q-tooltip(:delay="600") Грид
 		q-btn(unelevated dense icon="mdi-view-grid" size="11px" @click="grid.showTile" :class="{ grey: !grid.table }")
-			q-tooltip(:delay="600") Лента
+			q-tooltip(:delay="600") Плитка
 	.right
 		q-select.q-mr-lg(dense filled v-model="phase" :options="phaseOptions")
 		q-btn(flat round dense icon="mdi-tune-variant" @click="") 
@@ -43,6 +43,7 @@ const phaseOptions = ['Последняя неделя', 'Последний м�
 .grey {
 	background: #666;
 	color: #fff;
+	// border: 1px solid #ccc;
 }
 
 .right {

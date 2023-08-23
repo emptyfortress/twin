@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import { randomArray } from '@/utils/utils'
 import { useTree } from '@/stores/tree'
@@ -12,7 +12,7 @@ interface PropType {
 
 const props = defineProps<PropType>()
 
-const chartOptions1 = {
+const options = {
 	xaxis: {
 		type: 'datetime',
 		categories: [
@@ -57,6 +57,81 @@ const chartOptions1 = {
 			autoSelected: 'selection'
 		}
 	},
+	colors: ['#008FFB'],
+	fill: {
+		type: 'gradient',
+		gradient: {
+			opacityFrom: 0.7,
+			opacityTo: 0.9,
+			stops: [0, 90, 100],
+			gradientToColors: ['#DAEEFE']
+		}
+	},
+	dataLabels: {
+		enabled: true,
+	},
+	stroke: {
+		curve: 'smooth',
+	},
+	yaxis: {
+		opposite: true,
+	},
+}
+const options1 = {
+	xaxis: {
+		type: 'datetime',
+		categories: [
+			'2022-03-04',
+			'2022-03-11',
+			'2022-03-18',
+			'2022-03-24',
+			'2022-04-01',
+			'2022-04-08',
+			'2022-04-14',
+		],
+	},
+
+	chart: {
+		type: 'area',
+		animations: {
+			enabled: false
+		},
+		zoom: {
+			enabled: false,
+		},
+		selection: {
+			enabled: true,
+		},
+		toolbar: {
+			show: true,
+			tools: {
+				download: true,
+				customIcons: [
+					{
+						icon: '<img src="/select-off.svg" >',
+						title: 'None',
+						index: 1,
+						class: "customicon",
+						click: function () {
+							chart.value.clearAnnotations()
+							deselect()
+						}
+					}
+				]
+			},
+			autoSelected: 'selection'
+		}
+	},
+	colors: ['red'],
+	fill: {
+		type: 'gradient',
+		gradient: {
+			opacityFrom: 0.7,
+			opacityTo: 0.9,
+			stops: [0, 90, 100],
+			gradientToColors: ['pink']
+		}
+	},
 	dataLabels: {
 		enabled: true,
 	},
@@ -97,6 +172,10 @@ const deselect = (() => {
 
 const mytree = useTree()
 
+const calcOption = computed(() => {
+	return props.item.data.red ? options1 : options
+})
+
 </script>
 
 <template lang="pug">
@@ -115,7 +194,7 @@ q-dialog(v-model="modelValue")
 				span.big - {{ props.val }}
 				span {{ props.item.data.unit }}
 		q-card-section
-			VueApexCharts(ref="chart" type="area" :options="chartOptions1" :series="series1" @selection="select" )
+			VueApexCharts(ref="chart" type="area" :options="calcOption" :series="series1" @selection="select" )
 </template>
 
 <style scoped lang="scss">

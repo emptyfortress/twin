@@ -14,7 +14,7 @@ interface PropType {
 
 const props = defineProps<PropType>()
 
-let options = {
+const options = {
 	chart: {
 		type: 'area',
 		height: '50px',

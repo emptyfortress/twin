@@ -3,7 +3,9 @@ import { defineStore } from 'pinia'
 export const useTree = defineStore({
 	id: 'tree',
 	state: () => ({
-		checkedNodes: [],
+		checkedNodes: [] as Stat[],
+		currentNode: null as null | Stat,
+		parents: [] as Stat[]
 	}),
 	getters: {
 		cells(state) {
@@ -13,6 +15,12 @@ export const useTree = defineStore({
 	actions: {
 		setCheckedNodes(e: Stat[]) {
 			this.checkedNodes = e
+		},
+		setCurrentNode(e: Stat) {
+			this.currentNode = e
+		},
+		setParents(e: Stat[]) {
+			this.parents = e
 		}
 	},
 })

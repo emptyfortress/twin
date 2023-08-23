@@ -13,7 +13,12 @@ const toggle = (stat: any) => {
 	stat.open = !stat.open
 }
 const select = ((n: Stat) => {
+	let parent = []
 	n.data.selected = !n.data.selected
+	// for (const parentStat of tree.value.iterateParent(n, { withSelf: false })) {
+	// 	parent.push(parentStat)
+	// 	console.log(parentStat.data.text)
+	// }
 })
 
 const clearFilter = (() => {
@@ -34,10 +39,6 @@ watch(query, (newValue) => {
 			stat.hidden = true
 			if (stat.data.text.toLowerCase().includes(query.value.toLowerCase())) {
 				stat.hidden = false
-				for (const parentStat of tree.value.iterateParent(stat, { withSelf: false })) {
-					parentStat.hidden = false
-					parentStat.open = true
-				}
 			}
 		})
 	} else clearFilter()
@@ -48,6 +49,13 @@ const mytree = useTree()
 watchEffect(() => {
 	let temp = tree.value?.statsFlat.filter((e: Stat) => e.checked === true)
 	mytree.setCheckedNodes(temp)
+	if (mytree.currentNode) {
+		let parent = []
+		for (const parentStat of tree.value.iterateParent(mytree.currentNode, { withSelf: false })) {
+			parent.push(parentStat)
+		}
+		mytree.setParents(parent.reverse())
+	}
 })
 </script>
 

@@ -2,10 +2,14 @@
 import { ref, computed } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import { randomNumber, randomArray } from '@/utils/utils'
-import TrendDialog from './TrendDialog.vue';
+import TrendDialog from '@/components/TrendDialog.vue';
+import { useTree } from '@/stores/tree'
+
+const mytree = useTree()
 
 interface PropType {
 	item: Stat,
+	parents?: Stat[]
 }
 
 const props = defineProps<PropType>()
@@ -22,6 +26,16 @@ let options = {
 		},
 		animations: {
 			enabled: false
+		}
+	},
+	colors: ['#008FFB'],
+	fill: {
+		type: 'gradient',
+		gradient: {
+			opacityFrom: 0.7,
+			opacityTo: 0.9,
+			stops: [0, 90, 100],
+			gradientToColors: ['#DAEEFE']
 		}
 	},
 	stroke: {
@@ -73,6 +87,11 @@ const series = ref([
 const val = ref(randomNumber(40, 80, 0))
 const big = ref(false)
 
+const showTrendDialog = (() => {
+	mytree.setCurrentNode(props.item)
+	big.value = true
+})
+
 const calcOption = computed(() => {
 	return props.item.data.red ? options1 : options
 })
@@ -86,15 +105,16 @@ const color = computed(() => {
 .cont
 	// .hov
 	// 	.one Фаза 1
-	.card(@click="big = true")
+	.card(@click="showTrendDialog")
 		.row.items-baseline.justify-start
 			.data {{ val }}
 			.unit {{ props.item.data.unit}}
 
 		VueApexCharts(ref="chart" height="50px" :options="calcOption" :series="series" )
-	.label {{ props.item.data.text }}
+	.label(v-if="props.item.data.text1") {{ props.item.data.text1 }}
+	.label(v-else) {{ props.item.data.text }}
 
-TrendDialog(v-model="big")
+TrendDialog(v-model="big" :item="props.item" :val="val")
 </template>
 
 <style scoped lang="scss">

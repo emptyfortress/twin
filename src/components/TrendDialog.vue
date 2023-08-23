@@ -2,13 +2,15 @@
 import { ref } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import { randomArray } from '@/utils/utils'
+import { useTree } from '@/stores/tree'
 
-const props = defineProps({
-	index: {
-		type: Number,
-		default: 1
-	}
-})
+
+interface PropType {
+	item: Stat,
+	val?: string
+}
+
+const props = defineProps<PropType>()
 
 const chartOptions1 = {
 	xaxis: {
@@ -92,17 +94,28 @@ const deselect = (() => {
 		},
 	})
 })
+
+const mytree = useTree()
+
 </script>
 
 <template lang="pug">
 q-dialog(v-model="modelValue")
 	q-card(style="width: 900px; max-width: 80vw;")
-		q-card-section.row.items-center.q-pb-none
-			.text-h6 Параметр {{ props.index + 1 }}
+		q-card-section.row.justify-between.items-center.q-pb-none
+			div(v-for="item in mytree.parents")
+				span.q-mr-sm {{item.data.text}}
+				span.q-mr-sm &rarr;
 			q-space
 			q-btn(icon="mdi-close" flat round dense v-close-popup)
+		q-card-section.row.items-center.q-pt-none
+			.text-h6
+				span(v-if="props.item.data.text1") {{ props.item.data.text1 }}
+				span(v-else) {{ props.item.data.text }}
+				span.big - {{ props.val }}
+				span {{ props.item.data.unit }}
 		q-card-section
-			VueApexCharts(ref="chart" type="area" :options="chartOptions1" :series="series1" @selection="select")
+			VueApexCharts(ref="chart" type="area" :options="chartOptions1" :series="series1" @selection="select" )
 </template>
 
 <style scoped lang="scss">
@@ -114,5 +127,11 @@ q-dialog(v-model="modelValue")
 	text-align: center;
 	margin-top: 4px;
 	margin-left: 4px;
+}
+
+.big {
+	font-size: 1.5rem;
+	margin-left: 1rem;
+	margin-right: .5rem;
 }
 </style>

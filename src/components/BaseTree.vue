@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import { computed, ref, watch } from 'vue'
+import { onMounted, ref, watch, watchEffect } from 'vue'
 import { Draggable } from "@he-tree/vue";
 import WordHighlighter from "vue-word-highlighter"
 import "@he-tree/vue/style/default.css";
-import { treeData } from '@/stores/tree'
+import { treeData } from '@/stores/treeData'
+import { useTree } from '@/stores/tree'
 
 const query = ref('')
 
@@ -20,10 +21,18 @@ const clearFilter = (() => {
 	tree.value.statsFlat.map((item: Stat) => item.hidden = false)
 })
 
+// const checkedNodes = ref([])
+
 const initial = (stat: any) => {
 	stat.checked = stat.data.checked
+	stat.open = stat.data.open
 	return stat
 }
+// onMounted(() => {
+// 	checkedNodes.value = tree.value.getChecked()
+//
+// })
+
 watch(query, (newValue) => {
 	if (newValue !== '') {
 		tree.value.statsFlat.map((stat: Stat) => {
@@ -32,11 +41,18 @@ watch(query, (newValue) => {
 				stat.hidden = false
 				for (const parentStat of tree.value.iterateParent(stat, { withSelf: false })) {
 					parentStat.hidden = false
+					parentStat.open = true
 				}
 			}
 		})
 	} else clearFilter()
 
+})
+
+const mytree = useTree()
+watchEffect(() => {
+	let temp = tree.value?.statsFlat.filter((e: Stat) => e.checked === true)
+	mytree.setCheckedNodes(temp)
 })
 </script>
 
@@ -53,11 +69,17 @@ div
 				).query
 				template(v-slot:prepend)
 					q-icon(name="mdi-magnify")
-	Draggable(v-model="treeData" ref="tree" :indent="33" :statHandler="initial")
+	Draggable(ref="tree" 
+		v-model="treeData"
+		:indent="33"
+		:statHandler="initial"
+		:watermark="false"
+		style="width:295px; overflow-x: auto;")
+
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{ 'selected': stat.data.selected }")
 				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{ 'closed': !stat.open }").trig
-				input(type="checkbox" v-model="stat.checked" @click.stop="").q-mr-sm
+				q-checkbox(v-model="stat.checked" @click.stop="" dense size="xs" :indeterminate-value="0").q-mr-sm
 				WordHighlighter(:query="query") {{ node.text }}
 </template>
 
@@ -68,9 +90,11 @@ div
 }
 
 .trig {
-	font-size: 1.3rem;
+	font-size: 1.2rem;
 	margin-right: 0.2rem;
+	transform: translateY(-3px);
 	transition: 0.2s ease all;
+	// transform-origin: 9px 10px;
 
 	&.closed {
 		transform: rotate(-90deg);
@@ -80,7 +104,8 @@ div
 .node {
 	font-size: .85rem;
 	cursor: pointer;
-	padding: 4px 8px;
+	padding: 2px 6px;
+	white-space: nowrap;
 
 	&.selected {
 		background: #b1ddfc;

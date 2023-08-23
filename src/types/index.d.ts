@@ -16,8 +16,7 @@ interface NodeData {
 	text1?: string
 	text2?: string
 	selected?: boolean
-	restrict?: boolean
-	icon?: string
+	type: number
 }
 
 interface Stat {

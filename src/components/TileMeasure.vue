@@ -1,30 +1,13 @@
 <script setup lang="ts">
 import TileCard from '@/components/TileCard.vue'
-import {
-	insulation,
-	Transformeroil,
-	PIR,
-	Current_limiting,
-	Builtincurrenttransformers,
-	Tractions,
-	Maincontact,
-	Bounce,
-	Bounceintravel,
-	Turnonspringwindingtime,
-	Arcextinguishingcontact,
-	Closing,
-	Opening,
-	Closingsolenoid,
-	Undervoltage,
-	Closing1,
-	Undervoltage1,
-	Opening1,
-} from '@/stores/table'
+import { useTree } from '@/stores/tree'
+
+const mytree = useTree()
 </script>
 
 <template lang="pug">
 .tile
-	TileCard(v-for="item in insulation" :name="item")
+	TileCard(v-for="item in mytree.cells" :item="item" )
 </template>
 
 <style scoped lang="scss">

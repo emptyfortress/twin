@@ -4,17 +4,13 @@ import VueApexCharts from 'vue3-apexcharts'
 import { randomNumber, randomArray } from '@/utils/utils'
 import TrendDialog from './TrendDialog.vue';
 
-const props = defineProps({
-	name: {
-		type: String,
-		default: ''
-	},
-	red: {
-		type: Boolean,
-		default: false
-	}
-})
-const options = {
+interface PropType {
+	item: Stat,
+}
+
+const props = defineProps<PropType>()
+
+let options = {
 	chart: {
 		type: 'area',
 		height: '50px',
@@ -36,6 +32,7 @@ const options = {
 		enabled: false
 	}
 }
+
 const options1 = {
 	chart: {
 		type: 'area',
@@ -75,25 +72,27 @@ const series = ref([
 ])
 const val = ref(randomNumber(40, 80, 0))
 const big = ref(false)
+
 const calcOption = computed(() => {
-	return props.red ? options1 : options
+	return props.item.data.red ? options1 : options
 })
+
 const color = computed(() => {
-	return props.red ? 'red' : '#3380bc'
+	return props.item.data.red ? 'red' : '#3380bc'
 })
 </script>
 
 <template lang="pug">
 .cont
-	.hov
-		.one Фаза 1
+	// .hov
+	// 	.one Фаза 1
 	.card(@click="big = true")
-		.row.items-center.justify-between
+		.row.items-baseline.justify-start
 			.data {{ val }}
-			.om &Omega;
+			.unit {{ props.item.data.unit}}
 
-		VueApexCharts(ref="chart" height="50px" :options="calcOption" :series="series")
-	.label {{ props.name }}
+		VueApexCharts(ref="chart" height="50px" :options="calcOption" :series="series" )
+	.label {{ props.item.data.text }}
 
 TrendDialog(v-model="big")
 </template>
@@ -103,25 +102,25 @@ TrendDialog(v-model="big")
 	width: 160px;
 	position: relative;
 
-	.hov {
-		position: absolute;
-		bottom: 101px;
-		display: none;
-		height: 100px;
-		width: 160px;
-		background: v-bind(color);
-		z-index: 1;
-		border-radius: 4px 4px 0 0;
-		color: #fff;
-		padding: .5rem;
-		font-size: .9rem;
-	}
+	// .hov {
+	// 	position: absolute;
+	// 	bottom: 101px;
+	// 	display: none;
+	// 	height: 100px;
+	// 	width: 160px;
+	// 	background: v-bind(color);
+	// 	z-index: 1;
+	// 	border-radius: 4px 4px 0 0;
+	// 	color: #fff;
+	// 	padding: .5rem;
+	// 	font-size: .9rem;
+	// }
 
-	&:hover {
-		.hov {
-			display: block;
-		}
-	}
+	// &:hover {
+	// 	.hov {
+	// 		display: block;
+	// 	}
+	// }
 }
 
 .card {
@@ -149,8 +148,9 @@ TrendDialog(v-model="big")
 	margin-top: 4px;
 }
 
-.om {
+.unit {
 	font-size: .8rem;
-	margin-right: .5rem;
+	margin-left: .2rem;
+	color: v-bind(color);
 }
 </style>

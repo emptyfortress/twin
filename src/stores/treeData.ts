@@ -1,101 +1,224 @@
+import { uid } from 'quasar'
+
 const treeData = [
 	{
+		id: uid(),
 		text: 'Фаза 1',
 		open: true,
 		checked: false,
 		children: [
 			{
+				id: uid(),
 				text: 'Главный контакт',
 				open: true,
 				checked: true,
 				children: [
 					{
+						id: uid(),
 						text: 'Сопротивление',
 						checked: true,
-						unit: 'мкОм',
+						open: false,
 						children: [
 							{
+								id: uid(),
 								text: 'Активное R постоянному току',
 								checked: true,
-								type: 0,
+								unit: 'мкОм',
+								type: 1,
 							},
 						]
 					},
 					{
+						id: uid(),
 						text: 'Температура',
 						checked: true,
-						unit: '℃',
+						open: false,
 						children: [
 							{
+								id: uid(),
 								text: 'Температура глав.контакта',
 								checked: true,
-								type: 0,
+								unit: '℃',
+								type: 1,
 							},
 						]
 
 					},
 					{
+						id: uid(),
 						text: 'Время',
 						checked: true,
-						unit: 'мс'
+						open: false,
+						children: [
+							{
+								id: uid(),
+								text: 'Время коммутации',
+								unit: 'мс',
+								checked: true,
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Разновременность замыкания',
+								unit: 'мс',
+								checked: true,
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Дребезг',
+								unit: 'мс',
+								checked: true,
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Полное время движения',
+								unit: 'мс',
+								checked: true,
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Прод-сть замкнутого сост. в цикле',
+								unit: 'мс',
+								checked: true,
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Прод-сть разомкнутого сост. в цикле',
+								unit: 'мс',
+								checked: true,
+								type: 1,
+							},
+						]
 					},
 					{
+						id: uid(),
 						text: 'Ход',
 						checked: true,
-						unit: 'мм'
+						open: false,
+						children: [
+							{
+								id: uid(),
+								text: 'Ход до коммутации',
+								unit: 'мм',
+								checked: true,
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Разность коммутации по ходу',
+								unit: 'мм',
+								checked: true,
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Вжим',
+								unit: 'мм',
+								checked: true,
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Дребезг по ходу',
+								unit: 'мм',
+								checked: true,
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Полный ход',
+								unit: 'мм',
+								checked: true,
+								type: 1,
+							},
+						]
 					},
 					{
+						id: uid(),
 						text: 'Скорость',
 						checked: true,
-						unit: 'м/с'
+						open: false,
+						children: [
+							{
+								id: uid(),
+								text: 'Скорость при коммутации',
+								unit: 'м/с',
+								checked: true,
+								type: 1,
+								red: true,
+							},
+							{
+								id: uid(),
+								text: 'Макс. скорость',
+								unit: 'м/с',
+								checked: true,
+								type: 1,
+							},
+						]
 					},
 				]
 			},
 			{
+				id: uid(),
 				text: 'Дугогасительный контакт',
 				children: [
 					{
+						id: uid(),
 						text: 'Ток',
 						unit: 'A'
 					},
 					{
+						id: uid(),
 						text: 'Напряжение',
 						unit: 'кВ'
 					},
 					{
+						id: uid(),
 						text: 'Время',
 						unit: 'мс'
 					},
 					{
+						id: uid(),
 						text: 'Количество',
 						unit: 'шт'
 					},
 				]
 			},
 			{
+				id: uid(),
 				text: 'Обогрев полюса (фазы)',
 				children: [
 					{
+						id: uid(),
 						text: 'Сопротивление',
 						unit: 'Ом'
 					},
 				]
 			},
 			{
+				id: uid(),
 				text: 'Ввод',
 				children: [
 					{
+						id: uid(),
 						text: 'Изоляция',
 						children: [
 							{
+								id: uid(),
 								text: 'Сопротивление',
 								unit: 'Ом'
 							},
 							{
+								id: uid(),
 								text: 'Утечка',
 								unit: '%'
 							},
 							{
+								id: uid(),
 								text: 'Тангенс угла',
 								unit: 'tgδ'
 							},
@@ -104,40 +227,51 @@ const treeData = [
 				]
 			},
 			{
+				id: uid(),
 				text: 'Дугогасящая среда',
 				children: [
 					{
+						id: uid(),
 						text: 'Трансформаторное масло',
 						children: [
 							{
+								id: uid(),
 								text: 'Напряжение',
 								unit: 'кВ'
 							},
 							{
+								id: uid(),
 								text: 'Масса',
 								unit: 'мг'
 							},
 							{
+								id: uid(),
 								text: 'Температура',
 								unit: '℃',
 							},
 							{
+								id: uid(),
 								text: '%',
 							},
 							{
+								id: uid(),
 								text: '%',
 							},
 							{
+								id: uid(),
 								text: 'Тангенс угла',
 								unit: 'tgδ'
 							},
 							{
+								id: uid(),
 								text: '%',
 							},
 							{
+								id: uid(),
 								text: '%',
 							},
 							{
+								id: uid(),
 								text: '%',
 							},
 						]
@@ -145,12 +279,15 @@ const treeData = [
 				]
 			},
 			{
+				id: uid(),
 				text: 'Резисторы',
 				children: [
 					{
+						id: uid(),
 						text: 'Токоограничивающие',
 						children: [
 							{
+								id: uid(),
 								text: 'Сопротивление',
 								unit: 'Ом'
 							}
@@ -160,47 +297,59 @@ const treeData = [
 				]
 			},
 			{
+				id: uid(),
 				text: 'Встр. трансформаторы тока',
 				children: [
 					{
+						id: uid(),
 						text: 'Сопротивление',
 						unit: 'Ом'
 					},
 					{
+						id: uid(),
 						text: 'Утечка',
 						unit: '%'
 					},
 					{
+						id: uid(),
 						text: '%',
 					},
 					{
+						id: uid(),
 						text: 'К',
 					},
 					{
+						id: uid(),
 						text: 'Время',
 						unit: 'мс'
 					},
 					{
+						id: uid(),
 						text: 'Температура',
 						unit: '℃'
 					},
 				]
 			},
 			{
+				id: uid(),
 				text: 'Пружина',
 				children: [
 					{
+						id: uid(),
 						text: 'Отключения',
 						children: [
 							{
+								id: uid(),
 								text: 'Время',
 								unit: 'мс'
 							},
 							{
+								id: uid(),
 								text: 'Ход',
 								unit: 'мм'
 							},
 							{
+								id: uid(),
 								text: 'Скорость',
 								unit: 'м/с'
 							},
@@ -209,27 +358,33 @@ const treeData = [
 				]
 			},
 			{
+				id: uid(),
 				text: 'Электромагнит',
 				children: [
 					{
+						id: uid(),
 						text: 'Соленоид включения',
 						children: [
 
 							{
+								id: uid(),
 								text: 'Ток',
 								unit: 'А'
 							},
 							{
+								id: uid(),
 								text: 'Напряжение',
 								unit: 'В'
 							},
 							{
+								id: uid(),
 								text: 'Сопротивление',
 								unit: 'Ом'
 							},
 						]
 					},
 					{
+						id: uid(),
 						text: 'Отключения',
 						children: [
 
@@ -238,10 +393,12 @@ const treeData = [
 				]
 			},
 			{
+				id: uid(),
 				text: 'Буфер',
 				checked: false,
 			},
 			{
+				id: uid(),
 				text: 'Обогрев привода',
 				checked: false,
 			},

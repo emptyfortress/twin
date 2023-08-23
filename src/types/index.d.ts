@@ -11,12 +11,15 @@ interface Item {
 }
 
 interface NodeData {
-	id?: number
+	id?: string
 	text: string
 	text1?: string
 	text2?: string
 	selected?: boolean
-	type: number
+	checked?: boolean
+	unit?: string
+	type?: number
+	red?: boolean
 }
 
 interface Stat {

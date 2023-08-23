@@ -3,10 +3,10 @@ import { onBeforeMount, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { rows } from '@/stores/data'
 import InfoPanel from '@/components/InfoPanel.vue'
-import Toolbar1 from '@/components/Toolbar1.vue'
+import Toolbar from '@/components/Toolbar.vue'
 import GridMeasure from '@/components/GridMeasure.vue'
 import TileMeasure from '@/components/TileMeasure.vue'
-import AddMeasure from '@/components/AddMeasure.vue'
+// import AddMeasure from '@/components/AddMeasure.vue'
 import { list } from '@/stores/list'
 import { randomNumber } from '@/utils/utils'
 import { useGrid } from '@/stores/grid'
@@ -46,9 +46,9 @@ q-page(padding :key="kkey")
 					BaseTree()
 					// q-scroll-area.list
 				.main
-					Toolbar1
-					// GridMeasure(v-if="grid.table")
-					// TileMeasure(v-else)
+					Toolbar
+					GridMeasure(v-if="grid.table")
+					TileMeasure(v-else)
 	// AddMeasure
 </template>
 
@@ -74,6 +74,7 @@ q-page(padding :key="kkey")
 	// height: 100%;
 	// height: 600px;
 }
+
 .list {
 	// height: 100%;
 }

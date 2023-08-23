@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onMounted, ref, watch, watchEffect } from 'vue'
+import { ref, watch, watchEffect } from 'vue'
 import { Draggable } from "@he-tree/vue";
 import WordHighlighter from "vue-word-highlighter"
 import "@he-tree/vue/style/default.css";
@@ -21,17 +21,12 @@ const clearFilter = (() => {
 	tree.value.statsFlat.map((item: Stat) => item.hidden = false)
 })
 
-// const checkedNodes = ref([])
 
 const initial = (stat: any) => {
 	stat.checked = stat.data.checked
 	stat.open = stat.data.open
 	return stat
 }
-// onMounted(() => {
-// 	checkedNodes.value = tree.value.getChecked()
-//
-// })
 
 watch(query, (newValue) => {
 	if (newValue !== '') {
@@ -72,6 +67,7 @@ div
 	Draggable(ref="tree" 
 		v-model="treeData"
 		:indent="33"
+		:nodeKey="(stat) => stat.data.id"
 		:statHandler="initial"
 		:watermark="false"
 		style="width:295px; overflow-x: auto;")

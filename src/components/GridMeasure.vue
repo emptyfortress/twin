@@ -42,7 +42,7 @@ for (var i = 1; i < 20; i++) {
 }
 let newDate = new Date(2023, 2, 7)
 let rows: any = []
-for (var i = 0; i < 7; i++) {
+for (var i = 0; i < 50; i++) {
 	let temp = date.subtractFromDate(newDate, { days: i })
 	rows.push({
 		id: i,
@@ -95,14 +95,12 @@ q-table.sticky(flat
 
 <style scoped lang="scss">
 .sticky {
-	// width: 30%;
-	// height: calc(100vh - 350px);
+	height: calc(100vh - 350px);
 }
 
-// .sticky.full {
-// 	height: 100vh;
-// }
-
+.full .sticky {
+	height: calc(100vh - 44px);
+}
 
 :deep(tr th) {
 	vertical-align: bottom;

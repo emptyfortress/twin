@@ -41,6 +41,10 @@ const width = computed(() => {
 	if (grid.sidebar === false && grid.drawer === false) {
 		return '100%'
 	}
+	if (grid.fullscreen === true && grid.sidebar === true) {
+		return (window.clientWidth - (360 + 40)) + 'px'
+		// return '100vw'
+	}
 })
 </script>
 
@@ -55,14 +59,15 @@ q-page(padding :key="kkey")
 		InfoPanel(:item="item" )
 
 	q-expansion-item.izm(v-model="measurepanel" label="Измерения" header-class="head")
-		.grid(:class="{ side: !grid.sidebar }")
-			.left
-				q-scroll-area.list
-					BaseTree
-			.main
-				Toolbar
-				GridMeasure(v-if="grid.table")
-				TileMeasure(v-else)
+		div(:class="{full : grid.fullscreen}")
+			.grid(:class="{ side : !grid.sidebar}")
+					.left
+						q-scroll-area.list
+							BaseTree
+					.main
+						Toolbar
+						GridMeasure(v-if="grid.table")
+						TileMeasure(v-else)
 
 	// AddMeasure
 </template>

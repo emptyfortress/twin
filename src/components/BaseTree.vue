@@ -103,7 +103,6 @@ div
 	margin-right: 0.2rem;
 	transform: translateY(-3px);
 	transition: 0.2s ease all;
-	// transform-origin: 9px 10px;
 
 	&.closed {
 		transform: rotate(-90deg);

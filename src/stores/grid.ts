@@ -4,7 +4,7 @@ export const useGrid = defineStore({
 	id: 'grid',
 	state: () => ({
 		sidebar: true,
-		table: false,
+		table: true,
 		fullscreen: false,
 		items: [],
 		filter: true,

@@ -48,7 +48,7 @@ q-layout(view='hHh LpR fFf')
 			transition(:name="route.meta.transition || 'fade'" mode="out-in")
 				component(:is="Component")
 
-	q-btn.fab(v-if="route.path !== '/'" fab color="primary" icon="mdi-plus" @click="showDialog") 
+	q-btn.fab(v-if="route.name == 'switches'" fab color="primary" icon="mdi-plus" @click="showDialog") 
 </template>
 
 <style scoped lang="scss">

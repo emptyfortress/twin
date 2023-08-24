@@ -28,24 +28,6 @@ onBeforeMount(() => {
 const infopanel = ref(false)
 const measurepanel = ref(true)
 const rand = ref(+randomNumber(0, 13, 0))
-const width = computed(() => {
-	if (grid.sidebar === true && grid.drawer === true) {
-		return (window.innerWidth - (200 + 32 + 360 + 40)) + 'px'
-	}
-	if (grid.sidebar === true && grid.drawer === false) {
-		return (window.innerWidth - (32 + 360 + 25)) + 'px'
-	}
-	if (grid.sidebar === false && grid.drawer === true) {
-		return (window.innerWidth - (200 + 32 + 16)) + 'px'
-	}
-	if (grid.sidebar === false && grid.drawer === false) {
-		return '100%'
-	}
-	if (grid.fullscreen === true && grid.sidebar === true) {
-		return (window.clientWidth - (360 + 40)) + 'px'
-		// return '100vw'
-	}
-})
 </script>
 
 <template lang="pug">
@@ -56,7 +38,7 @@ q-page(padding :key="kkey")
 		span {{ list[rand].text }}
 	br
 	q-expansion-item(v-model="infopanel" label="Информация" header-class="head")
-		InfoPanel(:item="item" )
+		InfoPanel(:item="item")
 
 	q-expansion-item.izm(v-model="measurepanel" label="Измерения" header-class="head")
 		div(:class="{full : grid.fullscreen}")
@@ -65,7 +47,7 @@ q-page(padding :key="kkey")
 						q-scroll-area.list
 							BaseTree
 					.main
-						Toolbar
+						Toolbar()
 						GridMeasure(v-if="grid.table")
 						TileMeasure(v-else)
 
@@ -76,18 +58,14 @@ q-page(padding :key="kkey")
 .left {
 	background: var(--bg-panel);
 	border: 1px solid #ccc;
-	width: 360px;
-	flex-shrink: 0;
-}
-.main {
-	width: v-bind(width);
 }
 .grid {
-	width: 100%;
-	display: flex;
+	display: grid;
+	grid-template-columns: 360px calc(100% - 368px);
 	gap: .5rem;
 
 	&.side {
+		grid-template-columns: 100%;
 		.left {
 			display: none;
 		}

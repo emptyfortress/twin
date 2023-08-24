@@ -95,6 +95,7 @@ q-table.sticky(flat
 
 <style scoped lang="scss">
 .sticky {
+	// width: 30%;
 	// height: calc(100vh - 350px);
 }
 

@@ -16,7 +16,10 @@ const mytree = useTree()
 	gap: .5rem;
 	flex-wrap: wrap;
 	padding-top: .5rem;
+}
 
+.full .tile {
+	padding: .5rem;
 }
 
 .card {

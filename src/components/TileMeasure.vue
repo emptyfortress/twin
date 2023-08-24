@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import TileCard from '@/components/TileCard.vue'
 import { useTree } from '@/stores/tree'
+import { nextTick } from 'vue';
 
 const mytree = useTree()
 </script>

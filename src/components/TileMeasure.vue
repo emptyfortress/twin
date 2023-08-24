@@ -18,7 +18,7 @@ const mytree = useTree()
 	padding-top: .5rem;
 }
 
-.full .tile {
+.full .side .tile {
 	padding: .5rem;
 }
 

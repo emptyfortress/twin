@@ -30,7 +30,7 @@ const measurepanel = ref(true)
 const rand = ref(+randomNumber(0, 13, 0))
 const width = computed(() => {
 	if (grid.sidebar === true && grid.drawer === true) {
-		return (window.innerWidth - (200 + 32 + 360 + 25)) + 'px'
+		return (window.innerWidth - (200 + 32 + 360 + 40)) + 'px'
 	}
 	if (grid.sidebar === true && grid.drawer === false) {
 		return (window.innerWidth - (32 + 360 + 25)) + 'px'

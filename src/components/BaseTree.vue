@@ -83,7 +83,7 @@ div
 		:nodeKey="(stat) => stat.data.id"
 		:statHandler="initial"
 		:watermark="false"
-		style="width:295px; overflow-x: auto;")
+		)
 
 		template(#default="{ node, stat }")
 			.node(@click="select(stat)" :class="{ 'selected': stat.data.selected }")
@@ -93,6 +93,11 @@ div
 </template>
 
 <style scoped lang="scss">
+.he-tree {
+	width: 340px;
+	overflow-x: auto;
+}
+
 .quick .q-field--dense .q-field__control,
 .q-field--dense .q-field__marginal {
 	height: 28px !important;
@@ -127,6 +132,10 @@ div
 	&:hover {
 		background: hsla(0, 0%, 91%);
 	}
+}
+
+:deep(.q-checkbox--dense .q-checkbox__inner) {
+	transform: translateY(-2px);
 }
 </style>
 

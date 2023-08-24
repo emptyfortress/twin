@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, ref, watchEffect } from 'vue'
+import { computed, onBeforeMount, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { rows } from '@/stores/data'
 import InfoPanel from '@/components/InfoPanel.vue'
@@ -28,6 +28,20 @@ onBeforeMount(() => {
 const infopanel = ref(false)
 const measurepanel = ref(true)
 const rand = ref(+randomNumber(0, 13, 0))
+const width = computed(() => {
+	if (grid.sidebar === true && grid.drawer === true) {
+		return (window.innerWidth - (200 + 32 + 360 + 25)) + 'px'
+	}
+	if (grid.sidebar === true && grid.drawer === false) {
+		return (window.innerWidth - (32 + 360 + 25)) + 'px'
+	}
+	if (grid.sidebar === false && grid.drawer === true) {
+		return (window.innerWidth - (200 + 32 + 16)) + 'px'
+	}
+	if (grid.sidebar === false && grid.drawer === false) {
+		return '100%'
+	}
+})
 </script>
 
 <template lang="pug">
@@ -39,41 +53,44 @@ q-page(padding :key="kkey")
 	br
 	q-expansion-item(v-model="infopanel" label="Информация" header-class="head")
 		InfoPanel(:item="item" )
+
 	q-expansion-item.izm(v-model="measurepanel" label="Измерения" header-class="head")
 		.grid(:class="{ side: !grid.sidebar }")
 			.left
 				q-scroll-area.list
-					BaseTree()
+					BaseTree
 			.main
 				Toolbar
 				GridMeasure(v-if="grid.table")
 				TileMeasure(v-else)
+
 	// AddMeasure
 </template>
 
 <style scoped lang="scss">
-.grid {
-	display: grid;
-	grid-template-columns: 300px 1fr;
-	gap: .5rem;
-
-	&.side {
-		grid-template-columns: 1fr;
-
-		.left {
-			display: none;
-		}
-
-	}
-}
 .left {
 	background: var(--bg-panel);
 	border: 1px solid #ccc;
-	// height: 600px;
+	width: 360px;
+	flex-shrink: 0;
+}
+.main {
+	width: v-bind(width);
+}
+.grid {
+	width: 100%;
+	display: flex;
+	gap: .5rem;
+
+	&.side {
+		.left {
+			display: none;
+		}
+	}
 }
 
 .list {
-	height: 600px;
+	height: calc(100vh - 320px);
 }
 
 :deep(.q-expansion-item--expanded) {
@@ -103,14 +120,6 @@ q-page(padding :key="kkey")
 	}
 }
 
-.q-tab-panels {
-	background: transparent;
-	min-height: 200px;
-}
-
-:deep(.q-table__top) {
-	padding: 0;
-}
 
 .diag {
 	color: darkred;

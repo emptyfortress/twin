@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import SvgIcon from '@/components/global/SvgIcon.vue'
+import GridMeasure from '@/components/GridMeasure.vue'
 </script>
 
 <template lang="pug">
@@ -12,6 +13,7 @@ q-page(padding)
 		p Сюда бы хорошо графики поместить. Сделать красивый дашборд.
 		SvgIcon(name="logo")
 		SvgIcon(name="nodeFolder" color="#ccc")
+	GridMeasure
 </template>
 
 <style scoped lang="scss">

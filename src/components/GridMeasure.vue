@@ -95,13 +95,13 @@ q-table.sticky(flat
 
 <style scoped lang="scss">
 .sticky {
-	height: calc(100vh - 350px);
-	// max-width: calc(100vw - 580px);
+	// height: calc(100vh - 350px);
 }
 
-.sticky.full {
-	height: 100vh;
-}
+// .sticky.full {
+// 	height: 100vh;
+// }
+
 
 :deep(tr th) {
 	vertical-align: bottom;
@@ -112,13 +112,13 @@ q-table.sticky(flat
 	background-color: #f9f9eb;
 }
 
-:deep() th span.rot {
-	-ms-writing-mode: tb-rl;
-	-webkit-writing-mode: vertical-rl;
-	writing-mode: vertical-rl;
-	transform: rotate(180deg);
-	white-space: nowrap;
-}
+// :deep() th span.rot {
+// 	-ms-writing-mode: tb-rl;
+// 	-webkit-writing-mode: vertical-rl;
+// 	writing-mode: vertical-rl;
+// 	transform: rotate(180deg);
+// 	white-space: nowrap;
+// }
 
 .q-table thead .q-tr:first-child th:first-child {
 	background-color: #fff;

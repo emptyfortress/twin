@@ -4,7 +4,10 @@ import Drawer from '@/components/Drawer.vue'
 import RDrawer from '@/components/RDrawer.vue'
 import { useStore } from '@/stores/store'
 import { useRoute } from 'vue-router'
+import { useGrid } from '@/stores/grid'
 
+
+const grid = useGrid()
 const route = useRoute()
 const store = useStore()
 const leftDrawer = ref(true)
@@ -12,6 +15,7 @@ const rightDrawer = ref(false)
 
 const toggleLeftDrawer = () => {
 	leftDrawer.value = !leftDrawer.value
+	grid.drawer = !grid.drawer
 }
 
 const toggleRightDrawer = () => {

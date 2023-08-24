@@ -30,6 +30,7 @@ const phaseOptions = ['Последняя неделя', 'Последний м�
 
 <style scoped lang="scss">
 .toolbar {
+	// width: 100%;
 	border-top: 1px solid var(--my-border-color);
 	border-bottom: 1px solid var(--my-border-color);
 	background: var(--bg-card);

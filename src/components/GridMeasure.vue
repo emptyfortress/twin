@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { useTree } from '@/stores/tree'
 import { useGrid } from '@/stores/grid'
+import { randomNumber } from '@/utils/utils'
 
 const grid = useGrid()
 const mytree = useTree()
@@ -45,6 +46,9 @@ let rows: any = [
 	{},
 	{},
 	{},
+	{},
+	{},
+	{},
 ]
 </script>
 
@@ -68,7 +72,7 @@ q-table.sticky(flat
 	template(v-slot:body="props")
 		q-tr(:props="props")
 			q-td Пн, 21.08.23 13:15
-			q-td(v-for="col in props.cols" :key="col.id" :props="props") rand
+			q-td(v-for="(col, index) in props.cols" :key="col.id" :props="props") {{ randomNumber(0, 100, 2) }}
 </template>
 
 <style scoped lang="scss">

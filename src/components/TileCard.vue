@@ -101,10 +101,16 @@ const calcOption = computed(() => {
 const color = computed(() => {
 	return props.item.data.red ? 'red' : '#3380bc'
 })
+const calcClass = computed(() => {
+	if (mytree.selectedNodes.length) {
+		return props.item.data.selected ? '' : 'blur'
+	}
+	return ''
+})
 </script>
 
 <template lang="pug">
-.cont
+.cont(:class="calcClass")
 	// .hov
 	// 	.one Фаза 1
 	.card(@click="showTrendDialog")
@@ -122,6 +128,10 @@ TrendDialog(v-model="big" :item="props.item" :val="val")
 .cont {
 	width: 160px;
 	position: relative;
+	&.blur {
+		filter: blur(5px) grayscale(100%);
+	}
+ 
 
 	// .hov {
 	// 	position: absolute;

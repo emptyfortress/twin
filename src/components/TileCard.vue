@@ -110,11 +110,10 @@ const color = computed(() => {
 	.card(@click="showTrendDialog")
 		.row.items-baseline.justify-start
 			.data {{ val }}
-			.unit {{ props.item.data.unit}}
+			.unit {{ props.item.data.unit }}
 
 		VueApexCharts(ref="chart" height="50px" :options="calcOption" :series="series" )
-	.label(v-if="props.item.data.text1") {{ props.item.data.text1 }}
-	.label(v-else) {{ props.item.data.text }}
+	.label {{ props.item.data.text }}
 
 TrendDialog(v-model="big" :item="props.item" :val="val")
 </template>

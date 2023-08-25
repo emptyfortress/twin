@@ -156,6 +156,7 @@ const treeData = [
 							{
 								id: uid(),
 								text: 'Макс. скорость',
+								text1: 'Максимальная скорость',
 								unit: 'м/с',
 								checked: true,
 								type: 1,
@@ -167,25 +168,30 @@ const treeData = [
 			{
 				id: uid(),
 				text: 'Дугогасительный контакт',
+				checked: false,
 				children: [
 					{
 						id: uid(),
 						text: 'Ток',
+						checked: false,
 						unit: 'A'
 					},
 					{
 						id: uid(),
 						text: 'Напряжение',
+						checked: false,
 						unit: 'кВ'
 					},
 					{
 						id: uid(),
 						text: 'Время',
+						checked: false,
 						unit: 'мс'
 					},
 					{
 						id: uid(),
 						text: 'Количество',
+						checked: false,
 						unit: 'шт'
 					},
 				]
@@ -193,10 +199,12 @@ const treeData = [
 			{
 				id: uid(),
 				text: 'Обогрев полюса (фазы)',
+				checked: false,
 				children: [
 					{
 						id: uid(),
 						text: 'Сопротивление',
+						checked: false,
 						unit: 'Ом'
 					},
 				]
@@ -204,24 +212,29 @@ const treeData = [
 			{
 				id: uid(),
 				text: 'Ввод',
+				checked: false,
 				children: [
 					{
 						id: uid(),
 						text: 'Изоляция',
+						checked: false,
 						children: [
 							{
 								id: uid(),
 								text: 'Сопротивление',
+								checked: false,
 								unit: 'Ом'
 							},
 							{
 								id: uid(),
 								text: 'Утечка',
+								checked: false,
 								unit: '%'
 							},
 							{
 								id: uid(),
 								text: 'Тангенс угла',
+								checked: false,
 								unit: 'tgδ'
 							},
 						]
@@ -231,50 +244,61 @@ const treeData = [
 			{
 				id: uid(),
 				text: 'Дугогасящая среда',
+				checked: false,
 				children: [
 					{
 						id: uid(),
 						text: 'Трансформаторное масло',
+						checked: false,
 						children: [
 							{
 								id: uid(),
 								text: 'Напряжение',
+								checked: false,
 								unit: 'кВ'
 							},
 							{
 								id: uid(),
 								text: 'Масса',
+								checked: false,
 								unit: 'мг'
 							},
 							{
 								id: uid(),
 								text: 'Температура',
+								checked: false,
 								unit: '℃',
 							},
 							{
 								id: uid(),
 								text: '%',
+								checked: false,
 							},
 							{
 								id: uid(),
 								text: '%',
+								checked: false,
 							},
 							{
 								id: uid(),
 								text: 'Тангенс угла',
+								checked: false,
 								unit: 'tgδ'
 							},
 							{
 								id: uid(),
 								text: '%',
+								checked: false,
 							},
 							{
 								id: uid(),
 								text: '%',
+								checked: false,
 							},
 							{
 								id: uid(),
 								text: '%',
+								checked: false,
 							},
 						]
 					}
@@ -283,14 +307,17 @@ const treeData = [
 			{
 				id: uid(),
 				text: 'Резисторы',
+				checked: false,
 				children: [
 					{
 						id: uid(),
 						text: 'Токоограничивающие',
+						checked: false,
 						children: [
 							{
 								id: uid(),
 								text: 'Сопротивление',
+								checked: false,
 								unit: 'Ом'
 							}
 						]
@@ -301,33 +328,40 @@ const treeData = [
 			{
 				id: uid(),
 				text: 'Встр. трансформаторы тока',
+				checked: false,
 				children: [
 					{
 						id: uid(),
 						text: 'Сопротивление',
+						checked: false,
 						unit: 'Ом'
 					},
 					{
 						id: uid(),
 						text: 'Утечка',
+						checked: false,
 						unit: '%'
 					},
 					{
 						id: uid(),
 						text: '%',
+						checked: false,
 					},
 					{
 						id: uid(),
 						text: 'К',
+						checked: false,
 					},
 					{
 						id: uid(),
 						text: 'Время',
+						checked: false,
 						unit: 'мс'
 					},
 					{
 						id: uid(),
 						text: 'Температура',
+						checked: false,
 						unit: '℃'
 					},
 				]
@@ -335,24 +369,29 @@ const treeData = [
 			{
 				id: uid(),
 				text: 'Пружина',
+				checked: false,
 				children: [
 					{
 						id: uid(),
 						text: 'Отключения',
+						checked: false,
 						children: [
 							{
 								id: uid(),
 								text: 'Время',
+								checked: false,
 								unit: 'мс'
 							},
 							{
 								id: uid(),
 								text: 'Ход',
+								checked: false,
 								unit: 'мм'
 							},
 							{
 								id: uid(),
 								text: 'Скорость',
+								checked: false,
 								unit: 'м/с'
 							},
 						]
@@ -362,25 +401,30 @@ const treeData = [
 			{
 				id: uid(),
 				text: 'Электромагнит',
+				checked: false,
 				children: [
 					{
 						id: uid(),
 						text: 'Соленоид включения',
+						checked: false,
 						children: [
 
 							{
 								id: uid(),
 								text: 'Ток',
+								checked: false,
 								unit: 'А'
 							},
 							{
 								id: uid(),
 								text: 'Напряжение',
+								checked: false,
 								unit: 'В'
 							},
 							{
 								id: uid(),
 								text: 'Сопротивление',
+								checked: false,
 								unit: 'Ом'
 							},
 						]
@@ -388,6 +432,7 @@ const treeData = [
 					{
 						id: uid(),
 						text: 'Отключения',
+						checked: false,
 						children: [
 
 						]

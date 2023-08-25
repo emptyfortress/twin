@@ -4,8 +4,9 @@ export const useTree = defineStore({
 	id: 'tree',
 	state: () => ({
 		checkedNodes: [] as Stat[],
-		currentNode: null as null | Stat,
-		parents: [] as Stat[]
+		currentNode: null as null | Stat, //for big graphics
+		parents: [] as Stat[],  // for breadcrumbs in graphics
+		selectedNodes: [] as Stat[],
 	}),
 	getters: {
 		cells(state) {
@@ -21,6 +22,12 @@ export const useTree = defineStore({
 		},
 		setParents(e: Stat[]) {
 			this.parents = e
+		},
+		setSelected(e: Stat[]) {
+			this.selectedNodes = e
+		},
+		addToSelected(e: Stat) {
+			this.selectedNodes.push(e)
 		}
 	},
 })

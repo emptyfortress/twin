@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, watch, watchEffect } from 'vue'
+import { ref, watch, watchEffect, computed } from 'vue'
 import { Draggable } from "@he-tree/vue";
 import WordHighlighter from "vue-word-highlighter"
 import "@he-tree/vue/style/default.css";
@@ -9,16 +9,23 @@ import { useTree } from '@/stores/tree'
 const query = ref('')
 
 const tree = ref()
+const mytree = useTree()
 const toggle = (stat: any) => {
 	stat.open = !stat.open
 }
+
+function selectChilds(tree: any): any {
+	tree.data.selected = !tree.data.selected
+	if (!tree) return {};
+	if (!tree.children) return {};
+	tree.children = tree.children.map((child: any) => selectChilds(child))
+	return tree;
+}
+
 const select = ((n: Stat) => {
-	let parent = []
-	n.data.selected = !n.data.selected
-	// for (const parentStat of tree.value.iterateParent(n, { withSelf: false })) {
-	// 	parent.push(parentStat)
-	// 	console.log(parentStat.data.text)
-	// }
+	selectChilds(n)
+	const sel = tree.value.statsFlat.filter((el: Stat) => el.data.selected === true && el.data.type === 1)
+	mytree.setSelected(sel)
 })
 
 const clearFilter = (() => {
@@ -49,7 +56,6 @@ watch(query, (newValue) => {
 
 })
 
-const mytree = useTree()
 watchEffect(() => {
 	let temp = tree.value?.statsFlat.filter((e: Stat) => e.checked === true)
 	mytree.setCheckedNodes(temp)

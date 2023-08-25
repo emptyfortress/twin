@@ -19,17 +19,17 @@ const pagination = {
 	rowsPerPage: 0
 }
 
-const arr = computed(() => {
+const arr: MyCol[] = computed(() => {
 	let temp = [
-		{
-			id: '0',
-			name: 'time',
-			required: true,
-			label: 'Дата измерений',
-			field: 'time',
-			sortable: true,
-			align: 'left',
-		}
+		// {
+		// 	id: '0',
+		// 	name: 'time',
+		// 	required: true,
+		// 	label: 'Дата измерений',
+		// 	field: 'time',
+		// 	sortable: true,
+		// 	align: 'left',
+		// }
 	]
 	mytree.cells.forEach((cell) => {
 		let item = {}
@@ -40,41 +40,42 @@ const arr = computed(() => {
 		item.field = cell.data.id
 		item.sortable = true
 		item.align = 'left'
+		item.unit = cell.data.unit
 
 		temp.push(item)
 	})
 	return temp
 })
-let newDate = new Date(2023, 2, 7)
+// let newDate = new Date(2023, 2, 7)
 
 
 let rows: any = []
-for (var i = 0; i < 7; i++) {
-	let temp = date.subtractFromDate(newDate, { days: i })
-	rows.push({
-		id: i,
-		time: date.formatDate(temp, 'YYYY-MM-DD'),
-	})
-}
+// for (var i = 0; i < 7; i++) {
+// 	let temp = date.subtractFromDate(newDate, { days: i })
+// 	rows.push({
+// 		id: i,
+// 		time: date.formatDate(temp, 'YYYY-MM-DD'),
+// 	})
+// }
 // for (let i = 0; i < 20; i++) {
 // 	let key = 'par' + i
 // 	rows.map((e: any) => {
 // 		e[key] = Math.round(Math.random() * 100)
 // 	})
 // }
-const mykey = ((e: number) => {
-	return 'par' + e
-})
-const calcRow = ((e: any) => {
-	let temp = Object.values(e)
-	temp.shift()
-	temp.shift()
-	let cond = temp.some((item: any) => { return (item < 2) === true })
-	if (cond === true) {
-		return 'some'
-	}
-
-})
+// const mykey = ((e: number) => {
+// 	return 'par' + e
+// })
+// const calcRow = ((e: any) => {
+// 	let temp = Object.values(e)
+// 	temp.shift()
+// 	temp.shift()
+// 	let cond = temp.some((item: any) => { return (item < 2) === true })
+// 	if (cond === true) {
+// 		return 'some'
+// 	}
+//
+// })
 // const data = computed(() => {
 // 	return arr.filter(item => item.name.toLowerCase().includes('par'))
 // })
@@ -91,14 +92,16 @@ q-table.sticky(flat
 
 	template(v-slot:header="props")
 		q-tr(:props="props")
+			q-th Дата измерений
 			q-th(v-for="(col, index) in props.cols" :key="col.name" :props="props")
-				span(:class="{ rot: index > 0 }") {{ col.label }}
-		q-tr(:props="props")
-			q-th(v-for="(col, index) in props.cols" :key="col.name" :props="props") 1
+				span {{ col.label }}
+		q-tr(:props="props").sma
+			q-th
+			q-th(v-for="(col, index) in props.cols" :key="col.name" :props="props") {{col.unit}}
 
 	template(v-slot:body="props")
-		q-tr(:props="props" :class="calcRow(props.row)")
-			q-td(:props="props" key="time") {{ props.row.time }}
+		q-tr(:props="props")
+			q-td(:props="props" key="time") fuck
 			q-td(:props="props" v-for="(_, index) in data" :key="'par' + (index + 1)" :class="{ nice: props.row[mykey(index)] < 2 }") {{ props.row[mykey(index)] }}
 </template>
 
@@ -118,6 +121,9 @@ q-table.sticky(flat
 	z-index: 2;
 	top: 0;
 	background-color: #f9f9eb;
+}
+.q-table thead tr.sma {
+	height: 32px;
 }
 
 // :deep() th span.rot {

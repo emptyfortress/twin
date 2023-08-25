@@ -21,7 +21,7 @@ const treeData = [
 						children: [
 							{
 								id: uid(),
-								text: 'Активное R постоянному току',
+								text: 'Активное сопротивление постоянному току',
 								checked: true,
 								unit: 'мкОм',
 								type: 1,
@@ -36,7 +36,7 @@ const treeData = [
 						children: [
 							{
 								id: uid(),
-								text: 'Температура глав.контакта',
+								text: 'Температура главного контакта',
 								checked: true,
 								unit: '℃',
 								type: 1,

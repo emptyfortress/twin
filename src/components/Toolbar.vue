@@ -20,7 +20,7 @@ const phaseOptions = ['Последняя неделя', 'Последний м�
 			q-tooltip(:delay="600") Грид
 	.right
 		q-select.q-mr-lg(dense filled v-model="phase" :options="phaseOptions")
-		q-btn(flat round dense icon="mdi-tune-variant" @click="") 
+		q-btn(flat round dense icon="mdi-tune-variant" @click="grid.rotation = !grid.rotation") 
 		q-btn(flat round dense @click="grid.switchFullscreen")
 			q-icon(v-if="!grid.fullscreen" name="mdi-fullscreen")
 			q-icon(v-if="grid.fullscreen" name="mdi-fullscreen-exit")

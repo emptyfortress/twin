@@ -12,14 +12,11 @@ export const useGrid = defineStore({
 		checked: [],
 		disable: 0,
 		selected: false,
-		aggregat: false,
+		rotation: false,
 	}),
 	getters: {},
 
 	actions: {
-		switchAggregat() {
-			this.aggregat = !this.aggregat
-		},
 		switchSidebar() {
 			this.sidebar = !this.sidebar
 		},

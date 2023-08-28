@@ -59,7 +59,7 @@ watch(query, (newValue) => {
 watchEffect(() => {
 	let temp = tree.value?.statsFlat.filter((e: Stat) => e.checked === true)
 	mytree.setCheckedNodes(temp)
-	if (mytree.currentNode) {
+	if (!!mytree.currentNode) {
 		let parent = []
 		for (const parentStat of tree.value.iterateParent(mytree.currentNode, { withSelf: false })) {
 			parent.push(parentStat)

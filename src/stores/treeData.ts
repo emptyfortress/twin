@@ -77,6 +77,7 @@ const treeData = [
 								unit: 'мс',
 								checked: true,
 								type: 1,
+								red: true,
 							},
 							{
 								id: uid(),
@@ -174,25 +175,59 @@ const treeData = [
 						id: uid(),
 						text: 'Ток',
 						checked: false,
-						unit: 'A'
+						children: [
+							{
+								id: uid(),
+								text: 'Действ. чилло тока за время откл.',
+								text1: 'Действующее число тока за время отключения',
+								checked: false,
+								unit: 'А',
+								type: 1,
+							},
+						]
 					},
 					{
 						id: uid(),
 						text: 'Напряжение',
 						checked: false,
-						unit: 'кВ'
+						children: [
+							{
+								id: uid(),
+								text: 'Номинальное напряжение',
+								checked: false,
+								unit: 'кВ',
+								type: 1,
+							},
+						]
 					},
 					{
 						id: uid(),
 						text: 'Время',
 						checked: false,
-						unit: 'мс'
+						children: [
+							{
+								id: uid(),
+								text: 'Суммарное время горения дуги',
+								checked: false,
+								unit: 'мс',
+								type: 1,
+							},
+						]
 					},
 					{
 						id: uid(),
 						text: 'Количество',
 						checked: false,
-						unit: 'шт'
+						children: [
+							{
+								id: uid(),
+								text: 'Кол-во отключений токов КЗ',
+								text1: 'Количество отключений токов КЗ',
+								checked: false,
+								unit: 'шт',
+								type: 1,
+							},
+						]
 					},
 				]
 			},
@@ -205,7 +240,23 @@ const treeData = [
 						id: uid(),
 						text: 'Сопротивление',
 						checked: false,
-						unit: 'Ом'
+						children: [
+							{
+								id: uid(),
+								text: 'Активное сопр. пост. току',
+								text1: 'Активное сопротивление постоянному току',
+								checked: false,
+								unit: 'Ом',
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Сопротивление изоляции',
+								checked: false,
+								unit: 'МОм',
+								type: 1,
+							},
+						]
 					},
 				]
 			},
@@ -223,19 +274,37 @@ const treeData = [
 								id: uid(),
 								text: 'Сопротивление',
 								checked: false,
-								unit: 'Ом'
+								children: [
+									{
+										id: uid(),
+										text: 'Сопротивление изоляции',
+										checked: false,
+										unit: 'МОм',
+										type: 1,
+									},
+								]
 							},
 							{
 								id: uid(),
 								text: 'Утечка',
 								checked: false,
-								unit: '%'
+								children: [
+									{
+										id: uid(),
+										text: 'Испытание изоляции повыш. напр.',
+										text1: 'Испытание изоляции повышенным напряжением',
+										checked: false,
+										unit: '%',
+										type: 1,
+									},
+								]
 							},
 							{
 								id: uid(),
-								text: 'Тангенс угла',
+								text: 'Тангенс угла диэлектрических потерь',
 								checked: false,
-								unit: 'tgδ'
+								unit: 'tgδ',
+								type: 1,
 							},
 						]
 					},
@@ -255,50 +324,94 @@ const treeData = [
 								id: uid(),
 								text: 'Напряжение',
 								checked: false,
-								unit: 'кВ'
+								children: [
+									{
+										id: uid(),
+										text: 'Пробивное напряжение',
+										checked: false,
+										unit: 'кВ',
+										type: 1,
+									},
+								]
 							},
 							{
 								id: uid(),
 								text: 'Масса',
 								checked: false,
-								unit: 'мг'
+								children: [
+									{
+										id: uid(),
+										text: 'Кислотное число',
+										checked: false,
+										unit: 'мг',
+										type: 1,
+									},
+								]
 							},
 							{
 								id: uid(),
 								text: 'Температура',
 								checked: false,
-								unit: '℃',
+								children: [
+									{
+										id: uid(),
+										text: 'Температура вспышки',
+										checked: false,
+										unit: '℃',
+										type: 1,
+									},
+								]
 							},
 							{
 								id: uid(),
-								text: '%',
+								text: 'Содержание',
 								checked: false,
+								children: [
+									{
+										id: uid(),
+										text: 'Влагосодержание',
+										unit: '%',
+										checked: false,
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Содержание механических примесей',
+										checked: false,
+										unit: '%',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Содерж-е водораств. кислот и щелочей',
+										text1: 'Содержание водорастворимых кислот и щелочей',
+										checked: false,
+										unit: '%',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Содерж-е антиокисл. присадки АГИДОЛ-1',
+										text1: 'Содержание антиокислительной присадки АГИДОЛ-1',
+										checked: false,
+										unit: '%',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Содержание растворимого шлама',
+										checked: false,
+										unit: '%',
+										type: 1,
+									},
+								]
 							},
 							{
 								id: uid(),
-								text: '%',
+								text: 'Тангенс угла диэлектрических потерь',
 								checked: false,
-							},
-							{
-								id: uid(),
-								text: 'Тангенс угла',
-								checked: false,
-								unit: 'tgδ'
-							},
-							{
-								id: uid(),
-								text: '%',
-								checked: false,
-							},
-							{
-								id: uid(),
-								text: '%',
-								checked: false,
-							},
-							{
-								id: uid(),
-								text: '%',
-								checked: false,
+								unit: 'tgδ',
+								type: 1,
 							},
 						]
 					}
@@ -316,9 +429,10 @@ const treeData = [
 						children: [
 							{
 								id: uid(),
-								text: 'Сопротивление',
+								text: 'Активное сопротивление постоянному току',
 								checked: false,
-								unit: 'Ом'
+								unit: 'Ом',
+								type: 1,
 							}
 						]
 
@@ -327,42 +441,74 @@ const treeData = [
 			},
 			{
 				id: uid(),
-				text: 'Встр. трансформаторы тока',
+				text: 'Встроенные трансформаторы тока',
 				checked: false,
 				children: [
 					{
 						id: uid(),
 						text: 'Сопротивление',
 						checked: false,
-						unit: 'Ом'
+						children: [
+							{
+								id: uid(),
+								text: 'Измер. сопр. разрядн. резистора конденсатора',
+								text1: 'Измерения сопротивления разрядного резистора конденсатора',
+								checked: false,
+								unit: 'Ом',
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Измер. активн. сопр. постоянному току',
+								text1: 'Измерение активного сопротивления постоянному току',
+								checked: false,
+								unit: 'Ом',
+								type: 1,
+							},
+						]
 					},
 					{
 						id: uid(),
 						text: 'Утечка',
 						checked: false,
-						unit: '%'
+						children: [
+							{
+								id: uid(),
+								text: 'Испытание изоляции повыш. напр.',
+								text1: 'Испытание изоляции повышенным напряжением',
+								checked: false,
+								unit: '%',
+								type: 1,
+							},
+						]
 					},
 					{
 						id: uid(),
-						text: '%',
+						text: 'Снятие характеристик намагничивания',
 						checked: false,
+						unit: '%',
+						type: 1,
 					},
 					{
 						id: uid(),
-						text: 'К',
+						text: 'Измерение коэффициента трансформации',
+						unit: 'К',
 						checked: false,
-					},
-					{
-						id: uid(),
-						text: 'Время',
-						checked: false,
-						unit: 'мс'
+						type: 1,
 					},
 					{
 						id: uid(),
 						text: 'Температура',
 						checked: false,
-						unit: '℃'
+						children: [
+							{
+								id: uid(),
+								text: 'Тепловизионный контроль',
+								checked: false,
+								unit: '℃',
+								type: 1,
+							},
+						]
 					},
 				]
 			},
@@ -380,19 +526,66 @@ const treeData = [
 								id: uid(),
 								text: 'Время',
 								checked: false,
-								unit: 'мс'
+								children: [
+									{
+										id: uid(),
+										text: 'Время включения коммутации',
+										checked: false,
+										unit: 'мс',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Полное время движения',
+										checked: false,
+										unit: 'мс',
+										type: 1,
+									},
+								]
 							},
 							{
 								id: uid(),
 								text: 'Ход',
 								checked: false,
-								unit: 'мм'
+								unit: 'мм',
+								children: [
+									{
+										id: uid(),
+										text: 'Ход до коммутации',
+										checked: false,
+										unit: 'мм',
+										type: 1,
+									},
+								]
 							},
 							{
 								id: uid(),
 								text: 'Скорость',
 								checked: false,
-								unit: 'м/с'
+								unit: 'м/с',
+								children: [
+									{
+										id: uid(),
+										text: 'Скорость при коммутации',
+										checked: false,
+										unit: 'м/с',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Максимальная скорость',
+										checked: false,
+										unit: 'м/с',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Скорость на участке',
+										checked: false,
+										unit: 'м/с',
+										type: 1,
+									},
+								]
 							},
 						]
 					},
@@ -408,24 +601,76 @@ const treeData = [
 						text: 'Соленоид включения',
 						checked: false,
 						children: [
-
 							{
 								id: uid(),
 								text: 'Ток',
 								checked: false,
-								unit: 'А'
+								children: [
+									{
+										id: uid(),
+										text: 'Максимальный ток',
+										checked: false,
+										unit: 'А',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Время протекания тока',
+										checked: false,
+										unit: 'мс',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'График тока',
+										checked: false,
+										unit: 'график',
+										type: 1,
+									},
+								]
 							},
 							{
 								id: uid(),
 								text: 'Напряжение',
 								checked: false,
-								unit: 'В'
+								unit: 'В',
+								children: [
+									{
+										id: uid(),
+										text: 'Действующее значение напряжения',
+										checked: false,
+										unit: 'В',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Пониженное напряжение',
+										checked: false,
+										unit: 'В',
+										type: 1,
+									},
+								]
 							},
 							{
 								id: uid(),
 								text: 'Сопротивление',
 								checked: false,
-								unit: 'Ом'
+								children: [
+									{
+										id: uid(),
+										text: 'Активное сопротивление постоянному току',
+										checked: false,
+										unit: 'мкОм',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Сопротивление изоляции',
+										checked: false,
+										unit: 'МОм',
+										type: 1,
+									},
+								]
 							},
 						]
 					},
@@ -434,7 +679,77 @@ const treeData = [
 						text: 'Отключения',
 						checked: false,
 						children: [
-
+							{
+								id: uid(),
+								text: 'Ток',
+								checked: false,
+								children: [
+									{
+										id: uid(),
+										text: 'Максимальный ток',
+										checked: false,
+										unit: 'А',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Время протекания тока',
+										checked: false,
+										unit: 'мс',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'График тока',
+										checked: false,
+										unit: 'график',
+										type: 1,
+									},
+								]
+							},
+							{
+								id: uid(),
+								text: 'Напряжение',
+								checked: false,
+								unit: 'В',
+								children: [
+									{
+										id: uid(),
+										text: 'Действующее значение напряжения',
+										checked: false,
+										unit: 'В',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Пониженное напряжение',
+										checked: false,
+										unit: 'В',
+										type: 1,
+									},
+								]
+							},
+							{
+								id: uid(),
+								text: 'Сопротивление',
+								checked: false,
+								children: [
+									{
+										id: uid(),
+										text: 'Активное сопротивление постоянному току',
+										checked: false,
+										unit: 'мкОм',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Сопротивление изоляции',
+										checked: false,
+										unit: 'МОм',
+										type: 1,
+									},
+								]
+							},
 						]
 					}
 				]
@@ -443,11 +758,123 @@ const treeData = [
 				id: uid(),
 				text: 'Буфер',
 				checked: false,
+				children: [
+					{
+						id: uid(),
+						text: 'Включения',
+						checked: false,
+						children: [
+							{
+								id: uid(),
+								text: 'Ход',
+								checked: false,
+								children: [
+									{
+										id: uid(),
+										text: 'Перелет',
+										checked: false,
+										unit: 'мм',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Отскок',
+										checked: false,
+										unit: 'мм',
+										type: 1,
+									},
+								]
+							},
+							{
+								id: uid(),
+								text: 'Скорость',
+								checked: false,
+								children: [
+									{
+										id: uid(),
+										text: 'Отрицательная скорость',
+										text1: 'Испытание изоляции повышенным напряжением',
+										checked: false,
+										unit: 'м/c',
+										type: 1,
+									},
+								]
+							},
+						]
+					},
+					{
+						id: uid(),
+						text: 'Отключения',
+						checked: false,
+						children: [
+							{
+								id: uid(),
+								text: 'Ход',
+								checked: false,
+								children: [
+									{
+										id: uid(),
+										text: 'Перелет',
+										checked: false,
+										unit: 'мм',
+										type: 1,
+									},
+									{
+										id: uid(),
+										text: 'Отскок',
+										checked: false,
+										unit: 'мм',
+										type: 1,
+									},
+								]
+							},
+							{
+								id: uid(),
+								text: 'Скорость',
+								checked: false,
+								children: [
+									{
+										id: uid(),
+										text: 'Отрицательная скорость',
+										text1: 'Испытание изоляции повышенным напряжением',
+										checked: false,
+										unit: 'м/c',
+										type: 1,
+									},
+								]
+							},
+						]
+					},
+				]
 			},
 			{
 				id: uid(),
 				text: 'Обогрев привода',
 				checked: false,
+				children: [
+					{
+						id: uid(),
+						text: 'Сопротивление',
+						checked: false,
+						children: [
+							{
+								id: uid(),
+								text: 'Активное сопротивление постоянному току',
+								checked: false,
+								unit: 'мкОм',
+								type: 1,
+							},
+							{
+								id: uid(),
+								text: 'Сопротивление изоляции',
+								checked: false,
+								unit: 'МОм',
+								type: 1,
+							},
+						]
+					},
+
+				]
 			},
 		]
 	}

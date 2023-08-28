@@ -41,15 +41,15 @@ q-page(padding :key="kkey")
 		InfoPanel(:item="item")
 
 	q-expansion-item.izm(v-model="measurepanel" label="Измерения" header-class="head")
-		div(:class="{full : grid.fullscreen}")
-			.grid(:class="{ side : !grid.sidebar}")
-					.left
-						q-scroll-area.list
-							BaseTree
-					.main
-						Toolbar()
-						GridMeasure(v-if="grid.table")
-						TileMeasure(v-else)
+		div(:class="{ full: grid.fullscreen }")
+			.grid(:class="{ side: !grid.sidebar }")
+				.left
+					q-scroll-area.list
+						BaseTree
+				.main
+					Toolbar()
+					GridMeasure(v-if="grid.table")
+					TileMeasure(v-else)
 
 	// AddMeasure
 </template>
@@ -59,6 +59,7 @@ q-page(padding :key="kkey")
 	background: var(--bg-panel);
 	border: 1px solid #ccc;
 }
+
 .grid {
 	display: grid;
 	grid-template-columns: 360px calc(100% - 368px);
@@ -66,6 +67,7 @@ q-page(padding :key="kkey")
 
 	&.side {
 		grid-template-columns: 100%;
+
 		.left {
 			display: none;
 		}
@@ -74,6 +76,10 @@ q-page(padding :key="kkey")
 
 .list {
 	height: calc(100vh - 320px);
+
+	.full & {
+		height: 100vh;
+	}
 }
 
 :deep(.q-expansion-item--expanded) {

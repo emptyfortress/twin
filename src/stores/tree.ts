@@ -20,6 +20,9 @@ export const useTree = defineStore({
 		setCurrentNode(e: Stat) {
 			this.currentNode = e
 		},
+		resetCurrentNode() {
+			this.currentNode = null
+		},
 		setParents(e: Stat[]) {
 			this.parents = e
 		},

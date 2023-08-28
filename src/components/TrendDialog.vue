@@ -176,6 +176,11 @@ const calcOption = computed(() => {
 	return props.item.data.red ? options1 : options
 })
 
+const closeDialog = (() => {
+	modelValue.value = false
+	mytree.resetCurrentNode()
+})
+
 </script>
 
 <template lang="pug">
@@ -183,10 +188,10 @@ q-dialog(v-model="modelValue")
 	q-card(style="width: 900px; max-width: 80vw;")
 		q-card-section.row.justify-between.items-center.q-pb-none
 			div(v-for="item in mytree.parents")
-				span.q-mr-sm {{item.data.text}}
+				span.q-mr-sm {{ item.data.text }}
 				span.q-mr-sm &rarr;
 			q-space
-			q-btn(icon="mdi-close" flat round dense @click="modelValue = false")
+			q-btn(icon="mdi-close" flat round dense @click="closeDialog")
 		q-card-section.row.items-center.q-pt-none
 			.text-h6
 				span(v-if="props.item.data.text1") {{ props.item.data.text1 }}

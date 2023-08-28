@@ -184,7 +184,7 @@ const closeDialog = (() => {
 </script>
 
 <template lang="pug">
-q-dialog(v-model="modelValue")
+q-dialog(v-model="modelValue" @hide="closeDialog")
 	q-card(style="width: 900px; max-width: 80vw;")
 		q-card-section.row.justify-between.items-center.q-pb-none
 			div(v-for="item in mytree.parents")

@@ -12,7 +12,7 @@ export const useGrid = defineStore({
 		checked: [],
 		disable: 0,
 		selected: false,
-		rotation: false,
+		rotation: true,
 	}),
 	getters: {},
 

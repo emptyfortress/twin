@@ -23,33 +23,33 @@ export const router = createRouter({
 			name: 'switches',
 			component: () => import('@/pages/Switches.vue')
 		},
-		{
-			path: '/reverse',
-			name: 'reverse',
-			component: () => import('@/pages/Item1.vue'),
-			meta: {
-				title: 'Тест',
-				transition: 'page'
-			},
-		},
-		{
-			path: '/reverse1',
-			name: 'reverse1',
-			component: () => import('@/pages/Item2.vue'),
-			meta: {
-				title: 'Тест',
-				transition: 'page'
-			},
-		},
-		{
-			path: '/chart',
-			name: 'chart',
-			component: () => import('@/pages/Chart.vue'),
-			meta: {
-				title: 'Chart',
-				transition: 'page'
-			},
-		},
+		// {
+		// 	path: '/reverse',
+		// 	name: 'reverse',
+		// 	component: () => import('@/pages/Item1.vue'),
+		// 	meta: {
+		// 		title: 'Тест',
+		// 		transition: 'page'
+		// 	},
+		// },
+		// {
+		// 	path: '/reverse1',
+		// 	name: 'reverse1',
+		// 	component: () => import('@/pages/Item2.vue'),
+		// 	meta: {
+		// 		title: 'Тест',
+		// 		transition: 'page'
+		// 	},
+		// },
+		// {
+		// 	path: '/chart',
+		// 	name: 'chart',
+		// 	component: () => import('@/pages/Chart.vue'),
+		// 	meta: {
+		// 		title: 'Chart',
+		// 		transition: 'page'
+		// 	},
+		// },
 		{
 			path: '/item/:id',
 			name: 'item',

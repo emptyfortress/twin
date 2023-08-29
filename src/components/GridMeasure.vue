@@ -50,6 +50,8 @@ let rows: any = [
 	{},
 	{},
 ]
+
+
 </script>
 
 <template lang="pug">
@@ -70,9 +72,10 @@ q-table.sticky(flat
 			q-th(v-for="(col, index) in props.cols" :key="col.name" :props="props") {{ col.unit }}
 
 	template(v-slot:body="props")
-		q-tr(:props="props")
+		q-tr(:props="props" )
 			q-td Пн, 21.08.23 13:15
-			q-td(v-for="(col, index) in props.cols" :key="col.id" :props="props") {{ randomNumber(0, 100, 2) }}
+			q-td(v-for="(col, index) in props.cols" :key="col.id" :props="props" :class="{ nice: index == 1 }") {{ randomNumber(0, 100, 2) }}
+
 </template>
 
 <style scoped lang="scss">

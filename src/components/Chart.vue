@@ -19,8 +19,8 @@ const test = ((_: any, e: any) => {
 
 	let sel = document.getElementsByClassName('apexcharts-selection-rect')
 	let bound = sel[0].getBoundingClientRect()
-	top.value = bound.height / 2 + 80 + 'px'
-	left.value = bound.right - 255 + 'px'
+	top.value = bound.height / 2 + 85 + 'px'
+	left.value = bound.right - 540 + 'px'
 	calc.value = (max - min).toFixed(2)
 	izm.value = calc.value
 
@@ -126,18 +126,19 @@ const options1 = reactive({
 </script>
 
 <template lang="pug">
-q-page(padding)
-	.container
-		.hd Примеры графиков
-		q-card.q-mb-md.rel
-			q-card-section
-				VueApexCharts(ref="chart" :options="options1" :series="series1" @selection="test" )
-			.count(v-if="sss")
-				span {{ calc }}
-				q-btn(dense flat round icon="mdi-check-bold" @click="setSelection") 
-		q-card
-			q-card-section
-				VueApexCharts(:options="options" :series="series")
+// q-page(padding)
+// 	.container
+// 		.hd Примеры графиков
+q-card.q-mb-md.rel
+	q-card-section
+		VueApexCharts(ref="chart" :options="options1" :series="series1" @selection="test" )
+	.count(v-if="sss")
+		span {{ calc }}
+		q-btn(dense flat round icon="mdi-check-bold" @click="setSelection") 
+br
+q-card
+	q-card-section
+		VueApexCharts(:options="options" :series="series")
 
 </template>
 

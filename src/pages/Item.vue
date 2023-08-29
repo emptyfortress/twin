@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, onBeforeMount, ref, watchEffect } from 'vue'
+import { reactive, computed, onBeforeMount, ref, watchEffect } from 'vue'
 import { useRoute } from 'vue-router'
 import { rows } from '@/stores/data'
 import InfoPanel from '@/components/InfoPanel.vue'
@@ -7,6 +7,7 @@ import Toolbar from '@/components/Toolbar.vue'
 import GridMeasure from '@/components/GridMeasure.vue'
 import TileMeasure from '@/components/TileMeasure.vue'
 import DotMeasure from '@/components/DotMeasure.vue'
+import Chart from '@/components/Chart.vue'
 // import AddMeasure from '@/components/AddMeasure.vue'
 import { list } from '@/stores/list'
 import { randomNumber } from '@/utils/utils'
@@ -27,8 +28,23 @@ onBeforeMount(() => {
 })
 
 const infopanel = ref(false)
+const graphic = ref(false)
 const measurepanel = ref(true)
 const rand = ref(+randomNumber(0, 13, 0))
+const dates = reactive([
+	{label: '20.08.23', sel: true},
+	{label: '19.08.23', sel: false},
+	{label: '18.08.23', sel: false},
+	{label: '17.08.23', sel: false},
+	{label: '16.08.23', sel: false},
+	{label: '15.08.23', sel: false},
+	{label: '14.08.23', sel: false},
+])
+const select = ((e: any) => {
+	dates.map(item => item.sel = false)
+	e.sel = true
+})
+
 </script>
 
 <template lang="pug">
@@ -53,7 +69,15 @@ q-page(padding :key="kkey")
 					TileMeasure(v-if="grid.gridType === 0")
 					DotMeasure(v-if="grid.gridType === 1")
 
-	// AddMeasure
+	q-expansion-item.izm(v-model="graphic" label="Графики" header-class="head")
+		.grap
+			div
+				div Даты измерений:
+				q-list
+					q-item(clickable v-ripple v-for="item in dates" :key="item.label" :class="{ selected : item.sel}" @click="select(item)")
+						q-item-section
+							q-item-label {{ item.label }}
+			Chart
 </template>
 
 <style scoped lang="scss">
@@ -62,6 +86,10 @@ q-page(padding :key="kkey")
 	border: 1px solid #ccc;
 }
 
+.grap {
+	display: grid;
+	grid-template-columns: 300px 1fr;
+}
 .grid {
 	display: grid;
 	grid-template-columns: 360px calc(100% - 368px);
@@ -126,5 +154,13 @@ q-page(padding :key="kkey")
 
 .hd {
 	font-size: 2.125rem;
+}
+.selected {
+	background: #b1ddfc;
+	color: #1565c0;
+
+	&:hover {
+		background: #b1ddfc;
+	}
 }
 </style>

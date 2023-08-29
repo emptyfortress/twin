@@ -23,7 +23,7 @@ const bt = [
 		q-btn(v-for="but in bt" :key="but.id" unelevated dense :icon="but.icon" size="11px" :class="{ grey: grid.gridType === but.id }" @click="grid.switchGrid(but.id)")
 	.right
 		q-select(dense filled v-model="phase" :options="phaseOptions")
-		q-btn.q-mr-lg(flat round icon="mdi-calendar") 
+		q-btn.q-mr-lg(flat round dense icon="mdi-calendar") 
 		q-btn(flat round dense icon="mdi-tune-variant" @click="grid.rotation = !grid.rotation") 
 		q-btn(flat round dense @click="grid.switchFullscreen")
 			q-icon(v-if="!grid.fullscreen" name="mdi-fullscreen")

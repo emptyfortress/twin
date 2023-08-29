@@ -132,26 +132,6 @@ TrendDialog(v-model="big" :item="props.item" :val="val")
 		filter: blur(5px) grayscale(100%);
 	}
  
-
-	// .hov {
-	// 	position: absolute;
-	// 	bottom: 101px;
-	// 	display: none;
-	// 	height: 100px;
-	// 	width: 160px;
-	// 	background: v-bind(color);
-	// 	z-index: 1;
-	// 	border-radius: 4px 4px 0 0;
-	// 	color: #fff;
-	// 	padding: .5rem;
-	// 	font-size: .9rem;
-	// }
-
-	// &:hover {
-	// 	.hov {
-	// 		display: block;
-	// 	}
-	// }
 }
 
 .card {

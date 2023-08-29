@@ -6,6 +6,7 @@ import InfoPanel from '@/components/InfoPanel.vue'
 import Toolbar from '@/components/Toolbar.vue'
 import GridMeasure from '@/components/GridMeasure.vue'
 import TileMeasure from '@/components/TileMeasure.vue'
+import DotMeasure from '@/components/DotMeasure.vue'
 // import AddMeasure from '@/components/AddMeasure.vue'
 import { list } from '@/stores/list'
 import { randomNumber } from '@/utils/utils'
@@ -50,6 +51,7 @@ q-page(padding :key="kkey")
 					Toolbar()
 					GridMeasure(v-if="grid.gridType === 2")
 					TileMeasure(v-if="grid.gridType === 0")
+					DotMeasure(v-if="grid.gridType === 1")
 
 	// AddMeasure
 </template>

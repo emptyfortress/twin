@@ -1,19 +1,20 @@
 <script setup lang="ts">
-import TileCard from '@/components/TileCard.vue'
+import DotCard from '@/components/DotCard.vue'
 import { useTree } from '@/stores/tree'
 
 const mytree = useTree()
 </script>
 
 <template lang="pug">
-.tile
-	TileCard(v-for="item in mytree.cells" :item="item" )
+.til
+	DotCard(v-for="item in mytree.cells" :item="item" )
 </template>
 
 <style scoped lang="scss">
-.tile {
+.til {
 	display: flex;
 	gap: .5rem;
+	// align-items: stretch;
 	flex-wrap: wrap;
 	padding-top: .5rem;
 }
@@ -23,8 +24,8 @@ const mytree = useTree()
 }
 
 .card {
-	width: 160px;
-	height: 50px;
+	// width: 160px;
+	// height: 50px;
 	border-radius: 4px;
 	background: #fff;
 	position: relative;

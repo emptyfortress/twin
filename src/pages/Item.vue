@@ -48,8 +48,8 @@ q-page(padding :key="kkey")
 						BaseTree
 				.main
 					Toolbar()
-					GridMeasure(v-if="grid.table")
-					TileMeasure(v-else)
+					GridMeasure(v-if="grid.gridType === 2")
+					TileMeasure(v-if="grid.gridType === 0")
 
 	// AddMeasure
 </template>

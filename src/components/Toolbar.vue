@@ -5,6 +5,12 @@ import { useGrid } from '@/stores/grid'
 const grid = useGrid()
 const phase = ref('Последняя неделя')
 const phaseOptions = ['Последняя неделя', 'Последний месяц', 'Последний квартал', 'За все время']
+const bt = [
+	{ id: 0, icon: 'mdi-view-grid', },
+	{ id: 1, icon: 'mdi-dots-grid' },
+	{ id: 2, icon: 'mdi-table' },
+]
+
 </script>
 
 <template lang="pug">
@@ -14,12 +20,10 @@ const phaseOptions = ['Последняя неделя', 'Последний м�
 			q-icon(v-if="grid.sidebar" name="mdi-backburger")
 			q-icon(v-if="!grid.sidebar" name="mdi-forwardburger")
 	.center
-		q-btn(unelevated dense icon="mdi-view-grid" size="11px" @click="grid.showTile" :class="{ grey: !grid.table }")
-			q-tooltip(:delay="600") Плитка
-		q-btn(unelevated dense icon="mdi-table" size="11px" @click="grid.showGrid" :class="{ grey: grid.table }")
-			q-tooltip(:delay="600") Грид
+		q-btn(v-for="but in bt" :key="but.id" unelevated dense :icon="but.icon" size="11px" :class="{ grey: grid.gridType === but.id }" @click="grid.switchGrid(but.id)")
 	.right
-		q-select.q-mr-lg(dense filled v-model="phase" :options="phaseOptions")
+		q-select(dense filled v-model="phase" :options="phaseOptions")
+		q-btn.q-mr-lg(flat round icon="mdi-calendar") 
 		q-btn(flat round dense icon="mdi-tune-variant" @click="grid.rotation = !grid.rotation") 
 		q-btn(flat round dense @click="grid.switchFullscreen")
 			q-icon(v-if="!grid.fullscreen" name="mdi-fullscreen")

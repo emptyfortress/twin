@@ -5,7 +5,7 @@ export const useGrid = defineStore({
 	state: () => ({
 		drawer: true,
 		sidebar: true,
-		table: false,
+		gridType: 0,
 		fullscreen: false,
 		items: [],
 		filter: true,
@@ -23,12 +23,18 @@ export const useGrid = defineStore({
 		switchFullscreen() {
 			this.fullscreen = !this.fullscreen
 		},
-		showGrid() {
-			this.table = true
+		switchGrid(e: number) {
+			this.gridType = e
 		},
-		showTile() {
-			this.table = false
-		},
+		// showGrid() {
+		// 	this.gridType = 2
+		// },
+		// showTile() {
+		// 	this.gridType = 0
+		// },
+		// showDots() {
+		// 	this.gridType = 1
+		// },
 		clearCheckedAll() {
 			this.checked = []
 		}

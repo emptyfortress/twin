@@ -28,17 +28,17 @@ onBeforeMount(() => {
 })
 
 const infopanel = ref(false)
-const graphic = ref(false)
-const measurepanel = ref(true)
+const graphic = ref(true)
+const measurepanel = ref(false)
 const rand = ref(+randomNumber(0, 13, 0))
 const dates = reactive([
-	{label: '20.08.23', sel: true},
-	{label: '19.08.23', sel: false},
-	{label: '18.08.23', sel: false},
-	{label: '17.08.23', sel: false},
-	{label: '16.08.23', sel: false},
-	{label: '15.08.23', sel: false},
-	{label: '14.08.23', sel: false},
+	{ label: '20.08.23', sel: true },
+	{ label: '19.08.23', sel: false },
+	{ label: '18.08.23', sel: false },
+	{ label: '17.08.23', sel: false },
+	{ label: '16.08.23', sel: false },
+	{ label: '15.08.23', sel: false },
+	{ label: '14.08.23', sel: false },
 ])
 const select = ((e: any) => {
 	dates.map(item => item.sel = false)
@@ -54,10 +54,10 @@ q-page(padding :key="kkey")
 		q-icon.q-mr-sm(name="mdi-alert" size="sm")
 		span {{ list[rand].text }}
 	br
-	q-expansion-item(v-model="infopanel" label="Информация" header-class="head")
+	q-expansion-item(v-model="infopanel" label="Информация" icon="mdi-information-outline" header-class="head")
 		InfoPanel(:item="item")
 
-	q-expansion-item.izm(v-model="measurepanel" label="Измерения" header-class="head")
+	q-expansion-item.izm(v-model="measurepanel" label="Статические измерения" icon="mdi-chart-bar" header-class="head")
 		div(:class="{ full: grid.fullscreen }")
 			.grid(:class="{ side: !grid.sidebar }")
 				.left
@@ -69,12 +69,12 @@ q-page(padding :key="kkey")
 					TileMeasure(v-if="grid.gridType === 0")
 					DotMeasure(v-if="grid.gridType === 1")
 
-	q-expansion-item.izm(v-model="graphic" label="Графики" header-class="head")
+	q-expansion-item.izm(v-model="graphic" label="Динамические измерения" icon="mdi-chart-bell-curve" header-class="head")
 		.grap
 			div
 				div Даты измерений:
 				q-list
-					q-item(clickable v-ripple v-for="item in dates" :key="item.label" :class="{ selected : item.sel}" @click="select(item)")
+					q-item(clickable v-ripple v-for="item in dates" :key="item.label" :class="{ selected: item.sel }" @click="select(item)")
 						q-item-section
 							q-item-label {{ item.label }}
 			Chart
@@ -90,6 +90,7 @@ q-page(padding :key="kkey")
 	display: grid;
 	grid-template-columns: 300px 1fr;
 }
+
 .grid {
 	display: grid;
 	grid-template-columns: 360px calc(100% - 368px);
@@ -139,6 +140,10 @@ q-page(padding :key="kkey")
 	}
 }
 
+:deep(.q-item__section--avatar) {
+	min-width: 0;
+	color: $secondary;
+}
 
 .diag {
 	color: darkred;
@@ -155,6 +160,7 @@ q-page(padding :key="kkey")
 .hd {
 	font-size: 2.125rem;
 }
+
 .selected {
 	background: #b1ddfc;
 	color: #1565c0;

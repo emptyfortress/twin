@@ -3,6 +3,7 @@ import { ref, watch, watchEffect, computed } from 'vue'
 import { Draggable } from "@he-tree/vue";
 import WordHighlighter from "vue-word-highlighter"
 import "@he-tree/vue/style/default.css";
+import '@he-tree/vue/style/material-design.css'
 import { treeData } from '@/stores/treeData'
 import { useTree } from '@/stores/tree'
 

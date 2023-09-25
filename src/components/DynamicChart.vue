@@ -24,7 +24,7 @@ div(:class="{ full: grid.fullscreen }")
 
 .grid {
 	display: grid;
-	grid-template-columns: 300px calc(100% - 310px);
+	grid-template-columns: 320px calc(100% - 328px);
 	gap: .5rem;
 
 	&.side {

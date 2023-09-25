@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { Draggable } from '@he-tree/vue';
-import { dynamicData } from '@/stores/dynamicTreeData'
 import { useGrid } from '@/stores/grid'
 import Toolbar from '@/components/Toolbar.vue'
+import BaseTree1 from '@/components/BaseTree1.vue'
 
 const grid = useGrid()
 </script>
@@ -12,13 +11,7 @@ div(:class="{ full: grid.fullscreen }")
 	.grid(:class="{ side: !grid.sidebar }")
 		.left
 			q-scroll-area.list
-				p fuck
-				p fuck
-				p fuck
-				p fuck
-				p fuck
-				p fuck
-				// BaseTree
+				BaseTree1
 		.main
 			Toolbar(simple)
 </template>
@@ -31,7 +24,7 @@ div(:class="{ full: grid.fullscreen }")
 
 .grid {
 	display: grid;
-	grid-template-columns: 360px calc(100% - 368px);
+	grid-template-columns: 300px calc(100% - 310px);
 	gap: .5rem;
 
 	&.side {
@@ -40,6 +33,14 @@ div(:class="{ full: grid.fullscreen }")
 		.left {
 			display: none;
 		}
+	}
+}
+
+.list {
+	height: calc(100vh - 370px);
+
+	.full & {
+		height: 100vh;
 	}
 }
 </style>

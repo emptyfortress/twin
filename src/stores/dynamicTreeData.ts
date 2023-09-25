@@ -4,6 +4,7 @@ const dynamicData = [
 		text: '20.09.23',
 		open: true,
 		checked: false,
+		selected: false,
 		children: [
 
 		]
@@ -13,6 +14,7 @@ const dynamicData = [
 		text: '19.09.23',
 		open: false,
 		checked: false,
+		selected: false,
 		children: [
 
 		]
@@ -22,6 +24,7 @@ const dynamicData = [
 		text: '18.09.23',
 		open: false,
 		checked: false,
+		selected: false,
 		children: [
 
 		]
@@ -31,6 +34,7 @@ const dynamicData = [
 		text: '17.09.23',
 		open: false,
 		checked: false,
+		selected: false,
 		children: [
 
 		]

@@ -9,6 +9,7 @@ import TileMeasure from '@/components/TileMeasure.vue'
 import DotMeasure from '@/components/DotMeasure.vue'
 import Chart from '@/components/Chart.vue'
 // import AddMeasure from '@/components/AddMeasure.vue'
+import DynamicChart from '@/components/DynamicChart.vue'
 import { list } from '@/stores/list'
 import { randomNumber } from '@/utils/utils'
 import { useGrid } from '@/stores/grid'
@@ -70,25 +71,13 @@ q-page(padding :key="kkey")
 					DotMeasure(v-if="grid.gridType === 1")
 
 	q-expansion-item.izm(v-model="graphic" label="Динамические измерения" icon="mdi-chart-bell-curve" header-class="head")
-		.grap
-			div
-				div Даты измерений:
-				q-list
-					q-item(clickable v-ripple v-for="item in dates" :key="item.label" :class="{ selected: item.sel }" @click="select(item)")
-						q-item-section
-							q-item-label {{ item.label }}
-			Chart
+		DynamicChart
 </template>
 
 <style scoped lang="scss">
 .left {
 	background: var(--bg-panel);
 	border: 1px solid #ccc;
-}
-
-.grap {
-	display: grid;
-	grid-template-columns: 300px 1fr;
 }
 
 .grid {

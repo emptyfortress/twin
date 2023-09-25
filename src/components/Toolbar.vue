@@ -2,6 +2,13 @@
 import { ref } from 'vue'
 import { useGrid } from '@/stores/grid'
 
+const props = defineProps({
+	simple: {
+		type: Boolean,
+		default: false
+	}
+})
+
 const grid = useGrid()
 const phase = ref('Последняя неделя')
 const phaseOptions = ['Последняя неделя', 'Последний месяц', 'Последний квартал', 'За все время']
@@ -19,11 +26,11 @@ const bt = [
 		q-btn(flat round dense @click="grid.switchSidebar")
 			q-icon(v-if="grid.sidebar" name="mdi-backburger")
 			q-icon(v-if="!grid.sidebar" name="mdi-forwardburger")
-	.center
+	.center(v-if="!props.simple")
 		q-btn(v-for="but in bt" :key="but.id" unelevated dense :icon="but.icon" size="11px" :class="{ grey: grid.gridType === but.id }" @click="grid.switchGrid(but.id)")
 	.right
-		q-select(dense filled v-model="phase" :options="phaseOptions")
-		q-btn.q-mr-lg(flat round dense icon="mdi-calendar") 
+		q-select(v-if="!props.simple" dense filled v-model="phase" :options="phaseOptions")
+		q-btn.q-mr-lg(v-if="!props.simple" flat round dense icon="mdi-calendar") 
 		q-btn(flat round dense icon="mdi-tune-variant" @click="grid.rotation = !grid.rotation") 
 		q-btn(flat round dense @click="grid.switchFullscreen")
 			q-icon(v-if="!grid.fullscreen" name="mdi-fullscreen")

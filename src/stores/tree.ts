@@ -7,6 +7,7 @@ export const useTree = defineStore({
 		currentNode: null as null | Stat, //for big graphics
 		parents: [] as Stat[],  // for breadcrumbs in graphics
 		selectedNodes: [] as Stat[],
+		selectedNode: null as null | Stat // for dynamic graphics
 	}),
 	getters: {
 		cells(state) {
@@ -28,6 +29,9 @@ export const useTree = defineStore({
 		},
 		setSelected(e: Stat[]) {
 			this.selectedNodes = e
+		},
+		setSelectedNode(e: Stat[]) {
+			this.selectedNode = e
 		},
 		addToSelected(e: Stat) {
 			this.selectedNodes.push(e)

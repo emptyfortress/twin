@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, watch, watchEffect, computed } from 'vue'
-import { Draggable } from "@he-tree/vue";
+import { BaseTree } from "@he-tree/vue";
 import WordHighlighter from "vue-word-highlighter"
 import "@he-tree/vue/style/default.css";
 import { dynamicData } from '@/stores/dynamicTreeData'
@@ -14,13 +14,13 @@ const toggle = (stat: any) => {
 	stat.open = !stat.open
 }
 
-function selectChilds(tree: any): any {
-	tree.data.selected = !tree.data.selected
-	if (!tree) return {};
-	if (!tree.children) return {};
-	tree.children = tree.children.map((child: any) => selectChilds(child))
-	return tree;
-}
+// function selectChilds(tree: any): any {
+// 	tree.data.selected = !tree.data.selected
+// 	if (!tree) return {};
+// 	if (!tree.children) return {};
+// 	tree.children = tree.children.map((child: any) => selectChilds(child))
+// 	return tree;
+// }
 
 const select = ((n: Stat) => {
 	tree1.value.statsFlat.map((el: Stat) => el.data.selected = false)
@@ -85,7 +85,7 @@ div
 				).query
 				template(v-slot:prepend)
 					q-icon(name="mdi-magnify")
-	Draggable(ref="tree1" 
+	BaseTree(ref="tree1" 
 		v-model="dynamicData"
 		:nodeKey="(stat) => stat.data.id"
 		:statHandler="initial"
@@ -95,7 +95,7 @@ div
 			.node(@click="select(stat)" :class="{ 'selected': stat.data.selected }")
 				q-icon(name="mdi-chevron-down" v-if="stat.children.length" @click.stop="toggle(stat)" :class="{ 'closed': !stat.open }").trig
 				// q-checkbox(v-model="stat.checked" @click.stop="" dense size="xs" :indeterminate-value="0").q-mr-sm
-				WordHighlighter.mtl-ml(:query="query" ) {{ node.text }}
+				WordHighlighter(:query="query") {{ node.text }}
 </template>
 
 <style scoped lang="scss">

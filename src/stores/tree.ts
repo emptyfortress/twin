@@ -30,7 +30,7 @@ export const useTree = defineStore({
 		setSelected(e: Stat[]) {
 			this.selectedNodes = e
 		},
-		setSelectedNode(e: Stat[]) {
+		setSelectedNode(e: Stat) {
 			this.selectedNode = e
 		},
 		addToSelected(e: Stat) {

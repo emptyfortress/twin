@@ -2,7 +2,10 @@
 import { useGrid } from '@/stores/grid'
 import Toolbar from '@/components/Toolbar.vue'
 import BaseTree1 from '@/components/BaseTree1.vue'
+import { useTree } from '@/stores/tree'
+import ChartExcel from '@/components/ChartExcel.vue'
 
+const mytree = useTree()
 const grid = useGrid()
 </script>
 
@@ -14,6 +17,7 @@ div(:class="{ full: grid.fullscreen }")
 				BaseTree1
 		.main
 			Toolbar(simple)
+			ChartExcel
 </template>
 
 <style scoped lang="scss">
@@ -37,7 +41,8 @@ div(:class="{ full: grid.fullscreen }")
 }
 
 .list {
-	height: calc(100vh - 370px);
+	min-height: calc(100vh - 390px);
+	height: 100%;
 
 	.full & {
 		height: 100vh;

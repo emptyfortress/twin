@@ -1,8 +1,9 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
-import { options, series, series1 } from '@/stores/charts2'
+// import { options, series, series1 } from '@/stores/charts2'
 import { useTree } from '@/stores/tree'
+import { categ, seri } from '@/stores/speedhod'
 
 const sss = ref(false)
 const mytree = useTree()
@@ -83,7 +84,7 @@ const options1 = reactive({
 			speed: 100
 		},
 		zoom: {
-			enabled: false
+			enabled: true
 		},
 		selection: {
 			enabled: true,
@@ -109,15 +110,15 @@ const options1 = reactive({
 		}
 	},
 	tooltip: {
-		enabled: false
+		enabled: true
 	},
-	colors: ['#33b2df', '#4b8353', '#4b8353', '#d4526e', '#d4526e'],
+	// colors: ['#33b2df', '#4b8353', '#4b8353', '#d4526e', '#d4526e'],
 	dataLabels: {
 		enabled: false
 	},
 	stroke: {
 		curve: ['smooth', 'stepline', 'stepline', 'stepline', 'stepline'],
-		width: [6, 2, 2, 2, 2]
+		width: [2, 2, 2, 2, 2]
 	},
 	title: {
 		text: fuck
@@ -129,15 +130,21 @@ const options1 = reactive({
 	},
 	xaxis: {
 		type: 'numeric',
-		categories: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 110],
+		categories: categ
 	},
+	yaxis: {
+		decimalsInFloat: 3
+		// labels: {
+		// 	formatter: (val, index) => { return val.toFixed(3) }
+		// }
+	}
 })
 </script>
 
 <template lang="pug">
 q-card.q-mt-md.rel(v-if="mytree.selectedNode?.data.text === 'Скорость от хода'")
 	q-card-section
-		VueApexCharts(ref="chart" :options="options1" :series="series1" @selection="test" )
+		VueApexCharts(ref="chart" :options="options1" :series="seri" @selection="test" )
 	.count(v-if="sss")
 		span {{ calc }}
 		q-btn(dense flat round icon="mdi-check-bold" @click="setSelection") 

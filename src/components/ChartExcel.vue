@@ -69,7 +69,6 @@ const setSelection = (() => {
 	deselect()
 })
 
-// const fuck = mytree.selectedNode.data.text
 const fuck = computed(() => {
 	if (mytree.selectedNode === null) {
 		return ''
@@ -97,7 +96,7 @@ const options1 = reactive({
 					{
 						icon: '<img src="/select-off.svg" >',
 						title: 'None',
-						index: 1,
+						index: 4,
 						class: "customicon",
 						click: function () {
 							chart.value.clearAnnotations()
@@ -156,10 +155,6 @@ q-card.q-mt-md.rel(v-if="mytree.selectedNode?.data.text === 'Скорость о
 	font-size: 2.125rem;
 }
 
-.q-card {
-	// width: 800px;
-}
-
 .rel {
 	position: relative;
 }
@@ -185,11 +180,9 @@ q-card.q-mt-md.rel(v-if="mytree.selectedNode?.data.text === 'Скорость о
 
 :deep(.customicon) {
 	cursor: pointer;
-	width: 18px;
-	height: 18px;
-	color: #6e8192;
-	text-align: center;
-	margin-top: 4px;
+	width: 20px;
+	height: 20px;
+	transform: translateY(3px);
 	margin-left: 4px;
 }
 </style>

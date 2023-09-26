@@ -3,7 +3,7 @@ import { uid } from 'quasar'
 const treeData = [
 	{
 		id: uid(),
-		text: 'Фаза 1',
+		text: 'Фаза A',
 		open: true,
 		checked: false,
 		children: [
@@ -877,6 +877,18 @@ const treeData = [
 				]
 			},
 		]
+	},
+	{
+		id: uid(),
+		text: 'Фаза Б',
+		open: false,
+		checked: false,
+	},
+	{
+		id: uid(),
+		text: 'Фаза С',
+		open: false,
+		checked: false,
 	}
 ]
 

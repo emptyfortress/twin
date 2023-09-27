@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref, reactive, computed } from 'vue'
+import { ref, reactive, computed, watch} from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
-// import { options, series, series1 } from '@/stores/charts2'
 import { useTree } from '@/stores/tree'
 import { categ, seri } from '@/stores/speedhod'
+import { categ1, seri1 } from '@/stores/speedtime'
 
 const sss = ref(false)
 const mytree = useTree()
@@ -75,7 +75,7 @@ const fuck = computed(() => {
 	} else return mytree.selectedNode.data.text
 })
 
-const options1 = reactive({
+const options1 = ref({
 	chart: {
 		type: 'line',
 		animations: {
@@ -133,17 +133,37 @@ const options1 = reactive({
 	},
 	yaxis: {
 		decimalsInFloat: 3
-		// labels: {
-		// 	formatter: (val, index) => { return val.toFixed(3) }
-		// }
 	}
+})
+
+const calcSeries = computed(() => {
+	switch(mytree.selectedNode.data.text) {
+
+	case 'Скорость от хода':
+		return seri
+
+	case 'Скорость от времени':
+		return seri1
+
+	default:
+		return []
+	}
+
+})
+
+watch(mytree.selectedNode, () => {
+	chart.value.updateOptions({
+		title: {
+			text: mytree.selectedNode?.data.text
+		}
+	})
 })
 </script>
 
 <template lang="pug">
-q-card.q-mt-md.rel(v-if="mytree.selectedNode?.data.text === 'Скорость от хода'")
+q-card.q-mt-md.rel(v-if="mytree.selectedNode")
 	q-card-section
-		VueApexCharts(ref="chart" :options="options1" :series="seri" @selection="test" )
+		VueApexCharts(ref="chart" :options="options1" :series="calcSeries" @selection="test")
 	.count(v-if="sss")
 		span {{ calc }}
 		q-btn(dense flat round icon="mdi-check-bold" @click="setSelection") 

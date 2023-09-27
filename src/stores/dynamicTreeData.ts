@@ -23,8 +23,8 @@ const dynamicData = [
 						selected: false,
 						children: [
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от хода', },
-							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от времени', },
+							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Ток от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от хода', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от времени', },
@@ -38,8 +38,8 @@ const dynamicData = [
 						selected: false,
 						children: [
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от времени', },
-							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от хода', },
+							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Ток от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от хода', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от времени', },
@@ -53,8 +53,8 @@ const dynamicData = [
 						selected: false,
 						children: [
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от времени', },
-							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от хода', },
+							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Ток от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от хода', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от времени', },
@@ -77,8 +77,8 @@ const dynamicData = [
 						selected: false,
 						children: [
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от времени', },
-							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от хода', },
+							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Ток от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от хода', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от времени', },
@@ -92,8 +92,8 @@ const dynamicData = [
 						selected: false,
 						children: [
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от времени', },
-							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от хода', },
+							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Ток от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от хода', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от времени', },
@@ -107,8 +107,8 @@ const dynamicData = [
 						selected: false,
 						children: [
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от времени', },
-							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Скорость от хода', },
+							{ id: uid(), open: false, checked: false, selected: false, text: 'Ход от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Ток от времени', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от хода', },
 							{ id: uid(), open: false, checked: false, selected: false, text: 'Напряжение от времени', },

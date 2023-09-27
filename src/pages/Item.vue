@@ -28,8 +28,8 @@ onBeforeMount(() => {
 	item.value = rows.find(e => e.id === +route.params.id)
 })
 
-const infopanel = ref(true)
-const graphic = ref(false)
+const infopanel = ref(false)
+const graphic = ref(true)
 const measurepanel = ref(false)
 const rand = ref(+randomNumber(0, 13, 0))
 const dates = reactive([

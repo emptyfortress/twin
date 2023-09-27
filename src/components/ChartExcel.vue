@@ -76,6 +76,20 @@ const fuck = computed(() => {
 	} else return mytree.selectedNode.data.text
 })
 
+const calcCateg = computed(() => {
+	switch (mytree.selectedNode?.data.text) {
+
+		case 'Скорость от хода':
+			return categ
+
+		case 'Скорость от времени':
+			return categ1
+
+		default:
+			return []
+	}
+})
+
 const options1 = ref({
 	chart: {
 		type: 'line',
@@ -121,7 +135,7 @@ const options1 = ref({
 		width: [2, 2, 2, 2, 2]
 	},
 	title: {
-		text: fuck
+		text: fuck.value
 	},
 	markers: {
 		hover: {
@@ -130,12 +144,13 @@ const options1 = ref({
 	},
 	xaxis: {
 		type: 'numeric',
-		categories: categ
+		categories: calcCateg.value,
 	},
 	yaxis: {
 		decimalsInFloat: 3
 	}
 })
+
 
 const calcSeries = computed(() => {
 	switch (mytree.selectedNode?.data.text) {

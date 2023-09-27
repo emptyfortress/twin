@@ -28,6 +28,7 @@ const select = ((n: Stat) => {
 	// selectChilds(n)
 	// const sel = tree1.value.statsFlat.filter((el: Stat) => el.data.selected === true && el.data.type === 1)
 	mytree.setSelectedNode(n)
+	mytree.key += 1
 })
 
 const clearFilter = (() => {

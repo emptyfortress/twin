@@ -7,7 +7,8 @@ export const useTree = defineStore({
 		currentNode: null as null | Stat, //for big graphics
 		parents: [] as Stat[],  // for breadcrumbs in graphics
 		selectedNodes: [] as Stat[],
-		selectedNode: null as null | Stat // for dynamic graphics
+		selectedNode: null as null | Stat, // for dynamic graphics
+		key: 0,
 	}),
 	getters: {
 		cells(state) {

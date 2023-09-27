@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { ref, reactive, computed, watch} from 'vue'
+import { storeToRefs } from 'pinia'
+import { ref, reactive, computed, watch } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import { useTree } from '@/stores/tree'
 import { categ, seri } from '@/stores/speedhod'
@@ -137,27 +138,33 @@ const options1 = ref({
 })
 
 const calcSeries = computed(() => {
-	switch(mytree.selectedNode.data.text) {
+	switch (mytree.selectedNode?.data.text) {
 
-	case 'Скорость от хода':
-		return seri
+		case 'Скорость от хода':
+			return seri
 
-	case 'Скорость от времени':
-		return seri1
+		case 'Скорость от времени':
+			return seri1
 
-	default:
-		return []
+		default:
+			return []
 	}
 
 })
 
-watch(mytree.selectedNode, () => {
-	chart.value.updateOptions({
-		title: {
-			text: mytree.selectedNode?.data.text
-		}
-	})
+var temp = storeToRefs(mytree)
+var soome = temp.key
+
+watch(soome, (newval) => {
+	if (newval > 1) {
+		chart.value.updateOptions({
+			title: {
+				text: mytree.selectedNode?.data.text
+			}
+		})
+	}
 })
+
 </script>
 
 <template lang="pug">

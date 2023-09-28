@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import { storeToRefs } from 'pinia'
-import { ref, reactive, computed, watch } from 'vue'
+import { ref, computed } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import { useTree } from '@/stores/tree'
 import { categ, seri } from '@/stores/speedhod'
 import { categ1, seri1 } from '@/stores/speedtime'
+import { categ2, seri2 } from '@/stores/hodtime'
+import { categ3, seri3 } from '@/stores/toktime'
 
 const sss = ref(false)
 const mytree = useTree()
@@ -85,6 +86,12 @@ const calcCateg = computed(() => {
 		case 'Скорость от времени':
 			return categ1
 
+		case 'Ход от времени':
+			return categ2
+
+		case 'Ток от времени':
+			return categ3
+
 		default:
 			return []
 	}
@@ -151,22 +158,6 @@ const options1 = ref({
 	}
 })
 
-
-const calcSeries = computed(() => {
-	switch (mytree.selectedNode?.data.text) {
-
-		case 'Скорость от хода':
-			return seri
-
-		case 'Скорость от времени':
-			return seri1
-
-		default:
-			return []
-	}
-
-})
-
 </script>
 
 <template lang="pug">
@@ -174,6 +165,8 @@ q-card.q-mt-md.rel(v-if="mytree.selectedNode")
 	q-card-section
 		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от хода'" :height="450" width="100%" :options="options1" :series="seri" @selection="test")
 		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от времени'"  :height="450" width="100%" :options="options1" :series="seri1" @selection="test")
+		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ход от времени'"  :height="450" width="100%" :options="options1" :series="seri2" @selection="test")
+		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ток от времени'"  :height="450" width="100%" :options="options1" :series="seri3" @selection="test" )
 		.work(v-else) График в работе
 	.count(v-if="sss")
 		span {{ calc }}

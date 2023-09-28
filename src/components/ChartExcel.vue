@@ -135,7 +135,7 @@ const options1 = ref({
 		width: [2, 2, 2, 2, 2]
 	},
 	title: {
-		text: fuck.value
+		text: fuck
 	},
 	markers: {
 		hover: {
@@ -144,7 +144,7 @@ const options1 = ref({
 	},
 	xaxis: {
 		type: 'numeric',
-		categories: calcCateg.value,
+		categories: calcCateg,
 	},
 	yaxis: {
 		decimalsInFloat: 3
@@ -167,25 +167,14 @@ const calcSeries = computed(() => {
 
 })
 
-var temp = storeToRefs(mytree)
-var soome = temp.key
-
-watch(soome, (newval) => {
-	if (newval > 1) {
-		chart.value.updateOptions({
-			title: {
-				text: mytree.selectedNode?.data.text
-			}
-		})
-	}
-})
-
 </script>
 
 <template lang="pug">
 q-card.q-mt-md.rel(v-if="mytree.selectedNode")
 	q-card-section
-		VueApexCharts(ref="chart" :options="options1" :series="calcSeries" @selection="test")
+		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от хода'" :height="450" width="100%" :options="options1" :series="seri" @selection="test")
+		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от времени'"  :height="450" width="100%" :options="options1" :series="seri1" @selection="test")
+		.work(v-else) График в работе
 	.count(v-if="sss")
 		span {{ calc }}
 		q-btn(dense flat round icon="mdi-check-bold" @click="setSelection") 
@@ -226,5 +215,13 @@ q-card.q-mt-md.rel(v-if="mytree.selectedNode")
 	height: 20px;
 	transform: translateY(3px);
 	margin-left: 4px;
+}
+
+.work {
+	height: 450px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	font-size: 2rem;
 }
 </style>

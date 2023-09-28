@@ -6,6 +6,7 @@ import { categ, seri } from '@/stores/speedhod'
 import { categ1, seri1 } from '@/stores/speedtime'
 import { categ2, seri2 } from '@/stores/hodtime'
 import { categ3, seri3 } from '@/stores/toktime'
+import { categ4, seri4 } from '@/stores/volttime'
 
 const sss = ref(false)
 const mytree = useTree()
@@ -92,6 +93,9 @@ const calcCateg = computed(() => {
 		case 'Ток от времени':
 			return categ3
 
+		case 'Напряжение от хода':
+			return categ4
+
 		default:
 			return []
 	}
@@ -167,6 +171,7 @@ q-card.q-mt-md.rel(v-if="mytree.selectedNode")
 		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от времени'"  :height="450" width="100%" :options="options1" :series="seri1" @selection="test")
 		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ход от времени'"  :height="450" width="100%" :options="options1" :series="seri2" @selection="test")
 		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ток от времени'"  :height="450" width="100%" :options="options1" :series="seri3" @selection="test" )
+		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Напряжение от хода'"  :height="450" width="100%" :options="options1" :series="seri4" @selection="test" )
 		.work(v-else) График в работе
 	.count(v-if="sss")
 		span {{ calc }}

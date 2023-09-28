@@ -29,7 +29,7 @@ onBeforeMount(() => {
 })
 
 const infopanel = ref(false)
-const graphic = ref(true)
+const graphic = ref(false)
 const measurepanel = ref(false)
 const rand = ref(+randomNumber(0, 13, 0))
 const dates = reactive([

@@ -6,7 +6,8 @@ import { categ, seri } from '@/stores/speedhod'
 import { categ1, seri1 } from '@/stores/speedtime'
 import { categ2, seri2 } from '@/stores/hodtime'
 import { categ3, seri3 } from '@/stores/toktime'
-import { categ4, seri4 } from '@/stores/volttime'
+import { categ4, seri4 } from '@/stores/volthod'
+import { categ5, seri5 } from '@/stores/volttime'
 
 const sss = ref(false)
 const mytree = useTree()
@@ -96,6 +97,9 @@ const calcCateg = computed(() => {
 		case 'Напряжение от хода':
 			return categ4
 
+		case 'Напряжение от времени':
+			return categ5
+
 		default:
 			return []
 	}
@@ -156,8 +160,14 @@ const options1 = ref({
 	xaxis: {
 		type: 'numeric',
 		categories: calcCateg,
+		// title: {
+		// 	text: 'Время'
+		// }
 	},
 	yaxis: {
+		// title: {
+		// 	text: 'Temperature'
+		// },
 		decimalsInFloat: 3
 	}
 })
@@ -172,7 +182,8 @@ q-card.q-mt-md.rel(v-if="mytree.selectedNode")
 		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ход от времени'"  :height="450" width="100%" :options="options1" :series="seri2" @selection="test")
 		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ток от времени'"  :height="450" width="100%" :options="options1" :series="seri3" @selection="test" )
 		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Напряжение от хода'"  :height="450" width="100%" :options="options1" :series="seri4" @selection="test" )
-		.work(v-else) График в работе
+		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Напряжение от времени'"  :height="450" width="100%" :options="options1" :series="seri5" @selection="test" )
+		.work(v-if="mytree.selectedNode.children.length > 0") Выберите параметр
 	.count(v-if="sss")
 		span {{ calc }}
 		q-btn(dense flat round icon="mdi-check-bold" @click="setSelection") 

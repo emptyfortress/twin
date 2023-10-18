@@ -113,7 +113,8 @@ const options1 = ref({
 			speed: 100
 		},
 		zoom: {
-			enabled: true
+			enabled: true,
+			type: 'xy',
 		},
 		selection: {
 			enabled: true,

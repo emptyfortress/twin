@@ -32,6 +32,9 @@ const bt = [
 		q-select(v-if="!props.simple" dense filled v-model="phase" :options="phaseOptions")
 		q-btn.q-mr-lg(v-if="!props.simple" flat round dense icon="mdi-calendar") 
 		q-btn(flat round dense icon="mdi-tune-variant" @click="grid.rotation = !grid.rotation") 
+		q-btn(flat round dense @click="grid.switchTable")
+			q-icon(name="mdi-math-compass")
+			q-tooltip(:delay="600") Таблица меток
 		q-btn(flat round dense @click="grid.switchFullscreen")
 			q-icon(v-if="!grid.fullscreen" name="mdi-fullscreen")
 			q-icon(v-if="grid.fullscreen" name="mdi-fullscreen-exit")

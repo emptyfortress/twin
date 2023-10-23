@@ -2,15 +2,17 @@
 import { ref, computed } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import { useTree } from '@/stores/tree'
-import { categ, seri } from '@/stores/speedhod'
-import { categ1, seri1 } from '@/stores/speedtime'
-import { categ2, seri2 } from '@/stores/hodtime'
-import { categ3, seri3 } from '@/stores/toktime'
-import { categ4, seri4 } from '@/stores/volthod'
-import { categ5, seri5 } from '@/stores/volttime'
+import { useGrid } from '@/stores/grid'
+import { hod, speed } from '@/stores/speedhod'
+// import { categ1, seri1 } from '@/stores/speedtime'
+// import { categ2, seri2 } from '@/stores/hodtime'
+// import { categ3, seri3 } from '@/stores/toktime'
+// import { categ4, seri4 } from '@/stores/volthod'
+// import { categ5, seri5 } from '@/stores/volttime'
 
 const sss = ref(false)
 const mytree = useTree()
+const grid = useGrid()
 
 const left = ref('')
 const top = ref('')
@@ -83,22 +85,22 @@ const calcCateg = computed(() => {
 	switch (mytree.selectedNode?.data.text) {
 
 		case 'Скорость от хода':
-			return categ
+			return hod
 
-		case 'Скорость от времени':
-			return categ1
-
-		case 'Ход от времени':
-			return categ2
-
-		case 'Ток от времени':
-			return categ3
-
-		case 'Напряжение от хода':
-			return categ4
-
-		case 'Напряжение от времени':
-			return categ5
+		// case 'Скорость от времени':
+		// 	return categ1
+		//
+		// case 'Ход от времени':
+		// 	return categ2
+		//
+		// case 'Ток от времени':
+		// 	return categ3
+		//
+		// case 'Напряжение от хода':
+		// 	return categ4
+		//
+		// case 'Напряжение от времени':
+		// 	return categ5
 
 		default:
 			return []
@@ -117,38 +119,19 @@ const options1 = ref({
 			type: 'xy',
 		},
 		selection: {
-			enabled: true,
+			enabled: false,
 		},
-		toolbar: {
-			show: true,
-			tools: {
-				download: true,
-				customIcons: [
-					{
-						icon: '<img src="/select-off.svg" >',
-						title: 'None',
-						index: 4,
-						class: "customicon",
-						click: function () {
-							chart.value.clearAnnotations()
-							deselect()
-						}
-					}
-				]
-			},
-			autoSelected: 'selection'
-		}
 	},
 	tooltip: {
 		enabled: true
 	},
-	// colors: ['#33b2df', '#4b8353', '#4b8353', '#d4526e', '#d4526e'],
 	dataLabels: {
 		enabled: false
 	},
 	stroke: {
-		curve: ['smooth', 'stepline', 'stepline', 'stepline', 'stepline'],
-		width: [2, 2, 2, 2, 2]
+		curve: ['smooth', 'smooth'],
+		width: [3, 2],
+		dashArray: [0, 2],
 	},
 	title: {
 		text: fuck
@@ -161,33 +144,37 @@ const options1 = ref({
 	xaxis: {
 		type: 'numeric',
 		categories: calcCateg,
-		// title: {
-		// 	text: 'Время'
-		// }
 	},
 	yaxis: {
-		// title: {
-		// 	text: 'Temperature'
-		// },
 		decimalsInFloat: 3
-	}
+	},
 })
 
+const add = ((event, chartContext, config) => {
+	const dp = config.dataPointIndex
+	console.log(dp)
+	chart.value.addXaxisAnnotation({
+		x: 200,
+		label: {
+			text: '1',
+			orientation: 'horizontal',
+		}
+	})
+	// console.log(config)
+	// console.log(chartContext)
+})
 </script>
 
 <template lang="pug">
-q-card.q-mt-md.rel(v-if="mytree.selectedNode")
+q-card.q-mt-md(v-if="mytree.selectedNode")
 	q-card-section
-		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от хода'" :height="450" width="100%" :options="options1" :series="seri" @selection="test")
-		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от времени'"  :height="450" width="100%" :options="options1" :series="seri1" @selection="test")
-		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ход от времени'"  :height="450" width="100%" :options="options1" :series="seri2" @selection="test")
-		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ток от времени'"  :height="450" width="100%" :options="options1" :series="seri3" @selection="test" )
-		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Напряжение от хода'"  :height="450" width="100%" :options="options1" :series="seri4" @selection="test" )
-		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Напряжение от времени'"  :height="450" width="100%" :options="options1" :series="seri5" @selection="test" )
-		.work(v-if="mytree.selectedNode.children.length > 0") Выберите параметр
-	.count(v-if="sss")
-		span {{ calc }}
-		q-btn(dense flat round icon="mdi-check-bold" @click="setSelection") 
+		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от хода'" :height="450" width="100%" :options="options1" :series="speed" @click="add" )
+		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от времени'"  :height="450" width="100%" :options="options1" :series="seri1" @selection="test")
+		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ход от времени'"  :height="450" width="100%" :options="options1" :series="seri2" @selection="test")
+		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ток от времени'"  :height="450" width="100%" :options="options1" :series="seri3" @selection="test" )
+		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Напряжение от хода'"  :height="450" width="100%" :options="options1" :series="seri4" @selection="test" )
+		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Напряжение от времени'"  :height="450" width="100%" :options="options1" :series="seri5" @selection="test" )
+	q-card-section.work(v-if="mytree.selectedNode.children.length > 0") Выберите параметр
 
 </template>
 
@@ -196,35 +183,22 @@ q-card.q-mt-md.rel(v-if="mytree.selectedNode")
 	font-size: 2.125rem;
 }
 
-.rel {
-	position: relative;
-}
-
-.count {
-	position: absolute;
-	top: v-bind(top);
-	left: v-bind(left);
-
-	span {
-		font-size: 1.3rem;
-	}
-
-	.q-btn {
-		transform: translateY(-5px);
-		margin-left: 4px;
-	}
-}
-
-:deep(.apexcharts-selection-rect) {
-	background: #dedede;
-}
+// .subgrid {
+// 	display: grid;
+// 	grid-template-columns: 1fr 300px;
+//
+// 	&.metka {
+// 		grid-template-columns: 1fr;
+// 	}
+// }
 
 :deep(.customicon) {
 	cursor: pointer;
-	width: 20px;
-	height: 20px;
-	transform: translateY(3px);
-	margin-left: 4px;
+	width: 18px;
+	height: 18px;
+	margin-top: 1px;
+	margin-left: 5px;
+	margin-right: -5px;
 }
 
 .work {

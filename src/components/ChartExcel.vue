@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, nextTick, watchEffect } from 'vue'
 import VueApexCharts from 'vue3-apexcharts'
 import { useTree } from '@/stores/tree'
 import { useGrid } from '@/stores/grid'
@@ -146,30 +146,41 @@ const options1 = ref({
 		categories: calcCateg,
 	},
 	yaxis: {
-		decimalsInFloat: 3
+		decimalsInFloat: 2,
 	},
 })
+
+let i = 0
 
 const add = ((event, chartContext, config) => {
 	const dp = config.dataPointIndex
 	let myx = hod[dp]
-	// let myy = speed
-	chart.value.addXaxisAnnotation({
-		x: myx,
-		label: {
-			text: '1',
-			orientation: 'horizontal',
-		}
-	})
-	grid.addMetka({
-		label: 'fuck',
-		x: myx,
-		y: 5
-	})
-	// console.log(config)
-	// console.log(chartContext)
-	// console.log(hod[dp])
-	// console.log(speed[0].data[dp])
+	let myy = speed[0].data[dp].toFixed(3)
+	i += 1
+	if (i < 7) {
+		chart.value.addXaxisAnnotation({
+			x: myx,
+			label: {
+				text: i,
+				orientation: 'horizontal',
+			}
+		})
+		grid.addMetka({
+			label: i,
+			x: myx,
+			y: myy,
+		})
+	}
+})
+
+watchEffect(() => {
+	if (grid.reset == true) {
+		chart.value.clearAnnotations()
+		nextTick(() => {
+			grid.reset = false
+			i = 0
+		})
+	}
 })
 </script>
 

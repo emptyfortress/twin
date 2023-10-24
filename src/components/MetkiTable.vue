@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue'
+import { reactive, computed } from 'vue'
 import { useGrid } from '@/stores/grid'
 
 const grid = useGrid()
@@ -11,7 +11,7 @@ const cols = [
 ]
 
 const cols1 = [
-	{ label: '', field: '0', name: '0', sortable: false, align: 'right' },
+	{ label: '', field: 'label', name: 'label', sortable: false, align: 'left' },
 	{ label: '1', field: '1', name: '1', sortable: false, align: 'right' },
 	{ label: '2', field: '2', name: '2', sortable: false, align: 'right' },
 	{ label: '3', field: '3', name: '3', sortable: false, align: 'right' },
@@ -20,21 +20,63 @@ const cols1 = [
 	{ label: '6', field: '6', name: '6', sortable: false, align: 'right' },
 ]
 
-const rows1 = computed(() => {
-	let test = []
-	grid.metki.forEach( e => {
-		const fuck = {
-			0: e.label,
-			1: e.x,
-			2: e.x,
-			3: e.x,
-			4: e.x,
-			5: e.x,
-			6: e.x,
-		}
-		test.push(fuck)
-	})
-	return test
+// const rows1 = computed(() => {
+// 	let test = []
+// 	grid.metki.forEach((e, index) => {
+// 		let fuck = {}
+// 		switch (index) {
+// 			case 0:
+// 				fuck['0'] = e.label
+// 				fuck['1'] = e.x
+// 			case 1:
+// 				fuck['0'] = e.label
+// 				fuck['1'] = e.x - grid.metki[0].x
+// 				// fuck['2'] = e.x
+// 		}
+// 		// fuck['0'] = e.label
+// 		// fuck['1'] = e.x
+// 		// fuck['2'] = e.x
+// 		// fuck['3'] = e.x
+// 		// fuck['4'] = e.x
+// 		// fuck['5'] = e.x
+// 		// fuck['6'] = e.x
+// 		test.push(fuck)
+// 	})
+// 	return test
+// })
+
+const rows1 = reactive([
+	{id: 1, label: 1, 1: 'XXX', 2: null, 3: null, 4: null, 5: null, 6: null},
+	{id: 2, label: 2, 1: null, 2: 'XXX', 3: null, 4: null, 5: null, 6: null},
+	{id: 3, label: 3, 1: null, 2: null, 3: 'XXX', 4: null, 5: null, 6: null},
+	{id: 4, label: 4, 1: null, 2: null, 3: null, 4: 'XXX', 5: null, 6: null},
+	{id: 5, label: 5, 1: null, 2: null, 3: null, 4: null, 5: 'XXX', 6: null},
+	{id: 6, label: 6, 1: null, 2: null, 3: null, 4: null, 5: null, 6: 'XXX'},
+])
+
+const rrow = computed(() => {
+	switch (grid.metki.length) {
+		case 0:
+			return []
+		case 1:
+			return rows1.filter(e => e.id !== 1)
+		case 2:
+			rows1[0]['2'] = grid.metki[1].x - grid.metki[0].x
+			rows1[1]['1'] = grid.metki[1].x - grid.metki[0].x
+			return rows1.filter(e => e.id <= 2)
+		case 3:
+			rows1[0]['3'] = grid.metki[2].x - grid.metki[0].x
+			rows1[2]['1'] = grid.metki[2].x - grid.metki[0].x
+			rows1[1]['3'] = grid.metki[2].x - grid.metki[1].x
+			rows1[2]['2'] = grid.metki[2].x - grid.metki[1].x
+			return rows1.filter(e => e.id <= 3)
+		case 4:
+			return rows1.filter(e => e.id <= 4)
+		case 5:
+			return rows1.filter(e => e.id <= 5)
+		default:
+			return rows1.filter(e => e.id <= 6)
+	}
 })
 
 const page = {
@@ -63,7 +105,7 @@ q-table(:columns="cols"
 
 template(v-if="grid.metki.length > 1")
 	.titu Вычисленные значения
-	q-table(:columns="cols1" :rows="rows1" dense hide-pagination :pagination="page")
+	q-table(:columns="cols1" :rows="rrow" dense hide-pagination :pagination="page")
 </template>
 
 <style scoped lang="scss">

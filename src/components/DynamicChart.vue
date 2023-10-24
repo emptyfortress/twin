@@ -18,10 +18,10 @@ div(:class="{ full: grid.fullscreen }")
 				BaseTree1
 		.main
 			Toolbar(simple)
-			.subgrid(:class="{ active: grid.table }")
+			.subgrid(:class="{ active: grid.table }" v-if="mytree.selectedNode")
 				ChartExcel
 				q-card.mes
-					MetkiTable
+					MetkiTable(v-if="mytree.selectedNode.children.length == 0")
 </template>
 
 <style scoped lang="scss">

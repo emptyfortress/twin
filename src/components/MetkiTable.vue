@@ -1,16 +1,17 @@
 <script setup lang="ts">
 import { reactive, computed } from 'vue'
 import { useGrid } from '@/stores/grid'
+import type { QTableColumn } from 'quasar'
 
 const grid = useGrid()
 
-const cols = [
+const cols: QTableColumn[] = [
 	{ label: 'Метка', field: 'num', name: 'num', sortable: true, align: 'center' },
 	{ label: 'ось Х', field: 'x', name: 'x', sortable: true, align: 'right' },
 	{ label: 'ось Y', field: 'y', name: 'y', sortable: true, align: 'right' },
 ]
 
-const cols1 = [
+const cols1:QTableColumn[]  = [
 	{ label: '', field: 'label', name: 'label', sortable: false, align: 'left' },
 	{ label: '1', field: '1', name: '1', sortable: false, align: 'right' },
 	{ label: '2', field: '2', name: '2', sortable: false, align: 'right' },
@@ -20,38 +21,13 @@ const cols1 = [
 	{ label: '6', field: '6', name: '6', sortable: false, align: 'right' },
 ]
 
-// const rows1 = computed(() => {
-// 	let test = []
-// 	grid.metki.forEach((e, index) => {
-// 		let fuck = {}
-// 		switch (index) {
-// 			case 0:
-// 				fuck['0'] = e.label
-// 				fuck['1'] = e.x
-// 			case 1:
-// 				fuck['0'] = e.label
-// 				fuck['1'] = e.x - grid.metki[0].x
-// 				// fuck['2'] = e.x
-// 		}
-// 		// fuck['0'] = e.label
-// 		// fuck['1'] = e.x
-// 		// fuck['2'] = e.x
-// 		// fuck['3'] = e.x
-// 		// fuck['4'] = e.x
-// 		// fuck['5'] = e.x
-// 		// fuck['6'] = e.x
-// 		test.push(fuck)
-// 	})
-// 	return test
-// })
-
 const rows1 = reactive([
-	{id: 1, label: 1, 1: 'XXX', 2: null, 3: null, 4: null, 5: null, 6: null},
-	{id: 2, label: 2, 1: null, 2: 'XXX', 3: null, 4: null, 5: null, 6: null},
-	{id: 3, label: 3, 1: null, 2: null, 3: 'XXX', 4: null, 5: null, 6: null},
-	{id: 4, label: 4, 1: null, 2: null, 3: null, 4: 'XXX', 5: null, 6: null},
-	{id: 5, label: 5, 1: null, 2: null, 3: null, 4: null, 5: 'XXX', 6: null},
-	{id: 6, label: 6, 1: null, 2: null, 3: null, 4: null, 5: null, 6: 'XXX'},
+	{id: 1, label: '1', 1: '---', 2: null, 3: null, 4: null, 5: null, 6: null},
+	{id: 2, label: '2', 1: null, 2: '---', 3: null, 4: null, 5: null, 6: null},
+	{id: 3, label: '3', 1: null, 2: null, 3: '---', 4: null, 5: null, 6: null},
+	{id: 4, label: '4', 1: null, 2: null, 3: null, 4: '---', 5: null, 6: null},
+	{id: 5, label: '5', 1: null, 2: null, 3: null, 4: null, 5: '---', 6: null},
+	{id: 6, label: '6', 1: null, 2: null, 3: null, 4: null, 5: null, 6: '---'},
 ])
 
 const rrow = computed(() => {
@@ -61,20 +37,29 @@ const rrow = computed(() => {
 		case 1:
 			return rows1.filter(e => e.id !== 1)
 		case 2:
-			rows1[0]['2'] = grid.metki[1].x - grid.metki[0].x
-			rows1[1]['1'] = grid.metki[1].x - grid.metki[0].x
+			rows1[1][1] = String(grid.metki[1].x - grid.metki[0].x)
 			return rows1.filter(e => e.id <= 2)
 		case 3:
-			rows1[0]['3'] = grid.metki[2].x - grid.metki[0].x
-			rows1[2]['1'] = grid.metki[2].x - grid.metki[0].x
-			rows1[1]['3'] = grid.metki[2].x - grid.metki[1].x
-			rows1[2]['2'] = grid.metki[2].x - grid.metki[1].x
+			rows1[2][1] = String(grid.metki[2].x - grid.metki[0].x)
+			rows1[2][2] = String(grid.metki[2].x - grid.metki[1].x)
 			return rows1.filter(e => e.id <= 3)
 		case 4:
+			rows1[3][1] = String(grid.metki[3].x - grid.metki[0].x)
+			rows1[3][2] = String(grid.metki[3].x - grid.metki[1].x)
+			rows1[3][3] = String(grid.metki[3].x - grid.metki[2].x)
 			return rows1.filter(e => e.id <= 4)
 		case 5:
+			rows1[4][1] = String(grid.metki[4].x - grid.metki[0].x)
+			rows1[4][2] = String(grid.metki[4].x - grid.metki[1].x)
+			rows1[4][3] = String(grid.metki[4].x - grid.metki[2].x)
+			rows1[4][4] = String(grid.metki[4].x - grid.metki[3].x)
 			return rows1.filter(e => e.id <= 5)
 		default:
+			rows1[5][1] = String(grid.metki[5].x - grid.metki[0].x)
+			rows1[5][2] = String(grid.metki[5].x - grid.metki[1].x)
+			rows1[5][3] = String(grid.metki[5].x - grid.metki[2].x)
+			rows1[5][4] = String(grid.metki[5].x - grid.metki[3].x)
+			rows1[5][5] = String(grid.metki[5].x - grid.metki[4].x)
 			return rows1.filter(e => e.id <= 6)
 	}
 })

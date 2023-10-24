@@ -3,7 +3,7 @@ import { defineStore } from 'pinia'
 interface Metka {
 	label: string
 	x: number
-	y: number
+	y: string
 }
 
 export const useGrid = defineStore({

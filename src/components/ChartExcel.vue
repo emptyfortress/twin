@@ -152,7 +152,7 @@ const options1 = ref({
 
 let i = 0
 
-const add = ((event, chartContext, config) => {
+const add = ((event: any, chartContext: any, config: any) => {
 	const dp = config.dataPointIndex
 	let myx = hod[dp]
 	let myy = speed[0].data[dp].toFixed(3)
@@ -166,7 +166,7 @@ const add = ((event, chartContext, config) => {
 			}
 		})
 		grid.addMetka({
-			label: i,
+			label: i.toString(),
 			x: myx,
 			y: myy,
 		})
@@ -187,13 +187,13 @@ watchEffect(() => {
 <template lang="pug">
 q-card.q-mt-md
 	q-card-section
-		VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от хода'" :height="450" width="100%" :options="options1" :series="speed" @click="add" )
+		VueApexCharts(ref="chart" v-if="mytree.selectedNode?.data.text === 'Скорость от хода'" :height="450" width="100%" :options="options1" :series="speed" @click="add" )
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от времени'"  :height="450" width="100%" :options="options1" :series="seri1" @selection="test")
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ход от времени'"  :height="450" width="100%" :options="options1" :series="seri2" @selection="test")
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ток от времени'"  :height="450" width="100%" :options="options1" :series="seri3" @selection="test" )
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Напряжение от хода'"  :height="450" width="100%" :options="options1" :series="seri4" @selection="test" )
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Напряжение от времени'"  :height="450" width="100%" :options="options1" :series="seri5" @selection="test" )
-		q-card-section.work(v-if="mytree.selectedNode.children.length > 0") Выберите параметр
+		q-card-section.work(v-if="mytree.selectedNode?.children.length > 0") Выберите параметр
 
 </template>
 

@@ -20,60 +20,60 @@ const calc = ref('')
 const minSel = ref(0)
 const maxSel = ref(0)
 
-const test = ((_: any, e: any) => {
-	let min = e.xaxis.min
-	let max = e.xaxis.max
-	minSel.value = Number(min.toFixed())
-	maxSel.value = Number(max.toFixed())
-
-	let sel = document.getElementsByClassName('apexcharts-selection-rect')
-	let bound = sel[0].getBoundingClientRect()
-	top.value = bound.height / 2 + 85 + 'px'
-	left.value = bound.right - 540 + 'px'
-	calc.value = (max - min).toFixed(2)
-	izm.value = calc.value
-
-	setTimeout(() => {
-		sss.value = true
-	}, 100)
-
-})
-const deselect = (() => {
-	chart.value.updateOptions({
-		chart: {
-			selection: {
-				xaxis: {
-					min: undefined,
-					max: undefined
-				}
-			},
-		},
-	})
-	sss.value = false
-})
+// const test = ((_: any, e: any) => {
+// 	let min = e.xaxis.min
+// 	let max = e.xaxis.max
+// 	minSel.value = Number(min.toFixed())
+// 	maxSel.value = Number(max.toFixed())
+//
+// 	let sel = document.getElementsByClassName('apexcharts-selection-rect')
+// 	let bound = sel[0].getBoundingClientRect()
+// 	top.value = bound.height / 2 + 85 + 'px'
+// 	left.value = bound.right - 540 + 'px'
+// 	calc.value = (max - min).toFixed(2)
+// 	izm.value = calc.value
+//
+// 	setTimeout(() => {
+// 		sss.value = true
+// 	}, 100)
+//
+// })
+// const deselect = (() => {
+// 	chart.value.updateOptions({
+// 		chart: {
+// 			selection: {
+// 				xaxis: {
+// 					min: undefined,
+// 					max: undefined
+// 				}
+// 			},
+// 		},
+// 	})
+// 	sss.value = false
+// })
 const chart = ref()
-const izm = ref()
+// const izm = ref()
 
-const setSelection = (() => {
-	let options = {
-		x: minSel.value,
-		x2: maxSel.value,
-		borderColor: 'blue',
-		label: {
-			borderColor: 'blue',
-			style: {
-				color: '#fff',
-				background: 'blue',
-				fontSize: '20px',
-			},
-			orientation: 'horizontal',
-			text: izm.value
-		}
-	}
-	chart.value.clearAnnotations()
-	chart.value.addXaxisAnnotation(options)
-	deselect()
-})
+// const setSelection = (() => {
+// 	let options = {
+// 		x: minSel.value,
+// 		x2: maxSel.value,
+// 		borderColor: 'blue',
+// 		label: {
+// 			borderColor: 'blue',
+// 			style: {
+// 				color: '#fff',
+// 				background: 'blue',
+// 				fontSize: '20px',
+// 			},
+// 			orientation: 'horizontal',
+// 			text: izm.value
+// 		}
+// 	}
+// 	chart.value.clearAnnotations()
+// 	chart.value.addXaxisAnnotation(options)
+// 	deselect()
+// })
 
 const fuck = computed(() => {
 	if (mytree.selectedNode === null) {
@@ -153,6 +153,7 @@ const options1 = ref({
 let i = 0
 
 const add = ((event: any, chartContext: any, config: any) => {
+	console.log('fffff')
 	const dp = config.dataPointIndex
 	let myx = hod[dp]
 	let myy = speed[0].data[dp].toFixed(3)
@@ -177,8 +178,9 @@ watchEffect(() => {
 	if (grid.reset == true) {
 		chart.value.clearAnnotations()
 		nextTick(() => {
-			grid.reset = false
 			i = 0
+			chart.value.clearAnnotations()
+			grid.reset = false
 		})
 	}
 })
@@ -187,7 +189,7 @@ watchEffect(() => {
 <template lang="pug">
 q-card.q-mt-md
 	q-card-section
-		VueApexCharts(ref="chart" v-if="mytree.selectedNode?.data.text === 'Скорость от хода'" :height="450" width="100%" :options="options1" :series="speed" @click="add" )
+		VueApexCharts(ref="chart" v-if="mytree.selectedNode?.data.text === 'Скорость от хода'" :height="450" width="100%" :options="options1" :series="speed" @markerClick="add" )
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от времени'"  :height="450" width="100%" :options="options1" :series="seri1" @selection="test")
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ход от времени'"  :height="450" width="100%" :options="options1" :series="seri2" @selection="test")
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ток от времени'"  :height="450" width="100%" :options="options1" :series="seri3" @selection="test" )

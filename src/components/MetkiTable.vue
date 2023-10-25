@@ -38,21 +38,47 @@ const rrow = computed(() => {
 			return rows1.filter(e => e.id !== 1)
 		case 2:
 			rows1[1][1] = String(grid.metki[1].x - grid.metki[0].x)
+			rows1[1][2] = '---'
+			rows1[1][3] = '---'
+			rows1[1][4] = '---'
+			rows1[1][5] = '---'
+			rows1[1][6] = '---'
+			rows1[0][2] = '---'
+			rows1[0][3] = '---'
+			rows1[0][4] = '---'
+			rows1[0][5] = '---'
+			rows1[0][6] = '---'
 			return rows1.filter(e => e.id <= 2)
 		case 3:
 			rows1[2][1] = String(grid.metki[2].x - grid.metki[0].x)
 			rows1[2][2] = String(grid.metki[2].x - grid.metki[1].x)
+			rows1[2][3] = '---'
+			rows1[2][4] = '---'
+			rows1[2][5] = '---'
+			rows1[2][6] = '---'
+			rows1[1][3] = '---'
+			rows1[1][4] = '---'
+			rows1[1][5] = '---'
+			rows1[1][6] = '---'
 			return rows1.filter(e => e.id <= 3)
 		case 4:
 			rows1[3][1] = String(grid.metki[3].x - grid.metki[0].x)
 			rows1[3][2] = String(grid.metki[3].x - grid.metki[1].x)
 			rows1[3][3] = String(grid.metki[3].x - grid.metki[2].x)
+			rows1[3][4] = '---'
+			rows1[3][5] = '---'
+			rows1[3][6] = '---'
+			rows1[2][4] = '---'
+			rows1[2][5] = '---'
+			rows1[2][6] = '---'
 			return rows1.filter(e => e.id <= 4)
 		case 5:
 			rows1[4][1] = String(grid.metki[4].x - grid.metki[0].x)
 			rows1[4][2] = String(grid.metki[4].x - grid.metki[1].x)
 			rows1[4][3] = String(grid.metki[4].x - grid.metki[2].x)
 			rows1[4][4] = String(grid.metki[4].x - grid.metki[3].x)
+			rows1[4][5] = '---'
+			rows1[4][6] = '---'
 			return rows1.filter(e => e.id <= 5)
 		default:
 			rows1[5][1] = String(grid.metki[5].x - grid.metki[0].x)

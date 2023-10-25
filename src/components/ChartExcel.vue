@@ -153,36 +153,36 @@ const options1 = ref({
 let i = 0
 
 const add = ((event: any, chartContext: any, config: any) => {
-	console.log('fffff')
-	const dp = config.dataPointIndex
-	let myx = hod[dp]
-	let myy = speed[0].data[dp].toFixed(3)
-	i += 1
-	if (i < 7) {
-		chart.value.addXaxisAnnotation({
-			x: myx,
-			label: {
-				text: i,
-				orientation: 'horizontal',
-			}
-		})
-		grid.addMetka({
-			label: i.toString(),
-			x: myx,
-			y: myy,
-		})
-	}
+	let el = event.target.parentNode
+	if ( el && el.className !== 'apexcharts-toolbar') {
+		const dp = config.dataPointIndex
+		let myx = hod[dp]
+		let myy = speed[0].data[dp].toFixed(3)
+		i += 1
+		if (i < 7) {
+			chart.value.addXaxisAnnotation({
+				x: myx,
+				label: {
+					text: i,
+					orientation: 'horizontal',
+				}
+			})
+			grid.addMetka({
+				label: i.toString(),
+				x: myx,
+				y: myy,
+			})
+		}
+	} else return
 })
 
 watchEffect(() => {
 	if (grid.reset == true) {
 		chart.value.clearAnnotations()
-		nextTick(() => {
-			i = 0
-			chart.value.clearAnnotations()
-			grid.reset = false
-			chart.value.clearAnnotations()
-		})
+		grid.reset = false
+		i = 0
+		chart.value.clearAnnotations()
+		chart.value.clearAnnotations()
 	}
 })
 </script>
@@ -190,7 +190,7 @@ watchEffect(() => {
 <template lang="pug">
 q-card.q-mt-md
 	q-card-section
-		VueApexCharts(ref="chart" v-if="mytree.selectedNode?.data.text === 'Скорость от хода'" :height="450" width="100%" :options="options1" :series="speed" @markerClick="add" )
+		VueApexCharts(ref="chart" v-if="mytree.selectedNode?.data.text === 'Скорость от хода'" :height="450" width="100%" :options="options1" :series="speed" @click="add" )
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от времени'"  :height="450" width="100%" :options="options1" :series="seri1" @selection="test")
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ход от времени'"  :height="450" width="100%" :options="options1" :series="seri2" @selection="test")
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ток от времени'"  :height="450" width="100%" :options="options1" :series="seri3" @selection="test" )

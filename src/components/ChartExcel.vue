@@ -181,6 +181,7 @@ watchEffect(() => {
 			i = 0
 			chart.value.clearAnnotations()
 			grid.reset = false
+			chart.value.clearAnnotations()
 		})
 	}
 })

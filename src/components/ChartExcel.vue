@@ -4,11 +4,11 @@ import VueApexCharts from 'vue3-apexcharts'
 import { useTree } from '@/stores/tree'
 import { useGrid } from '@/stores/grid'
 import { hod, speed } from '@/stores/speedhod'
-// import { categ1, seri1 } from '@/stores/speedtime'
-// import { categ2, seri2 } from '@/stores/hodtime'
-// import { categ3, seri3 } from '@/stores/toktime'
-// import { categ4, seri4 } from '@/stores/volthod'
-// import { categ5, seri5 } from '@/stores/volttime'
+import { time1, speed1 } from '@/stores/speedtime'
+import { categ2, seri2 } from '@/stores/hodtime'
+import { categ3, seri3 } from '@/stores/toktime'
+import { categ4, seri4 } from '@/stores/volthod'
+import { categ5, seri5 } from '@/stores/volttime'
 
 const sss = ref(false)
 const mytree = useTree()
@@ -20,60 +20,8 @@ const calc = ref('')
 const minSel = ref(0)
 const maxSel = ref(0)
 
-// const test = ((_: any, e: any) => {
-// 	let min = e.xaxis.min
-// 	let max = e.xaxis.max
-// 	minSel.value = Number(min.toFixed())
-// 	maxSel.value = Number(max.toFixed())
-//
-// 	let sel = document.getElementsByClassName('apexcharts-selection-rect')
-// 	let bound = sel[0].getBoundingClientRect()
-// 	top.value = bound.height / 2 + 85 + 'px'
-// 	left.value = bound.right - 540 + 'px'
-// 	calc.value = (max - min).toFixed(2)
-// 	izm.value = calc.value
-//
-// 	setTimeout(() => {
-// 		sss.value = true
-// 	}, 100)
-//
-// })
-// const deselect = (() => {
-// 	chart.value.updateOptions({
-// 		chart: {
-// 			selection: {
-// 				xaxis: {
-// 					min: undefined,
-// 					max: undefined
-// 				}
-// 			},
-// 		},
-// 	})
-// 	sss.value = false
-// })
 const chart = ref()
-// const izm = ref()
 
-// const setSelection = (() => {
-// 	let options = {
-// 		x: minSel.value,
-// 		x2: maxSel.value,
-// 		borderColor: 'blue',
-// 		label: {
-// 			borderColor: 'blue',
-// 			style: {
-// 				color: '#fff',
-// 				background: 'blue',
-// 				fontSize: '20px',
-// 			},
-// 			orientation: 'horizontal',
-// 			text: izm.value
-// 		}
-// 	}
-// 	chart.value.clearAnnotations()
-// 	chart.value.addXaxisAnnotation(options)
-// 	deselect()
-// })
 
 const fuck = computed(() => {
 	if (mytree.selectedNode === null) {
@@ -87,25 +35,39 @@ const calcCateg = computed(() => {
 		case 'Скорость от хода':
 			return hod
 
-		// case 'Скорость от времени':
-		// 	return categ1
-		//
-		// case 'Ход от времени':
-		// 	return categ2
-		//
-		// case 'Ток от времени':
-		// 	return categ3
-		//
-		// case 'Напряжение от хода':
-		// 	return categ4
-		//
-		// case 'Напряжение от времени':
-		// 	return categ5
+		case 'Скорость от времени':
+			return time1
+
+		case 'Ход от времени':
+			return categ2
+
+		case 'Ток от времени':
+			return categ3
+
+		case 'Напряжение от хода':
+			return categ4
+
+		case 'Напряжение от времени':
+			return categ5
 
 		default:
 			return []
 	}
 })
+
+// const calcSeries = computed(() => {
+// 	switch (mytree.selectedNode?.data.text) {
+//
+// 		case 'Скорость от хода':
+// 			return speed
+//
+// 		case 'Скорость от времени':
+// 			return speed1
+//
+// 		default:
+// 			return []
+// 	}
+// })
 
 const options1 = ref({
 	chart: {
@@ -154,7 +116,7 @@ let i = 0
 
 const add = ((event: any, chartContext: any, config: any) => {
 	let el = event.target.parentNode
-	if ( el && el.className !== 'apexcharts-toolbar') {
+	if (el && el.className !== 'apexcharts-toolbar') {
 		const dp = config.dataPointIndex
 		let myx = hod[dp]
 		let myy = speed[0].data[dp].toFixed(3)
@@ -191,7 +153,7 @@ watchEffect(() => {
 q-card.q-mt-md
 	q-card-section
 		VueApexCharts(ref="chart" v-if="mytree.selectedNode?.data.text === 'Скорость от хода'" :height="450" width="100%" :options="options1" :series="speed" @click="add" )
-		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Скорость от времени'"  :height="450" width="100%" :options="options1" :series="seri1" @selection="test")
+		VueApexCharts(ref="chart" v-if="mytree.selectedNode?.data.text === 'Скорость от времени'"  :height="450" width="100%" :options="options1" :series="speed1" @selection="add")
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ход от времени'"  :height="450" width="100%" :options="options1" :series="seri2" @selection="test")
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Ток от времени'"  :height="450" width="100%" :options="options1" :series="seri3" @selection="test" )
 		// VueApexCharts(ref="chart" v-if="mytree.selectedNode.data.text === 'Напряжение от хода'"  :height="450" width="100%" :options="options1" :series="seri4" @selection="test" )

@@ -23,7 +23,7 @@ const bt = [
 const el = ref<HTMLElement | null>(null)
 const handle = ref<HTMLElement | null>(null)
 
-const modalOpen = ref(true)
+const modalOpen = ref(false)
 
 const toggleModal = () => {
 	modalOpen.value = !modalOpen.value

@@ -110,15 +110,6 @@ watchEffect(() => {
 		chart.value.clearAnnotations()
 	}
 })
-
-// watch(fuck, (newValue) => {
-// 	if (newValue) {
-// 		grid.reset = false
-// 		i = 0
-// 		chart.value.clearAnnotations()
-// 		chart.value.clearAnnotations()
-// 	}
-// })
 </script>
 
 <template lang="pug">

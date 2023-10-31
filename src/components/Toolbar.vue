@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useGrid } from '@/stores/grid'
-import { useDraggable } from '@vueuse/core'
+import { UseDraggable as Draggable } from '@vueuse/components'
 import MetkiTable from '@/components/MetkiTable.vue'
 
 const props = defineProps({
@@ -22,10 +22,6 @@ const bt = [
 
 const el = ref<HTMLElement | null>(null)
 const handle = ref<HTMLElement | null>(null)
-
-const { x, y, style } = useDraggable(el, {
-	initialValue: { x: 840, y: 140 },
-})
 
 const modalOpen = ref(true)
 
@@ -54,7 +50,7 @@ const toggleModal = () => {
 			q-icon(v-if="grid.fullscreen" name="mdi-fullscreen-exit")
 			q-tooltip(:delay="600") Полный экран
 
-.win(ref="el" v-show="modalOpen" :style="style" style="position: fixed;" :handle="handle")
+Draggable.win(ref="el" v-show="modalOpen"  style="position: fixed;" :initial-value="{ x: 840, y: 140 }" :handle="handle")
 	.wrap(ref="handle")
 		.hd
 			q-icon(name="mdi-math-compass" size="sm")

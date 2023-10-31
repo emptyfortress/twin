@@ -21,13 +21,12 @@ const fuck = computed(() => {
 	} else return mytree.selectedNode.data.text
 })
 
-
 const options1 = {
 	chart: {
 		type: 'line',
 		animations: {
 			enabled: false,
-			speed: 100
+			speed: 100,
 		},
 		zoom: {
 			enabled: true,
@@ -38,10 +37,10 @@ const options1 = {
 		},
 	},
 	tooltip: {
-		enabled: true
+		enabled: true,
 	},
 	dataLabels: {
-		enabled: false
+		enabled: false,
 	},
 	stroke: {
 		curve: ['smooth', 'smooth'],
@@ -49,12 +48,12 @@ const options1 = {
 		dashArray: [0, 2],
 	},
 	title: {
-		text: '   '
+		text: '   ',
 	},
 	markers: {
 		hover: {
-			sizeOffset: 5
-		}
+			sizeOffset: 5,
+		},
 	},
 	xaxis: {
 		type: 'numeric',
@@ -78,7 +77,7 @@ const currentSeries = computed(() => {
 })
 
 let i = 0
-const add = ((event: any, chartContext: any, config: any) => {
+const add = (event: any, chartContext: any, config: any) => {
 	let el = event.target.parentNode
 	if (el && el.className !== 'apexcharts-toolbar') {
 		const dp = config.dataPointIndex
@@ -91,7 +90,7 @@ const add = ((event: any, chartContext: any, config: any) => {
 				label: {
 					text: i,
 					orientation: 'horizontal',
-				}
+				},
 			})
 			grid.addMetka({
 				label: i.toString(),
@@ -100,7 +99,7 @@ const add = ((event: any, chartContext: any, config: any) => {
 			})
 		}
 	} else return
-})
+}
 
 watchEffect(() => {
 	if (grid.reset == true) {
@@ -120,7 +119,6 @@ watchEffect(() => {
 // 		chart.value.clearAnnotations()
 // 	}
 // })
-
 </script>
 
 <template lang="pug">
@@ -139,9 +137,9 @@ q-card.q-mt-md.rel
 
 .ag {
 	position: absolute;
-	top: .8rem;
+	top: 0.8rem;
 	left: 2rem;
-	font-size: .9rem;
+	font-size: 0.9rem;
 	font-weight: 600;
 }
 

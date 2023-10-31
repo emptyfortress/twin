@@ -4,7 +4,6 @@ import Toolbar from '@/components/Toolbar.vue'
 import BaseTree1 from '@/components/BaseTree1.vue'
 import { useTree } from '@/stores/tree'
 import ChartExcel from '@/components/ChartExcel.vue'
-import MetkiTable from '@/components/MetkiTable.vue'
 
 const mytree = useTree()
 const grid = useGrid()
@@ -18,10 +17,7 @@ div(:class="{ full: grid.fullscreen }")
 				BaseTree1
 		.main
 			Toolbar(simple)
-			.subgrid(:class="{ active: grid.table }" v-if="mytree.selectedNode")
-				ChartExcel
-				q-card.mes
-					MetkiTable(v-if="mytree.selectedNode.children.length == 0")
+			ChartExcel(v-if="mytree.selectedNode")
 </template>
 
 <style scoped lang="scss">
@@ -34,7 +30,7 @@ div(:class="{ full: grid.fullscreen }")
 	width: 100%;
 	display: grid;
 	grid-template-columns: 320px calc(100% - 328px);
-	gap: .5rem;
+	gap: 0.5rem;
 
 	&.side {
 		grid-template-columns: 100%;
@@ -49,20 +45,7 @@ div(:class="{ full: grid.fullscreen }")
 	width: 100%;
 	display: grid;
 	grid-template-columns: 1fr;
-	transition: .2s ease all;
-
-	.mes {
-		display: none;
-		margin-top: 1rem;
-	}
-
-	&.active {
-		grid-template-columns: calc(100% - 350px) 350px;
-
-		.mes {
-			display: block;
-		}
-	}
+	transition: 0.2s ease all;
 }
 
 .list {

@@ -1,23 +1,32 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useGrid } from '@/stores/grid'
+import { useDraggable } from '@vueuse/core'
 
 const props = defineProps({
 	simple: {
 		type: Boolean,
-		default: false
-	}
+		default: false,
+	},
 })
 
 const grid = useGrid()
 const phase = ref('Последняя неделя')
 const phaseOptions = ['Последняя неделя', 'Последний месяц', 'Последний квартал', 'За все время']
 const bt = [
-	{ id: 0, icon: 'mdi-view-grid', },
+	{ id: 0, icon: 'mdi-view-grid' },
 	{ id: 1, icon: 'mdi-dots-grid' },
 	{ id: 2, icon: 'mdi-table' },
 ]
 
+const el = ref<HTMLElement | null>(null)
+const { x, y, style } = useDraggable(el, {
+	initialValue: { x: 140, y: 140 },
+})
+
+const action = () => {
+	console.log(111)
+}
 </script>
 
 <template lang="pug">
@@ -39,6 +48,10 @@ const bt = [
 			q-icon(v-if="!grid.fullscreen" name="mdi-fullscreen")
 			q-icon(v-if="grid.fullscreen" name="mdi-fullscreen-exit")
 			q-tooltip(:delay="600") Полный экран
+
+.win(ref="el" :style="style" style="position: fixed;")
+	q-btn(unelevated color="primary" label="Отмена" @click="action") 
+	p Fuck you
 
 </template>
 
@@ -62,5 +75,14 @@ const bt = [
 .right {
 	display: flex;
 	align-items: center;
+}
+
+.win {
+	border: 1px solid #cdcdcd;
+	border-radius: 4px;
+	z-index: 2;
+	background: #fff;
+	box-shadow: 2px 2px 11px rgba(0, 0, 0, 0.2);
+	padding: 1rem;
 }
 </style>

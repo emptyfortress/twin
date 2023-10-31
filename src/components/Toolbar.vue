@@ -2,6 +2,7 @@
 import { ref } from 'vue'
 import { useGrid } from '@/stores/grid'
 import { useDraggable } from '@vueuse/core'
+import MetkiTable from '@/components/MetkiTable.vue'
 
 const props = defineProps({
 	simple: {
@@ -20,12 +21,16 @@ const bt = [
 ]
 
 const el = ref<HTMLElement | null>(null)
+const handle = ref<HTMLElement | null>(null)
+
 const { x, y, style } = useDraggable(el, {
-	initialValue: { x: 140, y: 140 },
+	initialValue: { x: 840, y: 140 },
 })
 
-const action = () => {
-	console.log(111)
+const modalOpen = ref(true)
+
+const toggleModal = () => {
+	modalOpen.value = !modalOpen.value
 }
 </script>
 
@@ -41,7 +46,7 @@ const action = () => {
 		q-select(v-if="!props.simple" dense filled v-model="phase" :options="phaseOptions")
 		q-btn.q-mr-lg(v-if="!props.simple" flat round dense icon="mdi-calendar") 
 		q-btn(flat round dense icon="mdi-tune-variant" @click="grid.rotation = !grid.rotation") 
-		q-btn(flat round dense @click="grid.switchTable")
+		q-btn(flat round dense @click="toggleModal" )
 			q-icon(name="mdi-math-compass")
 			q-tooltip(:delay="600") Таблица меток
 		q-btn(flat round dense @click="grid.switchFullscreen")
@@ -49,9 +54,14 @@ const action = () => {
 			q-icon(v-if="grid.fullscreen" name="mdi-fullscreen-exit")
 			q-tooltip(:delay="600") Полный экран
 
-.win(ref="el" :style="style" style="position: fixed;")
-	q-btn(unelevated color="primary" label="Отмена" @click="action") 
-	p Fuck you
+.win(ref="el" v-show="modalOpen" :style="style" style="position: fixed;" :handle="handle")
+	.wrap(ref="handle")
+		.hd
+			q-icon(name="mdi-math-compass" size="sm")
+			span.q-ml-sm Измерения
+		q-btn(flat round dense icon="mdi-close" @click="toggleModal") 
+
+	MetkiTable()
 
 </template>
 
@@ -69,7 +79,6 @@ const action = () => {
 .grey {
 	background: #666;
 	color: #fff;
-	// border: 1px solid #ccc;
 }
 
 .right {
@@ -80,9 +89,22 @@ const action = () => {
 .win {
 	border: 1px solid #cdcdcd;
 	border-radius: 4px;
-	z-index: 2;
+	z-index: 1001;
 	background: #fff;
 	box-shadow: 2px 2px 11px rgba(0, 0, 0, 0.2);
-	padding: 1rem;
+	min-width: 350px;
+}
+.wrap {
+	width: 100%;
+	padding: 0.5rem 0.7rem;
+	background: $primary;
+	color: #fff;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.hd {
+	font-size: 1rem;
+	font-weight: 500;
 }
 </style>

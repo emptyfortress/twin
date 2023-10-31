@@ -19,7 +19,6 @@ export const useGrid = defineStore({
 		disable: 0,
 		selected: false,
 		rotation: true,
-		table: true,
 		metki: [] as Metka[],
 		reset: false,
 	}),
@@ -33,9 +32,6 @@ export const useGrid = defineStore({
 			this.metki.length = 0
 			this.reset = true
 		},
-		switchTable() {
-			this.table = !this.table
-		},
 		switchSidebar() {
 			this.sidebar = !this.sidebar
 		},
@@ -47,6 +43,6 @@ export const useGrid = defineStore({
 		},
 		clearCheckedAll() {
 			this.checked = []
-		}
+		},
 	},
 })

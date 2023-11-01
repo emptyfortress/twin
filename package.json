@@ -23,6 +23,7 @@
 		"vuedraggable": "^4.1.0"
 	},
 	"devDependencies": {
+		"@prettier/plugin-pug": "^3.0.0",
 		"@quasar/vite-plugin": "^1.4.1",
 		"@types/node": "^18.11.18",
 		"@vitejs/plugin-vue": "^4.2.3",

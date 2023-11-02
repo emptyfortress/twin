@@ -1,7 +1,5 @@
 <script setup lang="ts">
-import SvgIcon from '@/components/global/SvgIcon.vue'
-
-
+// import SvgIcon from '@/components/global/SvgIcon.vue'
 </script>
 
 <template lang="pug">
@@ -32,6 +30,6 @@ h4 {
 }
 
 .q-img {
-	opacity: .15;
+	opacity: 0.15;
 }
 </style>

@@ -179,9 +179,9 @@ q-table(
 			// td.text-right
 			// 	q-btn(flat round icon="mdi-close" @click="action" dense size="sm")
 
-// template(v-if="tree.selectedNode.data.metki.length > 1")
-// 	.titu Вычисленные значения
-// 	q-table(:columns="cols1" :rows="rrow" dense hide-pagination :pagination="page" flat)
+template(v-if="tree.selectedNode.data.metki.length > 1")
+	.titu Вычисленные значения
+	q-table(:columns="cols1" :rows="rrow" dense hide-pagination :pagination="page" flat)
 
 // .export(v-if="tree.selectedNode.data.metki.length > 1")
 // 	q-btn(flat dense color="negative" label="Удалить метки" icon="mdi-trash-can-outline" @click="grid.deleteMetki" size="sm")

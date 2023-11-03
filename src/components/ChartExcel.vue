@@ -34,14 +34,15 @@ const currentSeries = computed(() => {
 	}
 })
 
-// watch(currentSeries, newVal => {
-// 	chart.value.clearAnnotations()
-// 	chart.value.updateOptions({
-// 		annotations: {
-// 			xaxis: newVal[0].metki,
-// 		},
-// 	})
-// })
+watch(currentSeries, () => {
+	chart.value.clearAnnotations()
+	chart.value.clearAnnotations()
+	chart.value.updateOptions({
+		annotations: {
+			xaxis: mytree.selectedNode?.data.metki,
+		},
+	})
+})
 
 const options1 = {
 	chart: {

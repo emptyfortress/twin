@@ -2,12 +2,20 @@ interface Item {
 	id: number
 	manufacturer: string
 	model: string
-	voltage: number,
-	phase: number,
-	polus: number,
-	break: number,
+	voltage: number
+	phase: number
+	polus: number
+	break: number
 	typP: string
 	typB: string
+}
+
+interface Metka {
+	x: number
+	label: {
+		text: number
+		orientation: string
+	}
 }
 
 interface NodeData {
@@ -20,6 +28,7 @@ interface NodeData {
 	unit?: string
 	type?: number
 	red?: boolean
+	metki?: Metka[]
 }
 
 interface Stat {

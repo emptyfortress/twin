@@ -5,7 +5,7 @@ export const useTree = defineStore({
 	state: () => ({
 		checkedNodes: [] as Stat[],
 		currentNode: null as null | Stat, //for big graphics
-		parents: [] as Stat[],  // for breadcrumbs in graphics
+		parents: [] as Stat[], // for breadcrumbs in graphics
 		selectedNodes: [] as Stat[],
 		selectedNode: null as null | Stat, // for dynamic graphics
 		key: 0,
@@ -16,6 +16,9 @@ export const useTree = defineStore({
 		},
 	},
 	actions: {
+		addMetka(metka: any) {
+			this.selectedNode?.data.metki?.push(metka)
+		},
 		setCheckedNodes(e: Stat[]) {
 			this.checkedNodes = e
 		},
@@ -36,6 +39,6 @@ export const useTree = defineStore({
 		},
 		addToSelected(e: Stat) {
 			this.selectedNodes.push(e)
-		}
+		},
 	},
 })

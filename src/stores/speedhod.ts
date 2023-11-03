@@ -983,7 +983,11 @@ const speed = [
 			[488.5, 0],
 			[489, 0],
 			[489.5, 0],
-		]
+		],
+		metki: [
+			// { x: 150, label: { text: '1', orientation: 'horizontal' } },
+			// { x: 200, label: { text: '2', orientation: 'horizontal' } },
+		],
 	},
 	{
 		type: 'line',
@@ -1996,8 +2000,8 @@ const speed = [
 			[502, 0.109012441],
 			[501.5, 0.00514281],
 			[502, 0.014492754],
-		]
-	}
+		],
+	},
 ]
 
 export { speed }

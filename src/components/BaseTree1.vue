@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, watch, watchEffect, computed } from 'vue'
-import { BaseTree } from "@he-tree/vue";
-import WordHighlighter from "vue-word-highlighter"
-import "@he-tree/vue/style/default.css";
+import { BaseTree } from '@he-tree/vue'
+import WordHighlighter from 'vue-word-highlighter'
+import '@he-tree/vue/style/default.css'
 import { dynamicData } from '@/stores/dynamicTreeData'
 import { useTree } from '@/stores/tree'
 
@@ -22,20 +22,19 @@ const toggle = (stat: any) => {
 // 	return tree;
 // }
 
-const select = ((n: Stat) => {
-	tree1.value.statsFlat.map((el: Stat) => el.data.selected = false)
+const select = (n: Stat) => {
+	tree1.value.statsFlat.map((el: Stat) => (el.data.selected = false))
 	n.data.selected = !n.data.selected
 	// selectChilds(n)
 	// const sel = tree1.value.statsFlat.filter((el: Stat) => el.data.selected === true && el.data.type === 1)
 	mytree.setSelectedNode(n)
 	mytree.key += 1
-})
+}
 
-const clearFilter = (() => {
+const clearFilter = () => {
 	query.value = ''
-	tree1.value.statsFlat.map((item: Stat) => item.hidden = false)
-})
-
+	tree1.value.statsFlat.map((item: Stat) => (item.hidden = false))
+}
 
 const initial = (stat: any) => {
 	stat.checked = stat.data.checked
@@ -43,20 +42,21 @@ const initial = (stat: any) => {
 	return stat
 }
 
-watch(query, (newValue) => {
+watch(query, newValue => {
 	if (newValue !== '') {
 		tree1.value.statsFlat.map((stat: Stat) => {
 			stat.hidden = true
 			if (stat.data.text.toLowerCase().includes(query.value.toLowerCase())) {
 				stat.hidden = false
-				for (const parentStat of tree1.value.iterateParent(stat, { withSelf: false })) {
+				for (const parentStat of tree1.value.iterateParent(stat, {
+					withSelf: false,
+				})) {
 					parentStat.hidden = false
 					parentStat.open = true
 				}
 			}
 		})
 	} else clearFilter()
-
 })
 
 // watchEffect(() => {
@@ -122,7 +122,7 @@ div
 }
 
 .node {
-	font-size: .85rem;
+	font-size: 0.85rem;
 	cursor: pointer;
 	padding: 4px 6px;
 	white-space: nowrap;
@@ -145,4 +145,3 @@ div
 // 	transform: translateY(-2px);
 // }
 </style>
-

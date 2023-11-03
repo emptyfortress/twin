@@ -21,6 +21,28 @@ const fuck = computed(() => {
 	} else return mytree.selectedNode.data.text
 })
 
+const currentSeries = computed(() => {
+	switch (mytree.selectedNode?.data.text) {
+		case 'Скорость от хода':
+			return speed
+
+		case 'Скорость от времени':
+			return speed1
+
+		default:
+			return []
+	}
+})
+
+// watch(currentSeries, newVal => {
+// 	chart.value.clearAnnotations()
+// 	chart.value.updateOptions({
+// 		annotations: {
+// 			xaxis: newVal[0].metki,
+// 		},
+// 	})
+// })
+
 const options1 = {
 	chart: {
 		type: 'line',
@@ -63,19 +85,6 @@ const options1 = {
 	},
 }
 
-const currentSeries = computed(() => {
-	switch (mytree.selectedNode?.data.text) {
-		case 'Скорость от хода':
-			return speed
-
-		case 'Скорость от времени':
-			return speed1
-
-		default:
-			return []
-	}
-})
-
 let i = 0
 const add = (event: any, chartContext: any, config: any) => {
 	let el = event.target.parentNode
@@ -92,11 +101,25 @@ const add = (event: any, chartContext: any, config: any) => {
 					orientation: 'horizontal',
 				},
 			})
-			grid.addMetka({
-				label: i.toString(),
+			mytree.addMetka({
 				x: myx,
-				y: myy,
+				label: {
+					text: i,
+					orientation: 'horizontal',
+				},
 			})
+			// grid.addMetka({
+			// 	label: i.toString(),
+			// 	x: myx,
+			// 	y: myy,
+			// })
+			// currentSeries.value[0].metki.push({
+			// 	x: myx,
+			// 	label: {
+			// 		text: i,
+			// 		orientation: 'horizontal',
+			// 	},
+			// })
 		}
 	} else return
 }

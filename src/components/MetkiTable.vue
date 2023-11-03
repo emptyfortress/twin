@@ -1,12 +1,19 @@
 <script setup lang="ts">
-import { reactive, computed } from 'vue'
-import { useGrid } from '@/stores/grid'
+import { ref, reactive, computed } from 'vue'
+// import { useGrid } from '@/stores/grid'
+import { useTree } from '@/stores/tree'
 import type { QTableColumn } from 'quasar'
 
-const grid = useGrid()
+const tree = useTree()
 
 const cols: QTableColumn[] = [
-	{ label: 'Метка', field: 'num', name: 'num', sortable: true, align: 'center' },
+	{
+		label: 'Метка',
+		field: 'num',
+		name: 'num',
+		sortable: true,
+		align: 'center',
+	},
 	{ label: 'ось Х', field: 'x', name: 'x', sortable: true, align: 'right' },
 	{ label: 'ось Y', field: 'y', name: 'y', sortable: true, align: 'right' },
 ]
@@ -31,13 +38,17 @@ const rows1 = reactive([
 ])
 
 const rrow = computed(() => {
-	switch (grid.metki.length) {
+	switch (tree.selectedNode.data.metki.length) {
 		case 0:
 			return []
 		case 1:
-			return rows1.filter((e) => e.id !== 1)
+			return rows1.filter(e => e.id !== 1)
 		case 2:
-			rows1[1][1] = String((grid.metki[1].x - grid.metki[0].x).toFixed(2))
+			rows1[1][1] = String(
+				(
+					tree.selectedNode.data.metki[1].x - tree.selectedNode.data.metki[0].x
+				).toFixed(2)
+			)
 			rows1[1][2] = '---'
 			rows1[1][3] = '---'
 			rows1[1][4] = '---'
@@ -48,10 +59,18 @@ const rrow = computed(() => {
 			rows1[0][4] = '---'
 			rows1[0][5] = '---'
 			rows1[0][6] = '---'
-			return rows1.filter((e) => e.id <= 2)
+			return rows1.filter(e => e.id <= 2)
 		case 3:
-			rows1[2][1] = String((grid.metki[2].x - grid.metki[0].x).toFixed(2))
-			rows1[2][2] = String((grid.metki[2].x - grid.metki[1].x).toFixed(2))
+			rows1[2][1] = String(
+				(
+					tree.selectedNode.data.metki[2].x - tree.selectedNode.data.metki[0].x
+				).toFixed(2)
+			)
+			rows1[2][2] = String(
+				(
+					tree.selectedNode.data.metki[2].x - tree.selectedNode.data.metki[1].x
+				).toFixed(2)
+			)
 			rows1[2][3] = '---'
 			rows1[2][4] = '---'
 			rows1[2][5] = '---'
@@ -60,33 +79,81 @@ const rrow = computed(() => {
 			rows1[1][4] = '---'
 			rows1[1][5] = '---'
 			rows1[1][6] = '---'
-			return rows1.filter((e) => e.id <= 3)
+			return rows1.filter(e => e.id <= 3)
 		case 4:
-			rows1[3][1] = String((grid.metki[3].x - grid.metki[0].x).toFixed(2))
-			rows1[3][2] = String((grid.metki[3].x - grid.metki[1].x).toFixed(2))
-			rows1[3][3] = String((grid.metki[3].x - grid.metki[2].x).toFixed(2))
+			rows1[3][1] = String(
+				(
+					tree.selectedNode.data.metki[3].x - tree.selectedNode.data.metki[0].x
+				).toFixed(2)
+			)
+			rows1[3][2] = String(
+				(
+					tree.selectedNode.data.metki[3].x - tree.selectedNode.data.metki[1].x
+				).toFixed(2)
+			)
+			rows1[3][3] = String(
+				(
+					tree.selectedNode.data.metki[3].x - tree.selectedNode.data.metki[2].x
+				).toFixed(2)
+			)
 			rows1[3][4] = '---'
 			rows1[3][5] = '---'
 			rows1[3][6] = '---'
 			rows1[2][4] = '---'
 			rows1[2][5] = '---'
 			rows1[2][6] = '---'
-			return rows1.filter((e) => e.id <= 4)
+			return rows1.filter(e => e.id <= 4)
 		case 5:
-			rows1[4][1] = String((grid.metki[4].x - grid.metki[0].x).toFixed(2))
-			rows1[4][2] = String((grid.metki[4].x - grid.metki[1].x).toFixed(2))
-			rows1[4][3] = String((grid.metki[4].x - grid.metki[2].x).toFixed(2))
-			rows1[4][4] = String((grid.metki[4].x - grid.metki[3].x).toFixed(2))
+			rows1[4][1] = String(
+				(
+					tree.selectedNode.data.metki[4].x - tree.selectedNode.data.metki[0].x
+				).toFixed(2)
+			)
+			rows1[4][2] = String(
+				(
+					tree.selectedNode.data.metki[4].x - tree.selectedNode.data.metki[1].x
+				).toFixed(2)
+			)
+			rows1[4][3] = String(
+				(
+					tree.selectedNode.data.metki[4].x - tree.selectedNode.data.metki[2].x
+				).toFixed(2)
+			)
+			rows1[4][4] = String(
+				(
+					tree.selectedNode.data.metki[4].x - tree.selectedNode.data.metki[3].x
+				).toFixed(2)
+			)
 			rows1[4][5] = '---'
 			rows1[4][6] = '---'
-			return rows1.filter((e) => e.id <= 5)
+			return rows1.filter(e => e.id <= 5)
 		default:
-			rows1[5][1] = String((grid.metki[5].x - grid.metki[0].x).toFixed(2))
-			rows1[5][2] = String((grid.metki[5].x - grid.metki[1].x).toFixed(2))
-			rows1[5][3] = String((grid.metki[5].x - grid.metki[2].x).toFixed(2))
-			rows1[5][4] = String((grid.metki[5].x - grid.metki[3].x).toFixed(2))
-			rows1[5][5] = String((grid.metki[5].x - grid.metki[4].x).toFixed(2))
-			return rows1.filter((e) => e.id <= 6)
+			rows1[5][1] = String(
+				(
+					tree.selectedNode.data.metki[5].x - tree.selectedNode.data.metki[0].x
+				).toFixed(2)
+			)
+			rows1[5][2] = String(
+				(
+					tree.selectedNode.data.metki[5].x - tree.selectedNode.data.metki[1].x
+				).toFixed(2)
+			)
+			rows1[5][3] = String(
+				(
+					tree.selectedNode.data.metki[5].x - tree.selectedNode.data.metki[2].x
+				).toFixed(2)
+			)
+			rows1[5][4] = String(
+				(
+					tree.selectedNode.data.metki[5].x - tree.selectedNode.data.metki[3].x
+				).toFixed(2)
+			)
+			rows1[5][5] = String(
+				(
+					tree.selectedNode.data.metki[5].x - tree.selectedNode.data.metki[4].x
+				).toFixed(2)
+			)
+			return rows1.filter(e => e.id <= 6)
 	}
 })
 
@@ -96,30 +163,30 @@ const page = {
 </script>
 
 <template lang="pug">
-q-table(:columns="cols"
-	:rows="grid.metki"
+q-table(
+	:rows="tree.selectedNode.data.metki"
+	:columns="cols"
 	dense flat
 	hide-pagination
 	no-data-label="Метки отсутствуют"
 	:pagination="page" )
-	// template(v-slot:top)
-	// 	.tit
-	// 		div Измерения
+
 	template(v-slot:body="props")
-		tr(:props="props")
-			td.text-center(:props="props") {{ props.row.label }}
+		q-tr(:props="props")
+			td.text-center(:props="props") {{ props.row.label.text }}
 			td.text-right(:props="props") {{ props.row.x }}
 			td.text-right(:props="props") {{ props.row.y }}
 			// td.text-right
-			// 	q-btn(flat round icon="mdi-close" @click="action" dense size="sm") 
+			// 	q-btn(flat round icon="mdi-close" @click="action" dense size="sm")
 
-template(v-if="grid.metki.length > 1")
-	.titu Вычисленные значения
-	q-table(:columns="cols1" :rows="rrow" dense hide-pagination :pagination="page" flat)
+// template(v-if="tree.selectedNode.data.metki.length > 1")
+// 	.titu Вычисленные значения
+// 	q-table(:columns="cols1" :rows="rrow" dense hide-pagination :pagination="page" flat)
 
-.export(v-if="grid.metki.length > 1")
-	q-btn(flat dense color="negative" label="Удалить метки" icon="mdi-trash-can-outline" @click="grid.deleteMetki" size="sm")
-	q-btn(flat dense color="secondary" label="Генерация отчета" icon="mdi-file-excel-outline" size="sm")
+// .export(v-if="tree.selectedNode.data.metki.length > 1")
+// 	q-btn(flat dense color="negative" label="Удалить метки" icon="mdi-trash-can-outline" @click="grid.deleteMetki" size="sm")
+// 	q-btn(flat dense color="secondary" label="Генерация отчета" icon="mdi-file-excel-outline" size="sm")
+// pre {{ tree.selectedNode.data.metki }}
 </template>
 
 <style scoped lang="scss">

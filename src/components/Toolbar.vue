@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useGrid } from '@/stores/grid'
+import { useTree } from '@/stores/tree'
 import { UseDraggable as Draggable } from '@vueuse/components'
 import MetkiTable from '@/components/MetkiTable.vue'
 
@@ -12,8 +13,14 @@ const props = defineProps({
 })
 
 const grid = useGrid()
+const tree = useTree()
 const phase = ref('Последняя неделя')
-const phaseOptions = ['Последняя неделя', 'Последний месяц', 'Последний квартал', 'За все время']
+const phaseOptions = [
+	'Последняя неделя',
+	'Последний месяц',
+	'Последний квартал',
+	'За все время',
+]
 const bt = [
 	{ id: 0, icon: 'mdi-view-grid' },
 	{ id: 1, icon: 'mdi-dots-grid' },
@@ -55,9 +62,8 @@ Draggable.win(ref="el" v-show="modalOpen"  style="position: fixed;" :initial-val
 		.hd
 			q-icon(name="mdi-math-compass" size="sm")
 			span.q-ml-sm Измерения
-		q-btn(flat round dense icon="mdi-close" @click="toggleModal") 
-
-	MetkiTable()
+		q-btn(flat round dense icon="mdi-close" @click="toggleModal")
+	MetkiTable(v-if="tree.selectedNode")
 
 </template>
 

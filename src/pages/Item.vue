@@ -39,11 +39,10 @@ const dates = reactive([
 	{ label: '15.08.23', sel: false },
 	{ label: '14.08.23', sel: false },
 ])
-const select = ((e: any) => {
-	dates.map(item => item.sel = false)
+const select = (e: any) => {
+	dates.map(item => (item.sel = false))
 	e.sel = true
-})
-
+}
 </script>
 
 <template lang="pug">
@@ -81,7 +80,7 @@ q-page(padding :key="kkey")
 .grid {
 	display: grid;
 	grid-template-columns: 360px calc(100% - 368px);
-	gap: .5rem;
+	gap: 0.5rem;
 
 	&.side {
 		grid-template-columns: 100%;
@@ -101,7 +100,7 @@ q-page(padding :key="kkey")
 }
 
 :deep(.q-expansion-item--expanded) {
-	transition: all .2s;
+	transition: all 0.2s;
 	background: white;
 	margin-top: 1rem;
 	margin-bottom: 1rem;
@@ -139,7 +138,7 @@ q-page(padding :key="kkey")
 		background: pink;
 		padding: 3px 8px;
 		border-radius: 4px;
-		font-size: .8rem;
+		font-size: 0.8rem;
 		border: 1px solid darkred;
 	}
 }

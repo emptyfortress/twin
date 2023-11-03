@@ -103,23 +103,12 @@ const add = (event: any, chartContext: any, config: any) => {
 			})
 			mytree.addMetka({
 				x: myx,
+				y: myy,
 				label: {
 					text: i,
 					orientation: 'horizontal',
 				},
 			})
-			// grid.addMetka({
-			// 	label: i.toString(),
-			// 	x: myx,
-			// 	y: myy,
-			// })
-			// currentSeries.value[0].metki.push({
-			// 	x: myx,
-			// 	label: {
-			// 		text: i,
-			// 		orientation: 'horizontal',
-			// 	},
-			// })
 		}
 	} else return
 }

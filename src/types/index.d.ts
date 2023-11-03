@@ -12,6 +12,7 @@ interface Item {
 
 interface Metka {
 	x: number
+	y: number
 	label: {
 		text: number
 		orientation: string

@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from 'vue'
-// import { useGrid } from '@/stores/grid'
 import { useTree } from '@/stores/tree'
+import { useGrid } from '@/stores/grid'
 import type { QTableColumn } from 'quasar'
 
 const tree = useTree()
-
+const grid = useGrid()
 const cols: QTableColumn[] = [
 	{
 		label: 'Метка',
@@ -16,6 +16,7 @@ const cols: QTableColumn[] = [
 	},
 	{ label: 'ось Х', field: 'x', name: 'x', sortable: true, align: 'right' },
 	{ label: 'ось Y', field: 'y', name: 'y', sortable: true, align: 'right' },
+	{},
 ]
 
 const cols1: QTableColumn[] = [
@@ -160,6 +161,11 @@ const rrow = computed(() => {
 const page = {
 	rowsPerPage: 0,
 }
+
+const kill = () => {
+	tree.selectedNode.data.metki = []
+	grid.reset = true
+}
 </script>
 
 <template lang="pug">
@@ -176,17 +182,16 @@ q-table(
 			td.text-center(:props="props") {{ props.row.label.text }}
 			td.text-right(:props="props") {{ props.row.x }}
 			td.text-right(:props="props") {{ props.row.y }}
-			// td.text-right
-			// 	q-btn(flat round icon="mdi-close" @click="action" dense size="sm")
+			td.text-right
+				q-btn(flat round icon="mdi-trash-can-outline" color="grey" @click="" dense size="sm")
 
 template(v-if="tree.selectedNode.data.metki.length > 1")
 	.titu Вычисленные значения
 	q-table(:columns="cols1" :rows="rrow" dense hide-pagination :pagination="page" flat)
 
-// .export(v-if="tree.selectedNode.data.metki.length > 1")
-// 	q-btn(flat dense color="negative" label="Удалить метки" icon="mdi-trash-can-outline" @click="grid.deleteMetki" size="sm")
-// 	q-btn(flat dense color="secondary" label="Генерация отчета" icon="mdi-file-excel-outline" size="sm")
-// pre {{ tree.selectedNode.data.metki }}
+.export(v-if="tree.selectedNode.data.metki.length > 1")
+	q-btn(flat dense color="negative" label="Удалить все метки" icon="mdi-trash-can-outline" @click="kill" size="sm")
+	q-btn(flat dense color="secondary" label="Генерация отчета" icon="mdi-file-excel-outline" size="sm")
 </template>
 
 <style scoped lang="scss">

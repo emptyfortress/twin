@@ -984,10 +984,6 @@ const speed = [
 			[489, 0],
 			[489.5, 0],
 		],
-		metki: [
-			// { x: 150, label: { text: '1', orientation: 'horizontal' } },
-			// { x: 200, label: { text: '2', orientation: 'horizontal' } },
-		],
 	},
 	{
 		type: 'line',

@@ -62,7 +62,7 @@ q-page(padding :key="kkey")
 					q-scroll-area.list
 						BaseTree
 				.main
-					Toolbar()
+					Toolbar
 					GridMeasure(v-if="grid.gridType === 2")
 					TileMeasure(v-if="grid.gridType === 0")
 					DotMeasure(v-if="grid.gridType === 1")

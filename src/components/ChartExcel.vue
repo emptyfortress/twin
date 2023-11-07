@@ -34,14 +34,21 @@ const currentSeries = computed(() => {
 	}
 })
 
-watch(currentSeries, () => {
-	chart.value.clearAnnotations()
-	chart.value.clearAnnotations()
-	chart.value.updateOptions({
-		annotations: {
-			xaxis: mytree.selectedNode?.data.metki,
-		},
-	})
+const len = computed(() => {
+	return mytree.selectedNode?.data.id
+})
+
+watch(len, () => {
+	if (!!chart.value && mytree.selectedNode?.children.length === 0) {
+		chart.value.clearAnnotations()
+		chart.value.clearAnnotations()
+		chart.value.updateOptions({
+			annotations: {
+				xaxis: mytree.selectedNode?.data.metki,
+			},
+		})
+		i = 0
+	} else return
 })
 
 const options1 = {

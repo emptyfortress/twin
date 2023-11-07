@@ -49,7 +49,7 @@ const toggleModal = () => {
 		q-select(v-if="!props.simple" dense filled v-model="phase" :options="phaseOptions")
 		q-btn.q-mr-lg(v-if="!props.simple" flat round dense icon="mdi-calendar") 
 		q-btn(flat round dense icon="mdi-tune-variant" @click="grid.rotation = !grid.rotation") 
-		q-btn(flat round dense @click="toggleModal" )
+		q-btn(v-if="props.simple" flat round dense @click="toggleModal" )
 			q-icon(name="mdi-math-compass")
 			q-tooltip(:delay="600") Таблица меток
 		q-btn(flat round dense @click="grid.switchFullscreen")
@@ -57,13 +57,13 @@ const toggleModal = () => {
 			q-icon(v-if="grid.fullscreen" name="mdi-fullscreen-exit")
 			q-tooltip(:delay="600") Полный экран
 
-Draggable.win(ref="el" v-show="modalOpen"  style="position: fixed;" :initial-value="{ x: 840, y: 140 }" :handle="handle")
+Draggable.win(v-if="tree.selectedNode?.level === 4" ref="el" v-show="modalOpen"  style="position: fixed;" :initial-value="{ x: 840, y: 140 }" :handle="handle")
 	.wrap(ref="handle")
 		.hd
 			q-icon(name="mdi-math-compass" size="sm")
 			span.q-ml-sm Измерения
 		q-btn(flat round dense icon="mdi-close" @click="toggleModal")
-	MetkiTable(v-if="tree.selectedNode")
+	MetkiTable
 
 </template>
 

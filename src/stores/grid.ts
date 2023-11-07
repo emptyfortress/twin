@@ -19,19 +19,11 @@ export const useGrid = defineStore({
 		disable: 0,
 		selected: false,
 		rotation: true,
-		// metki: [] as Metka[],
 		reset: false,
 	}),
 	getters: {},
 
 	actions: {
-		// addMetka(e: Metka) {
-		// 	this.metki.push(e)
-		// },
-		// deleteMetki() {
-		// 	this.metki.length = 0
-		// 	this.reset = true
-		// },
 		switchSidebar() {
 			this.sidebar = !this.sidebar
 		},

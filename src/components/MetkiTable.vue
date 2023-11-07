@@ -170,13 +170,12 @@ const kill = () => {
 
 <template lang="pug">
 q-table(
-	:rows="tree.selectedNode.data.metki"
+	:rows="tree.selectedNode?.data.metki"
 	:columns="cols"
 	dense flat
 	hide-pagination
 	no-data-label="Метки отсутствуют"
 	:pagination="page" )
-
 	template(v-slot:body="props")
 		q-tr(:props="props")
 			td.text-center(:props="props") {{ props.row.label.text }}
@@ -185,11 +184,11 @@ q-table(
 			td.text-right
 				q-btn(flat round icon="mdi-trash-can-outline" color="grey" @click="" dense size="sm")
 
-template(v-if="tree.selectedNode.data.metki.length > 1")
+template(v-if="tree.selectedNode?.data.metki.length > 1")
 	.titu Вычисленные значения
 	q-table(:columns="cols1" :rows="rrow" dense hide-pagination :pagination="page" flat)
 
-.export(v-if="tree.selectedNode.data.metki.length > 1")
+.export(v-if="tree.selectedNode?.data.metki.length > 1")
 	q-btn(flat dense color="negative" label="Удалить все метки" icon="mdi-trash-can-outline" @click="kill" size="sm")
 	q-btn(flat dense color="secondary" label="Генерация отчета" icon="mdi-file-excel-outline" size="sm")
 </template>

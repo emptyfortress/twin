@@ -176,11 +176,14 @@ const page = {
 	rowsPerPage: 0,
 }
 
-const kill = () => {
+const killAll = () => {
 	if (!!tree.selectedNode) {
 		tree.selectedNode.data.metki!.length = 0
 		grid.reset = true
 	}
+}
+const kill = (e: number) => {
+	tree.removeMetka(e)
 }
 </script>
 
@@ -194,18 +197,18 @@ q-table(
 	:pagination="page" )
 	template(v-slot:body="props")
 		q-tr(:props="props")
-			td.text-center(:props="props") {{ props.row.label.text }}
+			td.text-center(:props="props") {{ props.rowIndex + 1 }}
 			td.text-right(:props="props") {{ props.row.x }}
 			td.text-right(:props="props") {{ props.row.y }}
 			td.text-right
-				q-btn(flat round icon="mdi-trash-can-outline" color="grey" @click="" dense size="sm")
+				q-btn(flat round icon="mdi-trash-can-outline" color="grey" @click="kill(props.rowIndex)" dense size="sm")
 
 template(v-if="tree.selectedNode && tree.selectedNode.data.metki.length > 1")
 	.titu Вычисленные значения
 	q-table(:columns="cols1" :rows="rrow" dense hide-pagination :pagination="page" flat)
 
 .export(v-if="tree.selectedNode && tree.selectedNode.data.metki.length > 1")
-	q-btn(flat dense color="negative" label="Удалить все метки" icon="mdi-trash-can-outline" @click="kill" size="sm")
+	q-btn(flat dense color="negative" label="Удалить все метки" icon="mdi-trash-can-outline" @click="killAll" size="sm")
 	q-btn(flat dense color="secondary" label="Генерация отчета" icon="mdi-file-excel-outline" size="sm")
 </template>
 

@@ -63,7 +63,7 @@ watch(len, newVal => {
 				xaxis: mytree.selectedNode?.data.metki,
 			},
 		})
-		i = mytree.selectedNode?.data.metki.length
+		i = mytree.selectedNode?.data.metki.length || 0
 	}
 })
 

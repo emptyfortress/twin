@@ -17,8 +17,8 @@ export const useTree = defineStore({
 	},
 	actions: {
 		removeMetka(e: number) {
-			this.selectedNode.data.metki.splice(e, 1)
-			this.selectedNode.data.metki.forEach((el, index) => {
+			this.selectedNode?.data.metki.splice(e, 1)
+			this.selectedNode?.data.metki.forEach((el, index) => {
 				el.label.text = index + 1
 			})
 		},

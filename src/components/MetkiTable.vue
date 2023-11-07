@@ -16,7 +16,13 @@ const cols: QTableColumn[] = [
 	},
 	{ label: 'ось Х', field: 'x', name: 'x', sortable: true, align: 'right' },
 	{ label: 'ось Y', field: 'y', name: 'y', sortable: true, align: 'right' },
-	{},
+	{
+		label: '',
+		field: 'action',
+		name: 'action',
+		sortable: false,
+		align: 'right',
+	},
 ]
 
 const cols1: QTableColumn[] = [
@@ -39,7 +45,7 @@ const rows1 = reactive([
 ])
 
 const rrow = computed(() => {
-	switch (tree.selectedNode.data.metki.length) {
+	switch (tree.selectedNode?.data.metki.length) {
 		case 0:
 			return []
 		case 1:
@@ -128,32 +134,40 @@ const rrow = computed(() => {
 			rows1[4][5] = '---'
 			rows1[4][6] = '---'
 			return rows1.filter(e => e.id <= 5)
+
 		default:
-			rows1[5][1] = String(
-				(
-					tree.selectedNode.data.metki[5].x - tree.selectedNode.data.metki[0].x
-				).toFixed(2)
-			)
-			rows1[5][2] = String(
-				(
-					tree.selectedNode.data.metki[5].x - tree.selectedNode.data.metki[1].x
-				).toFixed(2)
-			)
-			rows1[5][3] = String(
-				(
-					tree.selectedNode.data.metki[5].x - tree.selectedNode.data.metki[2].x
-				).toFixed(2)
-			)
-			rows1[5][4] = String(
-				(
-					tree.selectedNode.data.metki[5].x - tree.selectedNode.data.metki[3].x
-				).toFixed(2)
-			)
-			rows1[5][5] = String(
-				(
-					tree.selectedNode.data.metki[5].x - tree.selectedNode.data.metki[4].x
-				).toFixed(2)
-			)
+			if (!!tree.selectedNode) {
+				rows1[5][1] = String(
+					(
+						tree.selectedNode.data.metki[5].x -
+						tree.selectedNode.data.metki[0].x
+					).toFixed(2)
+				)
+				rows1[5][2] = String(
+					(
+						tree.selectedNode.data.metki[5].x -
+						tree.selectedNode.data.metki[1].x
+					).toFixed(2)
+				)
+				rows1[5][3] = String(
+					(
+						tree.selectedNode.data.metki[5].x -
+						tree.selectedNode.data.metki[2].x
+					).toFixed(2)
+				)
+				rows1[5][4] = String(
+					(
+						tree.selectedNode.data.metki[5].x -
+						tree.selectedNode.data.metki[3].x
+					).toFixed(2)
+				)
+				rows1[5][5] = String(
+					(
+						tree.selectedNode.data.metki[5].x -
+						tree.selectedNode.data.metki[4].x
+					).toFixed(2)
+				)
+			}
 			return rows1.filter(e => e.id <= 6)
 	}
 })
@@ -163,8 +177,10 @@ const page = {
 }
 
 const kill = () => {
-	tree.selectedNode.data.metki = []
-	grid.reset = true
+	if (!!tree.selectedNode) {
+		tree.selectedNode.data.metki!.length = 0
+		grid.reset = true
+	}
 }
 </script>
 
@@ -184,11 +200,11 @@ q-table(
 			td.text-right
 				q-btn(flat round icon="mdi-trash-can-outline" color="grey" @click="" dense size="sm")
 
-template(v-if="tree.selectedNode?.data.metki.length > 1")
+template(v-if="tree.selectedNode?.data.metki.length! > 1")
 	.titu Вычисленные значения
 	q-table(:columns="cols1" :rows="rrow" dense hide-pagination :pagination="page" flat)
 
-.export(v-if="tree.selectedNode?.data.metki.length > 1")
+.export(v-if="tree.selectedNode?.data.metki.length! > 1")
 	q-btn(flat dense color="negative" label="Удалить все метки" icon="mdi-trash-can-outline" @click="kill" size="sm")
 	q-btn(flat dense color="secondary" label="Генерация отчета" icon="mdi-file-excel-outline" size="sm")
 </template>

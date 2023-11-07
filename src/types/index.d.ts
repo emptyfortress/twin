@@ -29,7 +29,7 @@ interface NodeData {
 	unit?: string
 	type?: number
 	red?: boolean
-	metki?: Metka[]
+	metki: Metka[]
 }
 
 interface Stat {

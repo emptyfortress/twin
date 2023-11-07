@@ -200,11 +200,11 @@ q-table(
 			td.text-right
 				q-btn(flat round icon="mdi-trash-can-outline" color="grey" @click="" dense size="sm")
 
-template(v-if="tree.selectedNode?.data.metki.length! > 1")
+template(v-if="tree.selectedNode && tree.selectedNode.data.metki.length > 1")
 	.titu Вычисленные значения
 	q-table(:columns="cols1" :rows="rrow" dense hide-pagination :pagination="page" flat)
 
-.export(v-if="tree.selectedNode?.data.metki.length! > 1")
+.export(v-if="tree.selectedNode && tree.selectedNode.data.metki.length > 1")
 	q-btn(flat dense color="negative" label="Удалить все метки" icon="mdi-trash-can-outline" @click="kill" size="sm")
 	q-btn(flat dense color="secondary" label="Генерация отчета" icon="mdi-file-excel-outline" size="sm")
 </template>

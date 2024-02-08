@@ -5,8 +5,6 @@ import { rows } from '@/stores/data'
 import InfoPanel from '@/components/InfoPanel.vue'
 import Toolbar from '@/components/Toolbar.vue'
 import GridMeasure from '@/components/GridMeasure.vue'
-import TileMeasure from '@/components/TileMeasure.vue'
-import DotMeasure from '@/components/DotMeasure.vue'
 import DynamicChart from '@/components/DynamicChart.vue'
 import { list } from '@/stores/list'
 import { randomNumber } from '@/utils/utils'
@@ -27,8 +25,8 @@ onBeforeMount(() => {
 })
 
 const infopanel = ref(false)
-const graphic = ref(true)
-const measurepanel = ref(false)
+const graphic = ref(false)
+const measurepanel = ref(true)
 const rand = ref(+randomNumber(0, 13, 0))
 const dates = reactive([
 	{ label: '20.08.23', sel: true },
@@ -39,10 +37,6 @@ const dates = reactive([
 	{ label: '15.08.23', sel: false },
 	{ label: '14.08.23', sel: false },
 ])
-const select = (e: any) => {
-	dates.map(item => (item.sel = false))
-	e.sel = true
-}
 </script>
 
 <template lang="pug">
@@ -63,9 +57,7 @@ q-page(padding :key="kkey")
 						BaseTree
 				.main
 					Toolbar
-					GridMeasure(v-if="grid.gridType === 2")
-					TileMeasure(v-if="grid.gridType === 0")
-					DotMeasure(v-if="grid.gridType === 1")
+					GridMeasure
 
 	q-expansion-item.izm(v-model="graphic" label="Динамические измерения" icon="mdi-chart-bell-curve" header-class="head")
 		DynamicChart

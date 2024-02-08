@@ -43,8 +43,6 @@ const toggleModal = () => {
 		q-btn(flat round dense @click="grid.switchSidebar")
 			q-icon(v-if="grid.sidebar" name="mdi-backburger")
 			q-icon(v-if="!grid.sidebar" name="mdi-forwardburger")
-	.center(v-if="!props.simple")
-		q-btn(v-for="but in bt" :key="but.id" unelevated dense :icon="but.icon" size="11px" :class="{ grey: grid.gridType === but.id }" @click="grid.switchGrid(but.id)")
 	.right
 		q-select(v-if="!props.simple" dense filled v-model="phase" :options="phaseOptions")
 		q-btn.q-mr-lg(v-if="!props.simple" flat round dense icon="mdi-calendar") 

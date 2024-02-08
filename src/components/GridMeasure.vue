@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { computed } from 'vue'
 import { useTree } from '@/stores/tree'
 import { useGrid } from '@/stores/grid'
 import { randomNumber } from '@/utils/utils'
@@ -11,47 +11,30 @@ const pagination = {
 	sortBy: '',
 	descending: true,
 	page: 1,
-	rowsPerPage: 0
+	rowsPerPage: 0,
 }
 
 const arr = computed(() => {
 	let temp: any = []
-	mytree.cells.forEach((cell) => {
-		let item = {
-			id: cell.data.id,
-			name: cell.data.id,
-			label: cell.data.text,
-			field: cell.data.id,
-			sortable: true,
-			align: 'center',
-			unit: cell.data.unit
-		}
-		temp.push(item)
-	})
-	return temp
+	if (mytree.cells) {
+		mytree.cells.forEach(cell => {
+			let item = {
+				id: cell.data.id,
+				name: cell.data.id,
+				label: cell.data.text,
+				field: cell.data.id,
+				sortable: true,
+				align: 'center',
+				unit: cell.data.unit,
+			}
+			temp.push(item)
+		})
+		return temp
+	}
+	return []
 })
 
-const week = [
-	'Пн, 21.08.23 13:15',
-	'Вт, 22.08.23 13:15',
-	'Ср, 23.08.23 13:15',
-	'Чт, 24.08.23 13:15',
-	'Пт, 25.08.23 13:15',
-	'Сб, 26.08.23 13:15',
-	'Вс, 27.08.23 13:15',
-]
-
-let rows: any = [
-	{},
-	{},
-	{},
-	{},
-	{},
-	{},
-	{},
-]
-
-
+let rows: any = [{}, {}, {}, {}, {}, {}, {}]
 </script>
 
 <template lang="pug">
